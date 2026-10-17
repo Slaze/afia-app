@@ -9,6 +9,7 @@ from zoneinfo import ZoneInfo
 
 RADIO = "https://afia-radio-backend.onrender.com/v1"
 SANITY = "https://p9qytxax.apicdn.sanity.io/v2021-06-07/data/query/production"
+STREAMS = ["https://stream.afia993.com/stream"]
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "feed.json"
 NEWS = '*[_type=="news" && !(_id in path("drafts.**"))] | order(publishedAt desc)[0...8]{title,description,publishedAt,category,"slug":slug.current}'
@@ -23,6 +24,17 @@ def get(url):
 
 def sanity(query):
     return get(SANITY + "?query=" + urllib.parse.quote(query)).get("result") or []
+
+
+def check(url):
+    request = urllib.request.Request(url, headers={"User-Agent": "AfiaFeed/1.0", "Icy-MetaData": "1"})
+    try:
+        with urllib.request.urlopen(request, timeout=12) as response:
+            response.read(16)
+            return {"url": url, "status": response.status, "type": response.headers.get("content-type")}
+    except Exception as error:
+        status = getattr(error, "code", None)
+        return {"url": url, "status": status or 0, "error": type(error).__name__}
 
 
 def main():
@@ -42,13 +54,14 @@ def main():
         "week": week,
         "news": sanity(NEWS),
         "episodes": sanity(VIDEOS),
+        "streams": STREAMS,
+        "streamChecks": [check(url) for url in STREAMS],
     }
     previous = {}
     if OUT.exists():
         previous = json.loads(OUT.read_text())
-    if {key: previous.get(key) for key in ("onAir", "today", "week", "news", "episodes")} == {
-        key: payload[key] for key in ("onAir", "today", "week", "news", "episodes")
-    }:
+    watched = ("onAir", "today", "week", "news", "episodes", "streams", "streamChecks")
+    if {key: previous.get(key) for key in watched} == {key: payload[key] for key in watched}:
         print("feed unchanged")
         return
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")

@@ -274,11 +274,27 @@
     const buttons = [...document.querySelectorAll("nav button")];
     const STREAM = "https://stream.afia993.com/stream";
     const DESK = "https://iconiaglobal.com/afiatv-app/api/config.php";
-    let deskStream = "";
-    fetch(DESK).then((response) => response.json()).then((data) => {
-      if (data.radio && data.radio.enabled === false) deskStream = "";
-      else if (data.radio && data.radio.stream) deskStream = data.radio.stream;
-    }).catch(() => {});
+    let streamList = [STREAM];
+    let sourceIndex = 0;
+    async function loadStreams() {
+      const list = [];
+      try {
+        const data = await fetch(DESK).then((response) => response.json());
+        if (data.radio && data.radio.enabled === false) {
+          streamList = [];
+          return;
+        }
+        if (data.radio && Array.isArray(data.radio.streams)) list.push(...data.radio.streams);
+        if (data.radio && data.radio.stream) list.push(data.radio.stream);
+      } catch (error) {}
+      try {
+        const feed = await fetch(FEED, { cache: "no-store" }).then((response) => response.json());
+        if (Array.isArray(feed.streams)) list.push(...feed.streams);
+      } catch (error) {}
+      list.push(STREAM);
+      streamList = [...new Set(list.filter((url) => typeof url === "string" && url.startsWith("http")))];
+    }
+    loadStreams();
     const audio = document.getElementById("radioAudio");
     const radioStatus = document.getElementById("radioStatus");
     const radioMark = document.getElementById("radioMark");
@@ -298,8 +314,12 @@
         return;
       }
       setRadio("Connecting", "…");
-      const source = deskStream || STREAM;
-      if (audio.src !== source) audio.src = source;
+      sourceIndex = 0;
+      if (!streamList.length) {
+        setRadio("Afia has switched the radio off for the app.", "▶");
+        return;
+      }
+      if (audio.src !== streamList[0]) audio.src = streamList[0];
       try {
         await audio.play();
         setRadio("Live", "❚❚");
@@ -318,10 +338,22 @@
     });
     function radioFail() {
       setRadio(navigator.onLine
-        ? "Afia 99.3 didn't start. The station stream may be off. Try again shortly."
+        ? "Afia 99.3 didn't start. Every published stream address failed. The encoder may be off."
         : "Afia 99.3 needs a connection. Live radio cannot be saved for later.", "▶");
     }
-    audio.addEventListener("error", radioFail);
+    audio.addEventListener("error", async () => {
+      sourceIndex += 1;
+      if (sourceIndex < streamList.length) {
+        audio.src = streamList[sourceIndex];
+        try {
+          await audio.play();
+          return;
+        } catch (error) {
+          return;
+        }
+      }
+      radioFail();
+    });
     document.getElementById("radio").addEventListener("click", toggleRadio);
 
     const guide = document.getElementById("guide");

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-17T20:33:36.078411+01:00",
+  "updatedAt": "2026-10-17T20:40:25.533835+01:00",
   "onAir": null,
   "today": [
     {
@@ -579,6 +579,16 @@
       "publishedAt": "2026-01-19T16:09:00.000Z",
       "thumbnail": "https://cdn.sanity.io/images/p9qytxax/production/939d9dba847240c70d021ed6539873edfcdc987f-1919x1079.png",
       "title": "INSIDE ENUGU’S SMART GREEN SCHOOLS: ENROLMENT GROWS AS FUTURE-READY LEARNING TAKES ROOT"
+    }
+  ],
+  "streams": [
+    "https://stream.afia993.com/stream"
+  ],
+  "streamChecks": [
+    {
+      "url": "https://stream.afia993.com/stream",
+      "status": 502,
+      "error": "HTTPError"
     }
   ]
 }
