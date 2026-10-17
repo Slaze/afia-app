@@ -410,6 +410,7 @@
       </section>
       <h2>Today on 99.3</h2>
       <div class="rail" id="todayRail"></div>
+      <div id="statRows"></div>
       <div id="homeRows"></div>
     </main>
     <div class="stage" id="stage" hidden>
@@ -1429,6 +1430,7 @@
       });
       block.hidden = rows.length === 0;
       rail.replaceChildren(...rows.slice(0, 12).map((row) => episodeCard(row, row.section || "", row.title)));
+      paintStats();
       const homeRows = document.getElementById("homeRows");
       const sections = (programmes && programmes.sections) || [];
       const picked = HOME_SHOWS.map((name) => sections.find((row) => row.title.toUpperCase() === name)).filter(Boolean);
@@ -1448,7 +1450,39 @@
       }));
     }
 
-    function episodeCard(row, section, title) {
+    function countLabel(value, word) {
+      const count = Number(value) || 0;
+      const text = count >= 1000000
+        ? (count / 1000000).toFixed(1).replace(/\.0$/, "") + "m"
+        : count >= 1000
+          ? (count / 1000).toFixed(1).replace(/\.0$/, "") + "k"
+          : String(count);
+      return text + " " + word;
+    }
+
+    function paintStats() {
+      const root = document.getElementById("statRows");
+      const stats = (programmes && programmes.stats) || {};
+      const rows = [
+        ["Most played", stats.mostPlayed, (row) => countLabel(row.views, "plays")],
+        ["Most liked", stats.mostLiked, (row) => countLabel(row.likes, "likes")],
+        ["Trending", stats.trending, (row) => countLabel(row.views, "plays")],
+        ["Most commented", stats.mostCommented, (row) => countLabel(row.comments, "comments")]
+      ].filter((row) => Array.isArray(row[1]) && row[1].length);
+      root.replaceChildren(...rows.map((entry) => {
+        const [label, items, note] = entry;
+        const wrap = document.createElement("section");
+        const heading = document.createElement("h2");
+        heading.textContent = label;
+        const strip = document.createElement("div");
+        strip.className = "rail";
+        items.forEach((row) => strip.append(episodeCard(row, row.section || "", row.title, note(row))));
+        wrap.append(heading, strip);
+        return wrap;
+      }));
+    }
+
+    function episodeCard(row, section, title, note) {
       const wrap = document.createElement("div");
       wrap.className = "episode";
       const card = document.createElement("button");
@@ -1460,6 +1494,11 @@
       const name = document.createElement("b");
       name.textContent = title || row.title;
       card.append(img, name);
+      if (note) {
+        const meta = document.createElement("span");
+        meta.textContent = note;
+        card.append(meta);
+      }
       card.addEventListener("click", () => watchEpisode(row.id, section, title || row.title));
       const saved = laterItems().some((item) => item.id === row.id);
       const mark = document.createElement("button");
