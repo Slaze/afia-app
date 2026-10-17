@@ -237,6 +237,59 @@
       color: #fff;
     }
     .player-bar button svg { width: 22px; height: 22px; display: block; }
+    .mini-toggle {
+      display: none;
+      position: absolute;
+      z-index: 7;
+      top: 8px;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      padding: 0;
+      background: rgba(16, 14, 12, 0.55);
+      color: #fff;
+    }
+    .mini-toggle svg { width: 22px; height: 22px; display: block; }
+    body.watching .mini-toggle { display: grid; left: 108px; }
+    #stage.episode .mini-toggle { display: grid; left: 8px; }
+    body.mini #stage {
+      position: fixed;
+      z-index: 40;
+      right: 12px;
+      bottom: calc(72px + env(safe-area-inset-bottom));
+      width: min(220px, 56vw);
+      aspect-ratio: 16 / 9;
+      height: auto;
+      flex: none;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+    }
+    body.mini .catalogue,
+    body.mini #frame,
+    body.mini .return-bar,
+    body.mini .chatter,
+    body.mini .live-caption,
+    body.mini .episode-when,
+    body.mini .up-next,
+    body.mini .player-bar,
+    body.mini .player-note { display: none !important; }
+    body.mini .player,
+    body.mini #ytSlot { display: flex !important; width: 100%; height: 100%; min-height: 0; }
+    body.mini #twitchMount,
+    body.mini #twitchMount iframe,
+    body.mini #ytSlot iframe {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    body.mini .mini-toggle { display: grid; top: 6px; right: 6px; left: auto; }
+    body.phone-landscape.mini #stage,
+    body.layout-landscape.mini #stage { bottom: 12px; }
+    #pipBack[hidden] { display: none; }
     .player-screen { position: absolute; inset: 0; overflow: hidden; background: #000; }
     #twitchMount { position: absolute; }
     #twitchMount iframe { position: absolute; inset: 0; width: 100% !important; height: 100% !important; border: 0; }
@@ -527,6 +580,7 @@
         <img src="afia-wordmark-white.png" alt="Afia">
         <div class="top-tools">
           <button class="orient-lock" id="orientLock" type="button" aria-label="Lock portrait" aria-pressed="false"></button>
+          <button class="orient-lock" id="pipBack" type="button" hidden aria-label="Restore" aria-pressed="true"></button>
           <button class="rank-open" id="rankOpen" type="button" aria-label="Your rank"><span id="rankBadge"></span><span id="rankTitle">Guest</span></button>
           <time class="clock" id="clock">WAT</time>
         </div>
@@ -547,6 +601,7 @@
       <div id="homeRows"></div>
     </main>
     <div class="stage" id="stage" hidden>
+      <button class="mini-toggle" id="miniToggle" type="button" aria-label="Minimize" aria-pressed="false"></button>
       <div class="catalogue" id="catalogue">
         <input class="show-search" id="showSearch" type="search" placeholder="Search episodes" aria-label="Search episodes">
         <p class="programme-note">Follow a programme to hear when a new episode is up. Tap the mark to keep one for later.</p>
@@ -1018,7 +1073,9 @@
       fit: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 4v3H6v2h5V4H9zm5 0v5h5V7h-3V4h-2zM4 13v2h3v3h2v-5H4zm10 0v5h2v-3h3v-2h-5z"/></svg>',
       home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 4 4 11h2v8h5v-5h2v5h5v-8h2L12 4z"/></svg>',
       unlock: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 11V8a4 4 0 0 1 7.9-1H14a2 2 0 0 0-4 0v3h8v9H6v-9h2zm-2 2v5h12v-5H6z"/></svg>',
-      lock: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 11V8a4 4 0 0 1 8 0v3h2v9H6v-9h2zm2 0h4V8a2 2 0 0 0-4 0v3z"/></svg>'
+      lock: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 11V8a4 4 0 0 1 8 0v3h2v9H6v-9h2zm2 0h4V8a2 2 0 0 0-4 0v3z"/></svg>',
+      minimize: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h12v9H3V5zm10 11h8v5h-8v-5z"/></svg>',
+      restore: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg>'
     };
     playToggle.innerHTML = ICONS.play;
     muteToggle.innerHTML = ICONS.mute;
@@ -1052,6 +1109,109 @@
         button.setAttribute("aria-label", label);
         button.setAttribute("aria-pressed", locked ? "true" : "false");
       });
+      paintMini();
+      requestAnimationFrame(fitPlayer);
+    }
+
+    let pipWindow = null;
+    let pipRestore = null;
+
+    function pipOpen() {
+      return !!(pipWindow && !pipWindow.closed);
+    }
+
+    function paintMini() {
+      const away = document.body.classList.contains("mini") || pipOpen();
+      const label = away ? "Restore" : "Minimize";
+      [document.getElementById("miniToggle"), document.getElementById("pipBack")].forEach((button) => {
+        button.innerHTML = away ? ICONS.restore : ICONS.minimize;
+        button.setAttribute("aria-label", label);
+        button.setAttribute("aria-pressed", away ? "true" : "false");
+      });
+      document.getElementById("pipBack").hidden = !pipOpen();
+    }
+
+    function putBack() {
+      if (!pipRestore) return;
+      const node = pipRestore.node;
+      const parent = pipRestore.parent;
+      const next = pipRestore.next;
+      pipRestore = null;
+      if (!node || !parent) return;
+      if (next && next.parentNode === parent) parent.insertBefore(node, next);
+      else parent.append(node);
+    }
+
+    function leaveDock() {
+      document.body.classList.remove("mini");
+      const watching = document.body.classList.contains("watching");
+      const onEpisode = document.getElementById("stage").classList.contains("episode");
+      const playing = watching || onEpisode;
+      document.getElementById("home").hidden = playing;
+      document.getElementById("stage").hidden = !playing;
+      if (watching) markTab("live");
+      else if (onEpisode) markTab(null);
+      paintMini();
+      applyLayout();
+    }
+
+    async function openPip(watching) {
+      const node = watching ? document.querySelector(".player-screen") : document.getElementById("ytSlot");
+      const win = await documentPictureInPicture.requestWindow({ width: 320, height: 180 });
+      pipWindow = win;
+      pipRestore = { node: node, parent: node.parentNode, next: node.nextSibling };
+      const style = win.document.createElement("style");
+      style.textContent = "html,body{margin:0;height:100%;background:#000;overflow:hidden}.player-screen,#ytSlot,#twitchMount,#ytPlayer,iframe{position:absolute;inset:0;width:100%!important;height:100%!important;border:0;background:#000}#ytSlot{display:block!important}.chatter,.episode-when,.live-caption,.player-note{display:none!important}";
+      win.document.head.append(style);
+      if (watching) {
+        const mount = document.getElementById("twitchMount");
+        mount.style.left = mount.style.top = mount.style.width = mount.style.height = "";
+      }
+      win.document.body.append(node);
+      document.body.classList.add("pip");
+      document.getElementById("home").hidden = false;
+      document.getElementById("stage").hidden = true;
+      markTab("home");
+      paintMini();
+      win.addEventListener("pagehide", () => {
+        putBack();
+        pipWindow = null;
+        document.body.classList.remove("pip");
+        const watchingNow = document.body.classList.contains("watching");
+        const onEpisode = document.getElementById("stage").classList.contains("episode");
+        const playing = watchingNow || onEpisode;
+        document.getElementById("home").hidden = playing;
+        document.getElementById("stage").hidden = !playing;
+        if (watchingNow) markTab("live");
+        else if (onEpisode) markTab(null);
+        paintMini();
+        applyLayout();
+      });
+    }
+
+    async function toggleMini() {
+      if (pipOpen()) {
+        pipWindow.close();
+        return;
+      }
+      if (document.body.classList.contains("mini")) {
+        leaveDock();
+        return;
+      }
+      const watching = document.body.classList.contains("watching");
+      const onEpisode = document.getElementById("stage").classList.contains("episode");
+      if (!watching && !onEpisode) return;
+      if (window.documentPictureInPicture) {
+        try {
+          await openPip(watching);
+          return;
+        } catch (error) { /* keep the picture inside Afia */ }
+      }
+      document.body.classList.add("mini");
+      document.getElementById("home").hidden = false;
+      document.getElementById("stage").hidden = false;
+      markTab("home");
+      paintMini();
       requestAnimationFrame(fitPlayer);
     }
 
@@ -1134,6 +1294,8 @@
     }
 
     function leaveLive() {
+      if (pipOpen()) pipWindow.close();
+      document.body.classList.remove("mini");
       stopChat();
       document.body.classList.remove("watching", "immersive");
       applyLayout();
@@ -1150,6 +1312,8 @@
     }
 
     async function showLive() {
+      if (pipOpen()) pipWindow.close();
+      document.body.classList.remove("mini");
       if (audio.src && !audio.paused) {
         pausedForLive = true;
         audio.pause();
@@ -1178,6 +1342,11 @@
     }
 
     function showHome() {
+      if (document.body.classList.contains("mini") || pipOpen()) {
+        document.getElementById("home").hidden = false;
+        markTab("home");
+        return;
+      }
       leaveLive();
       document.getElementById("home").hidden = false;
       const stage = document.getElementById("stage");
@@ -1242,6 +1411,8 @@
       try { localStorage.setItem("afia-orient", forced || ""); } catch (error) { /* the choice lasts for this visit */ }
       applyLayout();
     }
+    document.getElementById("miniToggle").addEventListener("click", toggleMini);
+    document.getElementById("pipBack").addEventListener("click", toggleMini);
     turnToggle.addEventListener("click", toggleOrient);
     document.getElementById("orientLock").addEventListener("click", toggleOrient);
     document.getElementById("episodeLock").addEventListener("click", toggleOrient);
