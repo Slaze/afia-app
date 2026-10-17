@@ -98,8 +98,44 @@
     .poster { flex: 0 0 200px; border-radius: 14px; padding: 0 0 10px; overflow: hidden; }
     .poster img { width: 100%; height: 112px; object-fit: cover; display: block; background: #2c241c; }
     .poster b, .poster span { padding: 0 10px; }
-    .stage { position: relative; flex: 1; min-height: 0; background: #000; }
-    iframe { width: 100%; height: 100%; border: 0; background: #000; }
+    .stage { position: relative; display: flex; flex-direction: column; flex: 1; min-height: 0; background: #000; }
+    iframe { width: 100%; flex: 1; min-height: 0; border: 0; background: #000; }
+    .player { display: none; flex: 1; min-height: 0; flex-direction: column; background: #000; }
+    body.watching .player { display: flex; }
+    body.watching #frame { display: none; }
+    body.watching .app { width: 100%; }
+    .player-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      flex: none;
+      padding: 8px 12px;
+      padding-left: calc(12px + env(safe-area-inset-left));
+      padding-right: calc(12px + env(safe-area-inset-right));
+      background: #100e0c;
+    }
+    .player-bar b { flex: 1; min-width: 72px; font: 700 15px/1 var(--ui); }
+    .player-bar button {
+      border: 0;
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      padding: 10px 14px;
+      font: 700 13px/1 var(--ui);
+    }
+    .player-screen { position: relative; flex: 1; min-height: 0; }
+    #twitchMount, #twitchMount iframe { position: absolute; inset: 0; width: 100% !important; height: 100% !important; border: 0; }
+    .player-note { position: absolute; inset: 0; display: none; place-items: center; padding: 24px; text-align: center; color: var(--paper); }
+    .player-note.show { display: grid; }
+    @media (orientation: landscape) {
+      body.watching .radio-row,
+      body.watching nav { display: none; }
+      body.watching .app { padding-top: 0; }
+      body.watching .player-bar { padding-top: calc(8px + env(safe-area-inset-top)); }
+    }
+    body.watching.immersive .radio-row,
+    body.watching.immersive nav { display: none; }
     .offline {
       display: none;
       position: absolute;
@@ -295,7 +331,21 @@
       <div class="rail" id="episodeRail"></div>
     </main>
     <div class="stage" id="stage" hidden>
-      <iframe id="frame" title="Afia TV" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      <div class="player" id="player">
+        <div class="player-bar">
+          <span class="live-flag">Live</span>
+          <b>Afia TV</b>
+          <button type="button" id="playToggle">Play</button>
+          <button type="button" id="muteToggle">Mute</button>
+          <button type="button" id="fitToggle">Fill</button>
+          <button type="button" id="playerHome">Home</button>
+        </div>
+        <div class="player-screen">
+          <div id="twitchMount"></div>
+          <p class="player-note" id="playerNote"></p>
+        </div>
+      </div>
+      <iframe id="frame" title="Afia" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
       <div class="offline" id="offline">
         <p id="offlineText"></p>
         <button class="retry" id="retryFrame" type="button">Try again</button>
@@ -350,7 +400,6 @@
     <script>
     const ORIGIN = "https://www.afiatv.net";
     const TABS = {
-      live: ORIGIN + "/live",
       news: ORIGIN + "/news",
       enugu: ORIGIN + "/enugustory",
       podcast: ORIGIN + "/podcast"
@@ -691,7 +740,95 @@
       });
     }
 
+    let twitch = null;
+    let twitchReady = false;
+    const playToggle = document.getElementById("playToggle");
+    const muteToggle = document.getElementById("muteToggle");
+    const fitToggle = document.getElementById("fitToggle");
+    const playerNote = document.getElementById("playerNote");
+
+    function fitPlayer() {
+      document.querySelectorAll("#twitchMount iframe").forEach((node) => {
+        node.style.setProperty("width", "100%", "important");
+        node.style.setProperty("height", "100%", "important");
+      });
+    }
+
+    function syncControls() {
+      if (!twitch || !twitchReady) return;
+      playToggle.textContent = twitch.isPaused() ? "Play" : "Pause";
+      muteToggle.textContent = twitch.getMuted() ? "Sound" : "Mute";
+    }
+
+    function ensurePlayer() {
+      if (twitch) return;
+      const boot = () => {
+        try {
+          twitch = new Twitch.Player("twitchMount", {
+            width: "100%",
+            height: "100%",
+            channel: "afiatv_official",
+            parent: [location.hostname],
+            autoplay: true
+          });
+        } catch (error) {
+          playerNote.textContent = "The live player didn't open on this phone. Try again.";
+          playerNote.classList.add("show");
+          return;
+        }
+        twitch.addEventListener(Twitch.Player.READY, () => {
+          twitchReady = true;
+          playerNote.classList.remove("show");
+          syncControls();
+          fitPlayer();
+        });
+        ["PLAY", "PLAYING", "PAUSE"].forEach((name) => {
+          if (Twitch.Player[name]) twitch.addEventListener(Twitch.Player[name], syncControls);
+        });
+        setTimeout(fitPlayer, 600);
+      };
+      if (window.Twitch && window.Twitch.Player) boot();
+      else {
+        const script = document.createElement("script");
+        script.src = "https://player.twitch.tv/js/embed/v1.js";
+        script.onload = boot;
+        script.onerror = () => {
+          playerNote.textContent = "The live player didn't load. Check the connection and try again.";
+          playerNote.classList.add("show");
+        };
+        document.head.appendChild(script);
+      }
+    }
+
+    function leaveLive() {
+      document.body.classList.remove("watching", "immersive");
+      fitToggle.textContent = "Fill";
+      if (twitch && twitchReady) {
+        try { twitch.pause(); } catch (error) { /* player already gone */ }
+      }
+    }
+
+    function showLive() {
+      if (audio.src && !audio.paused) {
+        pausedForLive = true;
+        audio.pause();
+        setRadio("Paused for live TV", "▶");
+      }
+      document.getElementById("home").hidden = true;
+      document.getElementById("stage").hidden = false;
+      offline.classList.remove("show");
+      back.classList.remove("show");
+      document.body.classList.add("watching");
+      markTab("live");
+      ensurePlayer();
+      if (twitch && twitchReady) {
+        try { twitch.play(); } catch (error) { /* autoplay can be blocked until a tap */ }
+      }
+      requestAnimationFrame(fitPlayer);
+    }
+
     function showHome() {
+      leaveLive();
       document.getElementById("home").hidden = false;
       document.getElementById("stage").hidden = true;
       back.classList.remove("show");
@@ -700,11 +837,7 @@
     }
 
     function show(url, tab) {
-      if (tab === "live" && audio.src && !audio.paused) {
-        pausedForLive = true;
-        audio.pause();
-        setRadio("Paused for live TV", "▶");
-      }
+      leaveLive();
       document.getElementById("home").hidden = true;
       document.getElementById("stage").hidden = false;
       offline.classList.remove("show");
@@ -718,7 +851,30 @@
 
     frame.addEventListener("load", () => progress.classList.remove("show"));
     back.addEventListener("click", showHome);
-    document.getElementById("openLive").addEventListener("click", () => show(TABS.live, "live"));
+    document.getElementById("openLive").addEventListener("click", showLive);
+    document.getElementById("playerHome").addEventListener("click", showHome);
+    playToggle.addEventListener("click", () => {
+      if (!twitch || !twitchReady) {
+        ensurePlayer();
+        return;
+      }
+      if (twitch.isPaused()) twitch.play();
+      else twitch.pause();
+      syncControls();
+    });
+    muteToggle.addEventListener("click", () => {
+      if (!twitch || !twitchReady) return;
+      twitch.setMuted(!twitch.getMuted());
+      syncControls();
+    });
+    fitToggle.addEventListener("click", () => {
+      const on = document.body.classList.toggle("immersive");
+      fitToggle.textContent = on ? "Fit" : "Fill";
+      requestAnimationFrame(fitPlayer);
+    });
+    window.addEventListener("resize", () => {
+      if (document.body.classList.contains("watching")) fitPlayer();
+    });
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
@@ -733,8 +889,13 @@
           showHome();
           return;
         }
+        if (button.dataset.tab === "live") {
+          showLive();
+          return;
+        }
         if (button.dataset.tab === "listen") return;
         if (button.dataset.tab === "library") {
+          leaveLive();
           document.getElementById("home").hidden = true;
           document.getElementById("stage").hidden = false;
           markTab("library");
