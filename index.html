@@ -100,42 +100,68 @@
     .poster b, .poster span { padding: 0 10px; }
     .stage { position: relative; display: flex; flex-direction: column; flex: 1; min-height: 0; background: #000; }
     iframe { width: 100%; flex: 1; min-height: 0; border: 0; background: #000; }
-    .player { display: none; flex: 1; min-height: 0; flex-direction: column; background: #000; }
-    body.watching .player { display: flex; }
+    .player { display: none; position: relative; flex: 1; min-height: 0; background: #000; }
+    body.watching .player { display: block; }
     body.watching #frame { display: none; }
     body.watching .app { width: 100%; }
     .player-bar {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
+      right: 0;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      gap: 8px;
-      flex: none;
-      padding: 8px 12px;
-      padding-left: calc(12px + env(safe-area-inset-left));
-      padding-right: calc(12px + env(safe-area-inset-right));
-      background: #100e0c;
+      gap: 6px;
+      padding: calc(8px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) 28px calc(10px + env(safe-area-inset-left));
+      background: linear-gradient(to bottom, rgba(12, 9, 7, 0.72), transparent);
+      pointer-events: none;
     }
-    .player-bar b { flex: 1; min-width: 72px; font: 700 15px/1 var(--ui); }
+    .player-bar .grow { flex: 1; }
     .player-bar button {
+      pointer-events: auto;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
       border: 0;
-      border-radius: 999px;
-      background: var(--paper);
-      color: var(--ink);
-      padding: 10px 14px;
-      font: 700 13px/1 var(--ui);
+      border-radius: 50%;
+      padding: 0;
+      background: rgba(16, 14, 12, 0.55);
+      color: #fff;
     }
-    .player-screen { position: relative; flex: 1; min-height: 0; }
-    #twitchMount, #twitchMount iframe { position: absolute; inset: 0; width: 100% !important; height: 100% !important; border: 0; }
+    .player-bar button svg { width: 22px; height: 22px; display: block; }
+    .player-screen { position: absolute; inset: 0; overflow: hidden; background: #000; }
+    #twitchMount { position: absolute; }
+    #twitchMount iframe { position: absolute; inset: 0; width: 100% !important; height: 100% !important; border: 0; }
     .player-note { position: absolute; inset: 0; display: none; place-items: center; padding: 24px; text-align: center; color: var(--paper); }
     .player-note.show { display: grid; }
-    @media (orientation: landscape) {
-      body.watching .radio-row,
-      body.watching nav { display: none; }
-      body.watching .app { padding-top: 0; }
-      body.watching .player-bar { padding-top: calc(8px + env(safe-area-inset-top)); }
-    }
+    body.watching.layout-landscape .radio-row,
+    body.watching.layout-landscape nav,
     body.watching.immersive .radio-row,
     body.watching.immersive nav { display: none; }
+    body.watching.layout-landscape .app,
+    body.watching.immersive .app { padding-top: 0; }
+    body.watching.force-landscape .app {
+      position: fixed;
+      top: 0;
+      left: 100dvw;
+      width: 100dvh;
+      height: 100dvw;
+      max-width: none;
+      transform: rotate(90deg);
+      transform-origin: top left;
+    }
+    body.watching.force-portrait .app {
+      position: fixed;
+      top: 100dvh;
+      left: 0;
+      width: 100dvh;
+      height: 100dvw;
+      max-width: none;
+      transform: rotate(-90deg);
+      transform-origin: top left;
+    }
     .offline {
       display: none;
       position: absolute;
@@ -333,12 +359,12 @@
     <div class="stage" id="stage" hidden>
       <div class="player" id="player">
         <div class="player-bar">
-          <span class="live-flag">Live</span>
-          <b>Afia TV</b>
-          <button type="button" id="playToggle">Play</button>
-          <button type="button" id="muteToggle">Mute</button>
-          <button type="button" id="fitToggle">Fill</button>
-          <button type="button" id="playerHome">Home</button>
+          <button type="button" id="playToggle" aria-label="Play"></button>
+          <button type="button" id="muteToggle" aria-label="Mute"></button>
+          <span class="grow"></span>
+          <button type="button" id="turnToggle" aria-label="Landscape"></button>
+          <button type="button" id="fitToggle" aria-label="Fill"></button>
+          <button type="button" id="playerHome" aria-label="Home"></button>
         </div>
         <div class="player-screen">
           <div id="twitchMount"></div>
@@ -742,22 +768,77 @@
 
     let twitch = null;
     let twitchReady = false;
+    let forced = null;
     const playToggle = document.getElementById("playToggle");
     const muteToggle = document.getElementById("muteToggle");
     const fitToggle = document.getElementById("fitToggle");
+    const turnToggle = document.getElementById("turnToggle");
     const playerNote = document.getElementById("playerNote");
+    const PICTURE = 16 / 9;
+    const ICONS = {
+      play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>',
+      pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>',
+      sound: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4zm11.5 3a3.5 3.5 0 0 0-2-3.16v6.32A3.5 3.5 0 0 0 15.5 12z"/></svg>',
+      mute: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4zm12.2 3 2.3-2.3 1.4 1.4-2.3 2.3 2.3 2.3-1.4 1.4-2.3-2.3-2.3 2.3-1.4-1.4 2.3-2.3-2.3-2.3 1.4-1.4z"/></svg>',
+      fill: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9V4h5v2H6v3H4zm10-5h5v5h-2V6h-3V4zM6 15v3h3v2H4v-5h2zm12 0h2v5h-5v-2h3v-3z"/></svg>',
+      fit: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 4v3H6v2h5V4H9zm5 0v5h5V7h-3V4h-2zM4 13v2h3v3h2v-5H4zm10 0v5h2v-3h3v-2h-5z"/></svg>',
+      home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 4 4 11h2v8h5v-5h2v5h5v-8h2L12 4z"/></svg>',
+      turn: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 7.2V5L3 8.5 7 12V9.2a5 5 0 1 1-1.6 3.3H3.2A7 7 0 1 0 7 7.2zM14 5h5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-5V5z"/></svg>'
+    };
+    playToggle.innerHTML = ICONS.play;
+    muteToggle.innerHTML = ICONS.mute;
+    fitToggle.innerHTML = ICONS.fill;
+    turnToggle.innerHTML = ICONS.turn;
+    document.getElementById("playerHome").innerHTML = ICONS.home;
+
+    function landscapeNow() {
+      if (forced) return forced === "landscape";
+      return matchMedia("(orientation: landscape)").matches;
+    }
+
+    function applyLayout() {
+      const watching = document.body.classList.contains("watching");
+      const deviceLandscape = matchMedia("(orientation: landscape)").matches;
+      const landscape = landscapeNow();
+      document.body.classList.toggle("layout-landscape", watching && (landscape || document.body.classList.contains("immersive")));
+      document.body.classList.toggle("force-landscape", watching && forced === "landscape" && !deviceLandscape);
+      document.body.classList.toggle("force-portrait", watching && forced === "portrait" && deviceLandscape);
+      turnToggle.setAttribute("aria-label", landscape ? "Portrait" : "Landscape");
+      requestAnimationFrame(fitPlayer);
+    }
 
     function fitPlayer() {
-      document.querySelectorAll("#twitchMount iframe").forEach((node) => {
-        node.style.setProperty("width", "100%", "important");
-        node.style.setProperty("height", "100%", "important");
-      });
+      const box = document.querySelector(".player-screen");
+      const mount = document.getElementById("twitchMount");
+      const node = mount.querySelector("iframe");
+      if (!box || !node) return;
+      const bw = box.clientWidth;
+      const bh = box.clientHeight;
+      if (!bw || !bh) return;
+      let width = bw;
+      let height = width / PICTURE;
+      if (height < bh) {
+        height = bh;
+        width = height * PICTURE;
+      }
+      mount.style.width = width + "px";
+      mount.style.height = height + "px";
+      mount.style.left = ((bw - width) / 2) + "px";
+      mount.style.top = ((bh - height) / 2) + "px";
+      node.style.setProperty("width", "100%", "important");
+      node.style.setProperty("height", "100%", "important");
     }
 
     function syncControls() {
-      if (!twitch || !twitchReady) return;
-      playToggle.textContent = twitch.isPaused() ? "Play" : "Pause";
-      muteToggle.textContent = twitch.getMuted() ? "Sound" : "Mute";
+      const paused = !twitch || !twitchReady || twitch.isPaused();
+      playToggle.innerHTML = paused ? ICONS.play : ICONS.pause;
+      playToggle.setAttribute("aria-label", paused ? "Play" : "Pause");
+      const muted = !twitch || !twitchReady || twitch.getMuted();
+      muteToggle.innerHTML = muted ? ICONS.mute : ICONS.sound;
+      muteToggle.setAttribute("aria-label", muted ? "Sound" : "Mute");
+      const filled = document.body.classList.contains("immersive");
+      fitToggle.innerHTML = filled ? ICONS.fit : ICONS.fill;
+      fitToggle.setAttribute("aria-label", filled ? "Fit" : "Fill");
     }
 
     function ensurePlayer() {
@@ -801,8 +882,10 @@
     }
 
     function leaveLive() {
-      document.body.classList.remove("watching", "immersive");
-      fitToggle.textContent = "Fill";
+      document.body.classList.remove("watching", "immersive", "layout-landscape", "force-landscape", "force-portrait");
+      forced = null;
+      try { screen.orientation.unlock(); } catch (error) { /* this phone keeps the system rotation */ }
+      syncControls();
       if (twitch && twitchReady) {
         try { twitch.pause(); } catch (error) { /* player already gone */ }
       }
@@ -824,7 +907,7 @@
       if (twitch && twitchReady) {
         try { twitch.play(); } catch (error) { /* autoplay can be blocked until a tap */ }
       }
-      requestAnimationFrame(fitPlayer);
+      applyLayout();
     }
 
     function showHome() {
@@ -868,9 +951,20 @@
       syncControls();
     });
     fitToggle.addEventListener("click", () => {
-      const on = document.body.classList.toggle("immersive");
-      fitToggle.textContent = on ? "Fit" : "Fill";
-      requestAnimationFrame(fitPlayer);
+      document.body.classList.toggle("immersive");
+      syncControls();
+      applyLayout();
+    });
+    turnToggle.addEventListener("click", () => {
+      forced = landscapeNow() ? "portrait" : "landscape";
+      const lock = screen.orientation && screen.orientation.lock;
+      if (lock) lock.call(screen.orientation, forced).catch(() => {});
+      applyLayout();
+    });
+    matchMedia("(orientation: landscape)").addEventListener("change", () => {
+      forced = null;
+      try { screen.orientation.unlock(); } catch (error) { /* already following the phone */ }
+      if (document.body.classList.contains("watching")) applyLayout();
     });
     window.addEventListener("resize", () => {
       if (document.body.classList.contains("watching")) fitPlayer();
