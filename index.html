@@ -206,6 +206,11 @@
       padding-top: calc(12px + env(safe-area-inset-top));
     }
     .sheet.show { display: flex; }
+    .sheet-tools { position: sticky; top: 0; z-index: 2; display: flex; background: var(--paper); }
+    .sheet-tools button { flex: 1; width: auto; background: var(--paper); font: 700 16px/1 var(--ui); }
+    .sheet.min { pointer-events: none; background: transparent; padding: 0 0 calc(118px + env(safe-area-inset-bottom)); }
+    .sheet.min .panel { pointer-events: auto; max-height: none; overflow: hidden; padding-bottom: 8px; }
+    .sheet.min .panel > :not(.sheet-tools) { display: none; }
     .panel {
       width: min(440px, 100%);
       max-height: calc(100dvh - 12px - env(safe-area-inset-top));
@@ -311,7 +316,10 @@
   </div>
   <div class="sheet" id="guide">
     <div class="panel" role="dialog" aria-label="What’s on">
-      <button class="sheet-close" type="button" data-close>Close</button>
+      <div class="sheet-tools">
+        <button type="button" data-min>Minimize</button>
+        <button class="sheet-close" type="button" data-close>Close</button>
+      </div>
       <div class="handle"></div>
       <img class="brand" src="afia-wordmark.png" alt="Afia">
       <p class="guide-copy">Today and the week on Afia 99.3. The grid repeats, so the month follows the same shows.</p>
@@ -321,7 +329,10 @@
   </div>
   <div class="sheet" id="sheet">
     <div class="panel" role="dialog" aria-label="Afia">
-      <button class="sheet-close" type="button" data-close>Close</button>
+      <div class="sheet-tools">
+        <button type="button" data-min>Minimize</button>
+        <button class="sheet-close" type="button" data-close>Close</button>
+      </div>
       <div class="handle"></div>
       <img class="brand" src="afia-wordmark.png" alt="Afia">
       <button type="button" data-url="https://www.afiatv.net/obuzo">Obuzo<small>Programme page</small></button>
@@ -663,6 +674,9 @@
     setInterval(watchStation, 15 * 60 * 1000);
 
     document.getElementById("lineup").addEventListener("click", () => {
+      guide.classList.remove("min");
+      const shrink = guide.querySelector("[data-min]");
+      if (shrink) shrink.textContent = "Minimize";
       guide.classList.add("show");
       fillGuide();
     });
@@ -709,6 +723,9 @@
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
         if (button.dataset.tab === "more") {
+          sheet.classList.remove("min");
+          const shrink = sheet.querySelector("[data-min]");
+          if (shrink) shrink.textContent = "Minimize";
           sheet.classList.add("show");
           return;
         }
@@ -937,7 +954,19 @@
     if (!navigator.onLine) showOffline();
     refreshLibrary();
     document.querySelectorAll("[data-close]").forEach((button) => {
-      button.addEventListener("click", () => button.closest(".sheet").classList.remove("show"));
+      button.addEventListener("click", () => {
+        const popup = button.closest(".sheet");
+        popup.classList.remove("show", "min");
+        const shrink = popup.querySelector("[data-min]");
+        if (shrink) shrink.textContent = "Minimize";
+      });
+    });
+    document.querySelectorAll("[data-min]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const popup = button.closest(".sheet");
+        const shrunk = popup.classList.toggle("min");
+        button.textContent = shrunk ? "Show again" : "Minimize";
+      });
     });
     const standalone = window.navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
     const iphone = /iPhone|iPad|iPod/i.test(navigator.userAgent);
