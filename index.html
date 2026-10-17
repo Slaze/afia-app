@@ -399,6 +399,17 @@
     .guide-card { background: var(--ink); color: var(--paper); border-radius: 12px; padding: 12px 14px; margin: 0 0 8px; }
     .guide-card b { display: block; font-size: 16px; }
     .guide-card span { display: block; color: #d7cfc2; font-size: 13px; margin-top: 2px; }
+    .account-form { display: flex; flex-direction: column; gap: 8px; margin: 0 12px 12px; }
+    .account-form h2 { margin: 4px 4px 0; color: var(--ink); letter-spacing: 0.08em; }
+    .account-form label { display: block; color: #6d6458; font: 600 12px/1.2 var(--ui); }
+    .account-form label[hidden], .account-form button[hidden], .account-form p[hidden] { display: none; }
+    .account-form input {
+      display: block; width: 100%; margin-top: 4px; border: 1px solid #e0d8cc; border-radius: 12px;
+      background: #f6f1e8; color: var(--ink); padding: 12px 14px; font: 500 16px/1.2 var(--ui);
+    }
+    .account-form .account-note, .account-form .account-error { margin: 0 4px; font: 500 13px/1.4 var(--ui); }
+    .account-form .account-note { color: #6d6458; }
+    .account-form .account-error { color: var(--live); }
     .guide-alert, .panel button {
       display: block;
       width: 100%;
@@ -583,6 +594,20 @@
       </div>
       <div class="handle"></div>
       <img class="brand" src="afia-wordmark.png" alt="Afia">
+      <form class="account-form" id="accountForm">
+        <h2 id="accountTitle">Sign in</h2>
+        <p class="account-note" id="accountNote">Use the email or phone on the account.</p>
+        <label id="accountNameLabel" hidden>Username<input id="accountName" name="name" autocomplete="username" maxlength="80"></label>
+        <label id="accountIdLabel">Email or phone<input id="accountId" name="username" autocomplete="username" inputmode="email"></label>
+        <label id="accountPhoneLabel" hidden>Phone<input id="accountPhone" name="phone" autocomplete="tel" inputmode="tel"></label>
+        <label id="accountPasswordLabel">Password<input id="accountPassword" name="password" type="password" autocomplete="current-password" minlength="8"></label>
+        <label id="accountConfirmLabel" hidden>Confirm password<input id="accountConfirm" name="password_confirmation" type="password" autocomplete="new-password" minlength="8"></label>
+        <p class="account-error" id="accountError" hidden></p>
+        <button type="submit" id="accountSubmit">Sign in</button>
+        <button type="button" id="accountSwitch">Create an account</button>
+        <button type="button" id="accountForgot">Forgot password</button>
+        <button type="button" id="accountOut" hidden>Sign out</button>
+      </form>
       <button type="button" data-url="https://www.afiatv.net/obuzo">Obuzo<small>Programme page</small></button>
       <button type="button" data-url="https://www.afiatv.net/about">About Afia<small>The station</small></button>
       <button type="button" data-url="https://www.afiatv.net/contact">Reach us<small>Contact the newsroom</small></button>
@@ -1231,6 +1256,219 @@
     sheet.addEventListener("click", (event) => {
       if (event.target === sheet) sheet.classList.remove("show");
     });
+
+    const accountForm = document.getElementById("accountForm");
+    const accountTitle = document.getElementById("accountTitle");
+    const accountNote = document.getElementById("accountNote");
+    const accountError = document.getElementById("accountError");
+    const accountName = document.getElementById("accountName");
+    const accountId = document.getElementById("accountId");
+    const accountPhone = document.getElementById("accountPhone");
+    const accountPassword = document.getElementById("accountPassword");
+    const accountConfirm = document.getElementById("accountConfirm");
+    let accountMode = "in";
+    let accountSession = null;
+
+    function authEndpoint(path) {
+      if (location.hostname.endsWith("vercel.app")) return "/api/auth?path=" + encodeURIComponent(path);
+      return "https://stem.iconiaglobal.com/api/v1/" + path;
+    }
+
+    function digitsOf(value) {
+      return String(value || "").replace(/\D/g, "");
+    }
+
+    function showAccountError(text) {
+      accountError.hidden = !text;
+      accountError.textContent = text || "";
+    }
+
+    function authFailure(data, fallback) {
+      if (data && data.errors) {
+        const first = Object.values(data.errors)[0];
+        return Array.isArray(first) ? first[0] : String(first);
+      }
+      const message = data && data.message ? data.message : "";
+      if (message.includes("artisan") || message.includes("do not match")) return "No account matches that email or phone.";
+      return message || fallback;
+    }
+
+    function paintAccount() {
+      const signedIn = accountMode === "session" && accountSession;
+      accountTitle.textContent = signedIn ? accountSession.name : accountMode === "up" ? "Create account" : accountMode === "forgot" ? "Reset password" : "Sign in";
+      accountNote.textContent = signedIn
+        ? "Signed in as " + accountSession.name + ". A confirmation email uses this username and does not include the password."
+        : accountMode === "up"
+          ? "The confirmation goes to your email. It names this username and does not include the password. Add a phone if you also want to sign in with it."
+          : accountMode === "forgot"
+            ? "The reset link goes to the email on the account. It does not include the old password."
+            : "Use the email or phone on the account.";
+      document.getElementById("accountNameLabel").hidden = accountMode !== "up";
+      document.getElementById("accountIdLabel").hidden = signedIn;
+      document.getElementById("accountIdLabel").firstChild.textContent = accountMode === "up" || accountMode === "forgot" ? "Email" : "Email or phone";
+      document.getElementById("accountPhoneLabel").hidden = accountMode !== "up";
+      document.getElementById("accountPasswordLabel").hidden = signedIn || accountMode === "forgot";
+      document.getElementById("accountConfirmLabel").hidden = accountMode !== "up";
+      document.getElementById("accountSubmit").hidden = signedIn;
+      document.getElementById("accountSubmit").textContent = accountMode === "up" ? "Create account" : accountMode === "forgot" ? "Send reset link" : "Sign in";
+      document.getElementById("accountSwitch").hidden = signedIn;
+      document.getElementById("accountSwitch").textContent = accountMode === "in" ? "Create an account" : "Already have an account";
+      document.getElementById("accountForgot").hidden = accountMode !== "in";
+      document.getElementById("accountOut").hidden = !signedIn;
+      accountPassword.autocomplete = accountMode === "up" ? "new-password" : "current-password";
+    }
+
+    function rememberSession(session) {
+      accountSession = session;
+      if (session) localStorage.setItem("afia-session", JSON.stringify(session));
+      else localStorage.removeItem("afia-session");
+      accountMode = session ? "session" : "in";
+      paintAccount();
+    }
+
+    async function accountRequest(path, body) {
+      const headers = { Accept: "application/json" };
+      if (body) headers["Content-Type"] = "application/json";
+      if (accountSession && accountSession.token) headers.Authorization = "Bearer " + accountSession.token;
+      const response = await fetch(authEndpoint(path), {
+        method: body ? "POST" : "GET",
+        headers,
+        body: body ? JSON.stringify(body) : undefined,
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        const error = new Error(authFailure(data, "The account service did not accept that."));
+        error.status = response.status;
+        throw error;
+      }
+      return data;
+    }
+
+    accountForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      showAccountError("");
+      const submit = document.getElementById("accountSubmit");
+      submit.disabled = true;
+      try {
+        if (accountMode === "forgot") {
+          const email = accountId.value.trim();
+          if (!email.includes("@")) {
+            showAccountError("Enter the email on the account. The reset link is sent there.");
+            return;
+          }
+          const data = await accountRequest("auth/forgot-password", { email });
+          accountNote.textContent = data.message || "If an account exists for that email, a reset link is on its way.";
+          return;
+        }
+        if (accountMode === "up") {
+          const email = accountId.value.trim();
+          const phone = digitsOf(accountPhone.value);
+          if (!accountName.value.trim()) {
+            showAccountError("Add a username.");
+            return;
+          }
+          if (!email.includes("@")) {
+            showAccountError("Add an email. That is where the confirmation is sent.");
+            return;
+          }
+          if (accountPassword.value.length < 8) {
+            showAccountError("Use at least 8 characters.");
+            return;
+          }
+          if (accountPassword.value !== accountConfirm.value) {
+            showAccountError("The two passwords do not match.");
+            return;
+          }
+          if (phone && (phone.length < 10 || phone.length > 15)) {
+            showAccountError("Enter a phone number with 10 to 15 digits, or leave it blank.");
+            return;
+          }
+          const data = await accountRequest("auth/register", {
+            name: accountName.value.trim(),
+            email,
+            phone: phone || null,
+            password: accountPassword.value,
+            password_confirmation: accountConfirm.value,
+          });
+          const session = {
+            token: data.token,
+            name: (data.user && data.user.name) || accountName.value.trim(),
+            email: (data.user && data.user.email) || email,
+            phone: (data.user && data.user.phone) || "",
+          };
+          rememberSession(session);
+          accountPassword.value = "";
+          accountConfirm.value = "";
+          accountNote.textContent = session.phone
+            ? "Confirmation sent to " + session.email + ". It includes the username " + session.name + " and does not include the password. You can sign in with the email or the phone."
+            : "Confirmation sent to " + session.email + ". It includes the username " + session.name + " and does not include the password. Sign in with that email.";
+          return;
+        }
+        const raw = accountId.value.trim();
+        const body = { password: accountPassword.value };
+        if (raw.includes("@")) body.email = raw;
+        else body.phone = digitsOf(raw);
+        if (!body.email && (!body.phone || body.phone.length < 10)) {
+          showAccountError("Enter the email or phone on the account.");
+          return;
+        }
+        const data = await accountRequest("auth/login", body);
+        rememberSession({
+          token: data.token,
+          name: (data.user && data.user.name) || "Account",
+          email: (data.user && data.user.email) || body.email || "",
+          phone: (data.user && data.user.phone) || body.phone || "",
+        });
+        accountPassword.value = "";
+      } catch (error) {
+        let text = error && error.message ? error.message : "The account service did not answer. Try again.";
+        if (accountMode === "forgot" && /find a user|do not match|records/i.test(text)) {
+          accountNote.textContent = "If an account exists for that email, a reset link is on its way.";
+          return;
+        }
+        if (accountMode === "in" && !accountId.value.includes("@") && /email/i.test(text)) {
+          text = "Sign in with the email on the account. Phone sign-in follows the account update.";
+        }
+        showAccountError(text);
+      } finally {
+        submit.disabled = false;
+      }
+    });
+
+    document.getElementById("accountSwitch").addEventListener("click", () => {
+      accountMode = accountMode === "in" ? "up" : "in";
+      showAccountError("");
+      paintAccount();
+    });
+
+    document.getElementById("accountForgot").addEventListener("click", () => {
+      accountMode = "forgot";
+      showAccountError("");
+      paintAccount();
+    });
+
+    document.getElementById("accountOut").addEventListener("click", async () => {
+      try { await accountRequest("auth/logout", {}); } catch (error) { /* the token is dropped on this phone either way */ }
+      accountPassword.value = "";
+      rememberSession(null);
+    });
+
+    try { accountSession = JSON.parse(localStorage.getItem("afia-session") || "null"); } catch (error) { accountSession = null; }
+    if (accountSession && accountSession.token) {
+      accountMode = "session";
+      paintAccount();
+      accountRequest("auth/me").then((data) => {
+        if (!accountSession) return;
+        rememberSession({
+          token: accountSession.token,
+          name: (data.user && data.user.name) || accountSession.name,
+          email: (data.user && data.user.email) || accountSession.email,
+          phone: (data.user && data.user.phone) || accountSession.phone || "",
+        });
+      }).catch((error) => {
+        if (error && error.status === 401) rememberSession(null);
+      });
+    } else paintAccount();
 
     document.getElementById("listenRadio").addEventListener("click", () => {
       sheet.classList.remove("show");

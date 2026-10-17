@@ -1,4 +1,4 @@
-const CACHE = "afia-shell-30";
+const CACHE = "afia-shell-31";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./afia-wordmark.png", "./afia-wordmark-white.png"];
 
 self.addEventListener("install", (event) => {
@@ -32,6 +32,7 @@ self.addEventListener("notificationclick", (event) => {
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
+  if (event.request.method !== "GET" || url.pathname.startsWith("/api/")) return;
   event.respondWith(
     fetch(event.request)
       .then((response) => {
