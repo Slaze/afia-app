@@ -206,9 +206,12 @@
     body.watching.layout-landscape .radio-row,
     body.watching.layout-landscape nav,
     body.watching.immersive .radio-row,
-    body.watching.immersive nav { display: none; }
+    body.watching.immersive nav,
+    body.phone-landscape:has(#stage.episode) .radio-row,
+    body.phone-landscape:has(#stage.episode) nav { display: none; }
     body.watching.layout-landscape .app,
-    body.watching.immersive .app { padding-top: 0; }
+    body.watching.immersive .app,
+    body.phone-landscape:has(#stage.episode) .app { width: 100%; padding-top: 0; }
     body.watching.force-landscape .app {
       position: fixed;
       top: 0;
@@ -934,15 +937,22 @@
     turnToggle.innerHTML = ICONS.turn;
     document.getElementById("playerHome").innerHTML = ICONS.home;
 
+    function phoneLandscape() {
+      return window.innerWidth > window.innerHeight;
+    }
+
+    let phoneWide = phoneLandscape();
+
     function landscapeNow() {
       if (forced) return forced === "landscape";
-      return matchMedia("(orientation: landscape)").matches;
+      return phoneLandscape();
     }
 
     function applyLayout() {
       const watching = document.body.classList.contains("watching");
-      const deviceLandscape = matchMedia("(orientation: landscape)").matches;
+      const deviceLandscape = phoneLandscape();
       const landscape = landscapeNow();
+      document.body.classList.toggle("phone-landscape", deviceLandscape);
       document.body.classList.toggle("layout-landscape", watching && (landscape || document.body.classList.contains("immersive")));
       document.body.classList.toggle("force-landscape", watching && forced === "landscape" && !deviceLandscape);
       document.body.classList.toggle("force-portrait", watching && forced === "portrait" && deviceLandscape);
@@ -1128,14 +1138,25 @@
       if (lock) lock.call(screen.orientation, forced).catch(() => {});
       applyLayout();
     });
-    matchMedia("(orientation: landscape)").addEventListener("change", () => {
-      forced = null;
-      try { screen.orientation.unlock(); } catch (error) { /* already following the phone */ }
-      if (document.body.classList.contains("watching")) applyLayout();
-    });
-    window.addEventListener("resize", () => {
-      if (document.body.classList.contains("watching")) fitPlayer();
-    });
+    function onPhoneTurn() {
+      const wide = phoneLandscape();
+      if (wide !== phoneWide) {
+        phoneWide = wide;
+        forced = null;
+        try { screen.orientation.unlock(); } catch (error) { /* the phone is turning on its own */ }
+      }
+      applyLayout();
+    }
+
+    function queueTurn() {
+      requestAnimationFrame(() => requestAnimationFrame(onPhoneTurn));
+    }
+
+    window.addEventListener("resize", queueTurn);
+    window.addEventListener("orientationchange", queueTurn);
+    if (screen.orientation && screen.orientation.addEventListener) {
+      screen.orientation.addEventListener("change", queueTurn);
+    }
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
