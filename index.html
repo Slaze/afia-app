@@ -396,6 +396,49 @@
       .live-card strong { font-size: 36px; }
       nav button { padding: 6px 0 8px; }
     }
+    .top-tools { display: flex; align-items: center; gap: 12px; }
+    .rank-open {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 0;
+      background: transparent;
+      color: var(--paper);
+      padding: 0;
+      font: 700 12px/1 var(--ui);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .rank-open svg { width: 22px; height: 22px; display: block; }
+    .rank-toast {
+      position: fixed;
+      z-index: 40;
+      left: 50%;
+      top: calc(14px + env(safe-area-inset-top));
+      transform: translateX(-50%);
+      width: min(420px, calc(100% - 28px));
+      margin: 0;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--paper);
+      color: var(--ink);
+      font: 700 14px/1.3 var(--ui);
+    }
+    .rank-toast[hidden] { display: none; }
+    #rank h2 { margin: 16px 16px 8px; color: #8a8175; }
+    #rank h2:first-child { margin-top: 8px; color: var(--ink); font: 700 42px/0.9 var(--display); letter-spacing: -0.03em; text-transform: uppercase; }
+    .rank-hours { margin: 4px 16px 12px; color: #5c5348; font: 500 14px/1.4 var(--ui); }
+    .rank-next { height: 4px; margin: 0 16px 16px; border-radius: 4px; background: #e4dcd0; overflow: hidden; }
+    .rank-next span { display: block; height: 100%; background: var(--live); }
+    .badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 12px 16px; }
+    .badge-card { display: flex; gap: 8px; align-items: center; background: #efe8dc; border-radius: 12px; padding: 10px; }
+    .badge-card svg, .board-row svg { width: 22px; height: 22px; flex: none; }
+    .badge-card[data-locked="true"] { opacity: 0.45; }
+    .badge-card b { display: block; font-size: 13px; }
+    .badge-card span { display: block; color: #6d6458; font: 500 11px/1.3 var(--ui); }
+    .board-row { display: flex; align-items: center; gap: 10px; margin: 0 12px 8px; padding: 10px 12px; border-radius: 12px; background: var(--ink); color: var(--paper); }
+    .board-row b { flex: 1; font-size: 14px; }
+    .board-row em { font-style: normal; color: #d7cfc2; font-size: 13px; }
     @media (prefers-reduced-motion: reduce) {
       .progress.show { animation: none; transform: scaleX(1); }
     }
@@ -411,7 +454,10 @@
     <main class="home" id="home">
       <header class="top">
         <img src="afia-wordmark-white.png" alt="Afia">
-        <time class="clock" id="clock">WAT</time>
+        <div class="top-tools">
+          <button class="rank-open" id="rankOpen" type="button" aria-label="Your rank"><span id="rankBadge"></span><span id="rankTitle">Guest</span></button>
+          <time class="clock" id="clock">WAT</time>
+        </div>
       </header>
       <button class="live-card" id="openLive" type="button">
         <span class="live-flag">Live</span>
@@ -506,6 +552,15 @@
       <button type="button" id="install" hidden>Install Afia<small>Add this app to your phone</small></button>
     </div>
   </div>
+  <div class="sheet" id="rank">
+    <div class="panel" role="dialog" aria-label="Rank">
+      <button class="sheet-close" type="button" data-close>Close</button>
+      <div class="handle"></div>
+      <img class="brand" src="afia-wordmark.png" alt="Afia">
+      <div id="rankBody"></div>
+    </div>
+  </div>
+  <p class="rank-toast" id="rankToast" hidden></p>
     <script>
     const ORIGIN = "https://www.afiatv.net";
     const TABS = {
@@ -1332,6 +1387,7 @@
       if (event.data === YT.PlayerState.PAUSED) rememberSpot();
       if (event.data === YT.PlayerState.ENDED) {
         rememberSpot();
+        rankFinish();
         offerNext();
       }
     }
@@ -1694,10 +1750,217 @@
       sheet.classList.remove("show");
       openLibrary();
     });
+    const RANKS = [
+      { id: "guest", title: "Guest", seconds: 0 },
+      { id: "viewer", title: "Viewer", seconds: 10 * 60 },
+      { id: "regular", title: "Regular", seconds: 60 * 60 },
+      { id: "front", title: "Front row", seconds: 5 * 3600 },
+      { id: "desk", title: "Night desk", seconds: 15 * 3600 },
+      { id: "compound", title: "Compound", seconds: 40 * 3600 },
+      { id: "ofala", title: "Ofala", seconds: 100 * 3600 },
+      { id: "station", title: "Station", seconds: 250 * 3600 }
+    ];
+    const RANK_MARK = {
+      guest: '<circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/>',
+      viewer: '<path fill="currentColor" d="M4 12s3-5 8-5 8 5 8 5-3 5-8 5-8-5-8-5zm8 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>',
+      regular: '<path fill="currentColor" d="M6 16V8h2v8H6zm5 0V5h2v11h-2zm5 0v-6h2v6h-2z"/>',
+      front: '<path fill="currentColor" d="M4 16h16v2H4v-2zm2-2 6-8 6 8H6z"/>',
+      desk: '<path fill="currentColor" d="M9 14h6v2H9v-2zM8 6h8l2 6H6l2-6zm2 8v4H8v-2h8v2h-2v-4H10z"/>',
+      compound: '<path fill="currentColor" d="M4 11 12 5l8 6v8h-5v-5H9v5H4v-8z"/>',
+      ofala: '<path fill="currentColor" d="M5 16h14v2H5v-2zm1-2 1.2-6 2.3 3L12 6l2.5 5 2.3-3L18 14H6z"/>',
+      station: '<path fill="currentColor" d="M11 3h2v3h-2V3zM6.2 6.2l1.4 1.4L5.2 10 3.8 8.6 6.2 6.2zM17.8 6.2l2.4 2.4-1.4 1.4-2.4-2.4 1.4-1.4zM11 8h2v8h3v2H8v-2h3V8z"/>'
+    };
+    const BADGES = [
+      { id: "first", title: "First light", detail: "Play an episode", mark: "viewer", test: (row) => row.played.length > 0 },
+      { id: "live", title: "Live wire", detail: "Watch live for 15 minutes", mark: "station", test: (row) => row.live >= 15 * 60 },
+      { id: "shows", title: "Four houses", detail: "Watch four different shows", mark: "compound", test: (row) => Object.keys(row.shows).length >= 4 },
+      { id: "reel", title: "Full reel", detail: "Finish an episode", mark: "front", test: (row) => row.finished > 0 },
+      { id: "week", title: "Week on the dial", detail: "Watch on seven days", mark: "regular", test: (row) => row.days.length >= 7 },
+      { id: "night", title: "After hours", detail: "Watch late, 10 at night to 5", mark: "desk", test: (row) => row.night >= 10 * 60 },
+      { id: "radio", title: "99.3", detail: "Listen for 15 minutes", mark: "ofala", test: (row) => row.radio >= 15 * 60 },
+      { id: "day", title: "Marathon", detail: "Two hours in one day", mark: "station", test: (row) => Object.values(row.byDay).some((n) => n >= 2 * 3600) }
+    ];
+
+    function blankRank() {
+      return { watch: 0, live: 0, radio: 0, night: 0, finished: 0, played: [], shows: {}, days: [], byDay: {}, seen: [] };
+    }
+
+    function rankState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem("afia-rank") || "null");
+        return Object.assign(blankRank(), saved || {});
+      } catch (error) {
+        return blankRank();
+      }
+    }
+
+    function saveRank(row) {
+      localStorage.setItem("afia-rank", JSON.stringify(row));
+    }
+
+    function rankTotal(row) {
+      return (row.watch || 0) + (row.radio || 0);
+    }
+
+    function lagosNow() {
+      const parts = new Intl.DateTimeFormat("en-GB", { timeZone: "Africa/Lagos", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", hourCycle: "h23" }).formatToParts(new Date());
+      const get = (type) => parts.find((part) => part.type === type).value;
+      return { day: get("year") + "-" + get("month") + "-" + get("day"), hour: Number(get("hour")) };
+    }
+
+    function currentRank(row) {
+      const total = rankTotal(row);
+      return RANKS.filter((rank) => total >= rank.seconds).pop();
+    }
+
+    function hoursLabel(seconds) {
+      const count = Math.floor(seconds || 0);
+      if (count < 60) return "0m";
+      if (count < 3600) return Math.floor(count / 60) + "m";
+      const hours = count / 3600;
+      return (hours >= 10 ? Math.floor(hours) : hours.toFixed(1).replace(/\.0$/, "")) + "h";
+    }
+
+    function badgeSvg(id) {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true">' + (RANK_MARK[id] || RANK_MARK.guest) + "</svg>";
+    }
+
+    function toastRank(title) {
+      const toast = document.getElementById("rankToast");
+      toast.textContent = "New · " + title;
+      toast.hidden = false;
+      clearTimeout(toastRank.timer);
+      toastRank.timer = setTimeout(() => { toast.hidden = true; }, 4200);
+      if ("Notification" in window && Notification.permission === "granted") {
+        try {
+          navigator.serviceWorker.ready.then((registration) => {
+            registration.showNotification("Afia", { body: title, tag: "afia-rank-" + title });
+          });
+        } catch (error) { /* the toast is enough */ }
+      }
+    }
+
+    function paintRank(announce) {
+      const row = rankState();
+      const rank = currentRank(row);
+      const next = RANKS[RANKS.indexOf(rank) + 1];
+      document.getElementById("rankBadge").innerHTML = badgeSvg(rank.id);
+      document.getElementById("rankTitle").textContent = rank.title;
+      const earned = BADGES.filter((badge) => badge.test(row));
+      const fresh = [];
+      if (announce && rank.id !== "guest" && !(row.seen || []).includes("rank:" + rank.id)) fresh.push(rank.title);
+      if (announce) earned.forEach((badge) => {
+        if (!(row.seen || []).includes("badge:" + badge.id)) fresh.push(badge.title);
+      });
+      row.seen = row.seen || [];
+      RANKS.forEach((item) => {
+        if (rankTotal(row) >= item.seconds && !row.seen.includes("rank:" + item.id)) row.seen.push("rank:" + item.id);
+      });
+      earned.forEach((badge) => {
+        if (!row.seen.includes("badge:" + badge.id)) row.seen.push("badge:" + badge.id);
+      });
+      saveRank(row);
+      if (fresh.length) toastRank(fresh[0]);
+      const body = document.getElementById("rankBody");
+      const boardOpen = document.getElementById("rank").classList.contains("show");
+      if (!body || !boardOpen) return;
+      const span = next ? Math.min(100, Math.round((rankTotal(row) - rank.seconds) / (next.seconds - rank.seconds) * 100)) : 100;
+      body.replaceChildren();
+      const heading = document.createElement("h2");
+      heading.textContent = rank.title;
+      const hours = document.createElement("p");
+      hours.className = "rank-hours";
+      hours.textContent = hoursLabel(rankTotal(row)) + " in the app" + (next ? " · next " + next.title : " · top rank");
+      const bar = document.createElement("div");
+      bar.className = "rank-next";
+      bar.innerHTML = "<span></span>";
+      bar.firstChild.style.width = span + "%";
+      const badgeHead = document.createElement("h2");
+      badgeHead.textContent = "Badges";
+      const grid = document.createElement("div");
+      grid.className = "badge-grid";
+      BADGES.forEach((badge) => {
+        const card = document.createElement("div");
+        card.className = "badge-card";
+        card.dataset.locked = earned.includes(badge) ? "false" : "true";
+        card.innerHTML = badgeSvg(badge.mark) + "<div><b></b><span></span></div>";
+        card.querySelector("b").textContent = badge.title;
+        card.querySelector("span").textContent = badge.detail;
+        grid.append(card);
+      });
+      const globalHead = document.createElement("h2");
+      globalHead.textContent = "Global";
+      const mine = document.createElement("div");
+      mine.className = "board-row";
+      mine.innerHTML = badgeSvg(rank.id) + "<b></b><em></em>";
+      mine.querySelector("b").textContent = rank.title;
+      mine.querySelector("em").textContent = hoursLabel(rankTotal(row));
+      const globalNote = document.createElement("p");
+      globalNote.className = "rank-hours";
+      globalNote.textContent = "This board is this phone. Other people appear here after sign-in.";
+      const friendHead = document.createElement("h2");
+      friendHead.textContent = "Friends";
+      const friendNote = document.createElement("p");
+      friendNote.className = "rank-hours";
+      friendNote.textContent = "Friends appear here after sign-in, ranked by the same hours and badges.";
+      body.append(heading, hours, bar, badgeHead, grid, globalHead, mine, globalNote, friendHead, friendNote);
+    }
+
+    function creditRank(bucket, amount, section) {
+      if (document.visibilityState === "hidden" || amount <= 0) return;
+      const row = rankState();
+      if (bucket === "radio") row.radio += amount;
+      else row.watch += amount;
+      if (bucket === "live") row.live += amount;
+      const place = lagosNow();
+      if (place.hour >= 22 || place.hour < 5) row.night += amount;
+      if (!row.days.includes(place.day)) row.days.push(place.day);
+      row.days = row.days.slice(-60);
+      row.byDay[place.day] = (row.byDay[place.day] || 0) + amount;
+      if (section) row.shows[section] = (row.shows[section] || 0) + amount;
+      if (currentEpisode && bucket === "watch" && !row.played.includes(currentEpisode.id)) row.played.push(currentEpisode.id);
+      row.played = row.played.slice(-400);
+      saveRank(row);
+      paintRank(true);
+    }
+
+    function rankTick() {
+      const playing = window.YT && ytPlayer && ytPlayer.getPlayerState && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING;
+      if (playing) {
+        creditRank("watch", 5, currentEpisode && currentEpisode.section);
+        return;
+      }
+      if (document.body.classList.contains("watching") && twitch && twitchReady) {
+        let paused = false;
+        try { paused = twitch.isPaused(); } catch (error) { paused = true; }
+        if (!paused) creditRank("live", 5, "");
+        return;
+      }
+      if (audio.src && !audio.paused) creditRank("radio", 5, "");
+    }
+
+    function rankFinish() {
+      const row = rankState();
+      row.finished += 1;
+      saveRank(row);
+      paintRank(true);
+    }
+
     window.addEventListener("offline", showOffline);
     window.addEventListener("online", () => offline.classList.remove("show"));
     if (!navigator.onLine) showOffline();
     refreshLibrary();
+    paintRank(false);
+    setInterval(rankTick, 5000);
+    document.getElementById("rankOpen").addEventListener("click", () => {
+      const popup = document.getElementById("rank");
+      popup.classList.remove("min");
+      popup.classList.add("show");
+      paintRank(false);
+    });
+    document.getElementById("rank").addEventListener("click", (event) => {
+      if (event.target.id === "rank") event.currentTarget.classList.remove("show");
+    });
     document.querySelectorAll("[data-close]").forEach((button) => {
       button.addEventListener("click", () => {
         const popup = button.closest(".sheet");
