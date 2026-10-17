@@ -530,7 +530,7 @@
     <div class="stage" id="stage" hidden>
       <div class="catalogue" id="catalogue">
         <input class="show-search" id="showSearch" type="search" placeholder="Search episodes" aria-label="Search episodes">
-        <p class="programme-note">Follow a programme to hear when a new episode is up. The mark keeps one for later.</p>
+        <p class="programme-note">Follow a programme to hear when a new episode is up. Tap the mark to keep one for later.</p>
         <div id="programmeList"></div>
       </div>
       <div class="player" id="player">
@@ -711,8 +711,8 @@
     });
     function radioFail() {
       setRadio(navigator.onLine
-        ? "Afia 99.3 didn't start. Every published stream address failed. The encoder may be off."
-        : "Afia 99.3 needs a connection. Live radio cannot be saved for later.", "▶");
+        ? "Afia 99.3 didn't start. Try again in a moment."
+        : "Afia 99.3 needs a connection.", "▶");
     }
     audio.addEventListener("error", async () => {
       sourceIndex += 1;
@@ -826,14 +826,14 @@
         const raw = localStorage.getItem("afia-guide");
         if (!raw) {
           guideBody.textContent = navigator.onLine
-            ? "The lineup didn't load. Afia's schedule server didn't answer. Try again in a moment."
-            : "You're offline, and no timetable is saved on this phone yet. Open Lineup once while you have a connection.";
+            ? "The lineup didn't load. Try again in a moment."
+            : "You're offline. Open Lineup again when you're back online.";
           return;
         }
         const saved = JSON.parse(raw);
         guideBody.replaceChildren();
         const note = document.createElement("p");
-        note.textContent = "The live lineup didn't load. This is the timetable saved on this phone.";
+        note.textContent = "Showing the last lineup we saved.";
         guideBody.append(note);
         const weekBlock = document.createElement("div");
         weekBlock.className = "guide-block";
@@ -1074,7 +1074,7 @@
             muted: false
           });
         } catch (error) {
-          playerNote.textContent = "The live player didn't open on this phone. Try again.";
+          playerNote.textContent = "Live didn't open. Try again.";
           playerNote.classList.add("show");
           return;
         }
@@ -1297,12 +1297,12 @@
       const signedIn = accountMode === "session" && accountSession;
       accountTitle.textContent = signedIn ? accountSession.name : accountMode === "up" ? "Create account" : accountMode === "forgot" ? "Reset password" : "Sign in";
       accountNote.textContent = signedIn
-        ? "Signed in as " + accountSession.name + ". A confirmation email uses this username and does not include the password."
+        ? "Signed in as " + accountSession.name + "."
         : accountMode === "up"
-          ? "The confirmation goes to your email. It names this username and does not include the password. Add a phone if you also want to sign in with it."
+          ? "We'll email you to confirm the account."
           : accountMode === "forgot"
-            ? "The reset link goes to the email on the account. It does not include the old password."
-            : "Use the email or phone on the account.";
+            ? "We'll email you a link to choose a new password."
+            : "Use your email or phone.";
       document.getElementById("accountNameLabel").hidden = accountMode !== "up";
       document.getElementById("accountIdLabel").hidden = signedIn;
       document.getElementById("accountIdLabel").firstChild.textContent = accountMode === "up" || accountMode === "forgot" ? "Email" : "Email or phone";
@@ -1337,7 +1337,7 @@
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {
-        const error = new Error(authFailure(data, "The account service did not accept that."));
+        const error = new Error(authFailure(data, "That didn't work. Try again."));
         error.status = response.status;
         throw error;
       }
@@ -1380,7 +1380,7 @@
             return;
           }
           if (phone && (phone.length < 10 || phone.length > 15)) {
-            showAccountError("Enter a phone number with 10 to 15 digits, or leave it blank.");
+            showAccountError("Check the phone number, or leave it blank.");
             return;
           }
           const data = await accountRequest("auth/register", {
@@ -1399,9 +1399,7 @@
           rememberSession(session);
           accountPassword.value = "";
           accountConfirm.value = "";
-          accountNote.textContent = session.phone
-            ? "Confirmation sent to " + session.email + ". It includes the username " + session.name + " and does not include the password. You can sign in with the email or the phone."
-            : "Confirmation sent to " + session.email + ". It includes the username " + session.name + " and does not include the password. Sign in with that email.";
+          accountNote.textContent = "Check " + session.email + " to confirm the account.";
           return;
         }
         const raw = accountId.value.trim();
@@ -1409,7 +1407,7 @@
         if (raw.includes("@")) body.email = raw;
         else body.phone = digitsOf(raw);
         if (!body.email && (!body.phone || body.phone.length < 10)) {
-          showAccountError("Enter the email or phone on the account.");
+          showAccountError("Enter your email or phone.");
           return;
         }
         const data = await accountRequest("auth/login", body);
@@ -1421,13 +1419,13 @@
         });
         accountPassword.value = "";
       } catch (error) {
-        let text = error && error.message ? error.message : "The account service did not answer. Try again.";
+        let text = error && error.message ? error.message : "Something went wrong. Try again.";
         if (accountMode === "forgot" && /find a user|do not match|records/i.test(text)) {
           accountNote.textContent = "If an account exists for that email, a reset link is on its way.";
           return;
         }
         if (accountMode === "in" && !accountId.value.includes("@") && /email/i.test(text)) {
-          text = "Sign in with the email on the account. Phone sign-in follows the account update.";
+          text = "Sign in with the email on this account.";
         }
         showAccountError(text);
       } finally {
@@ -1547,7 +1545,7 @@
       const raw = localStorage.getItem("afia-library");
       if (!raw) {
         const empty = document.createElement("p");
-        empty.textContent = "Nothing is saved yet. Open Afia once while you are online and the latest episodes stay on this phone.";
+        empty.textContent = "Nothing is saved yet. Open Afia online once to keep episodes here.";
         savedList.append(empty);
         return;
       }
@@ -2130,8 +2128,8 @@
       document.getElementById("stage").hidden = false;
       markTab("library");
       document.getElementById("offlineText").textContent = navigator.onLine
-        ? "Afia TV didn't open. The site didn't answer. Saved episodes on this phone are still here."
-        : "You're offline. Live TV needs a connection. Pictures and details of saved episodes stay on this phone. Playing one needs a connection, because Afia hosts them on YouTube.";
+        ? "Afia didn't open. Saved episodes are still here."
+        : "You're offline. Live TV needs a connection. Saved episodes stay here, and playing one needs a connection.";
       offline.classList.add("show");
       paintSaved();
     }
@@ -2279,7 +2277,7 @@
       heading.textContent = rank.title;
       const hours = document.createElement("p");
       hours.className = "rank-hours";
-      hours.textContent = hoursLabel(rankTotal(row)) + " in the app" + (next ? " · next " + next.title : " · top rank");
+      hours.textContent = hoursLabel(rankTotal(row)) + (next ? " · next " + next.title : " · top rank");
       const bar = document.createElement("div");
       bar.className = "rank-next";
       bar.innerHTML = "<span></span>";
@@ -2304,15 +2302,7 @@
       mine.innerHTML = badgeSvg(rank.id) + "<b></b><em></em>";
       mine.querySelector("b").textContent = rank.title;
       mine.querySelector("em").textContent = hoursLabel(rankTotal(row));
-      const globalNote = document.createElement("p");
-      globalNote.className = "rank-hours";
-      globalNote.textContent = "This board is this phone. Other people appear here after sign-in.";
-      const friendHead = document.createElement("h2");
-      friendHead.textContent = "Friends";
-      const friendNote = document.createElement("p");
-      friendNote.className = "rank-hours";
-      friendNote.textContent = "Friends appear here after sign-in, ranked by the same hours and badges.";
-      body.append(heading, hours, bar, badgeHead, grid, globalHead, mine, globalNote, friendHead, friendNote);
+      body.append(heading, hours, bar, badgeHead, grid, globalHead, mine);
     }
 
     function creditRank(bucket, amount, section) {
