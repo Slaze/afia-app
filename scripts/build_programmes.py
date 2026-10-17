@@ -146,6 +146,96 @@ def player_stats(version, video_id):
     }
 
 
+def clip_comment(text):
+    if isinstance(text, dict):
+        text = text.get("content") or ""
+    line = re.sub(r"\s+", " ", str(text or "")).strip()
+    if line.startswith("{") or len(line) < 2:
+        return ""
+    return line[:140]
+
+
+def existing_comments(version, video_id):
+    context = {"client": {"clientName": "WEB", "clientVersion": version, "hl": "en", "gl": "NG"}}
+
+    def pull(payload):
+        body = json.dumps(payload).encode()
+        request = urllib.request.Request(
+            "https://www.youtube.com/youtubei/v1/next?prettyPrint=false",
+            data=body,
+            headers={"Content-Type": "application/json", "User-Agent": "Mozilla/5.0"},
+        )
+        with urllib.request.urlopen(request, timeout=25) as response:
+            return json.load(response)
+
+    page_data = pull({"context": context, "videoId": video_id})
+    panels = page_data.get("engagementPanels") or []
+    token = ""
+    for panel in panels:
+        renderer = panel.get("engagementPanelSectionListRenderer") or {}
+        if renderer.get("panelIdentifier") != "engagement-panel-comments-section":
+            continue
+        try:
+            token = renderer["content"]["sectionListRenderer"]["contents"][0]["itemSectionRenderer"]["contents"][0]["continuationItemRenderer"]["continuationEndpoint"]["continuationCommand"]["token"]
+        except (KeyError, IndexError, TypeError):
+            token = ""
+    if not token:
+        return []
+    more = pull({"context": context, "continuation": token})
+    found = []
+
+    def walk(node):
+        if isinstance(node, dict):
+            entity = node.get("commentEntityPayload")
+            if entity:
+                props = entity.get("properties") or {}
+                author = entity.get("author") or {}
+                text = clip_comment(props.get("content"))
+                name = str(author.get("displayName") or "").lstrip("@").strip()[:28]
+                if text and name and props.get("replyLevel") in (None, 0, "0"):
+                    found.append({"name": name, "text": text})
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    walk(more)
+    unique = []
+    seen = set()
+    for row in found:
+        if row["text"] in seen:
+            continue
+        seen.add(row["text"])
+        unique.append(row)
+        if len(unique) == 8:
+            break
+    return unique
+
+
+def attach_comments(version, sections):
+    ids = []
+    for section in sections:
+        for row in section["episodes"]:
+            if row["id"] not in ids:
+                ids.append(row["id"])
+    found = {}
+
+    def one(video_id):
+        try:
+            return video_id, existing_comments(version, video_id)
+        except Exception:
+            return video_id, []
+
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        for video_id, lines in pool.map(one, ids):
+            found[video_id] = lines
+    for section in sections:
+        for row in section["episodes"]:
+            row["chat"] = found.get(row["id"]) or []
+    return sum(1 for lines in found.values() if lines)
+
+
 def enrich(version, sections):
     ids = []
     for section in sections:
@@ -234,6 +324,7 @@ def main():
         if rows:
             merged.append({"title": title, "id": section["id"], "episodes": rows})
     counted = enrich(version, merged)
+    with_chat = attach_comments(version, merged)
     stats = rank(merged)
     for section in merged:
         for row in section["episodes"]:
@@ -243,7 +334,7 @@ def main():
         "stats": stats,
         "sections": merged,
     }
-    print(f"stats from {counted} episodes")
+    print(f"stats from {counted} episodes, comments on {with_chat}")
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"{len(merged)} sections, {sum(len(row['episodes']) for row in merged)} episodes -> {OUT}")
 
