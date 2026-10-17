@@ -96,6 +96,30 @@
     .story { display: block; width: 100%; border-radius: 0; border-top: 1px solid var(--line); background: transparent; padding: 12px 0; }
     .story b { font: 650 18px/1.15 var(--ui); }
     .poster { flex: 0 0 200px; border-radius: 14px; padding: 0 0 10px; overflow: hidden; }
+    .catalogue { display: none; flex: 1; min-height: 0; overflow: auto; background: var(--studio); padding: 8px 0 24px; }
+    .stage.cataloguing .catalogue { display: block; }
+    .stage.cataloguing #frame,
+    .stage.cataloguing .player,
+    .stage.cataloguing .offline { display: none !important; }
+    .programme-note { margin: 4px 16px 0; color: var(--mute); font: 500 13px/1.4 var(--ui); }
+    .episode { position: relative; flex: 0 0 200px; }
+    .episode .poster { width: 100%; flex: none; }
+    .episode .mark {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(16, 14, 12, 0.72);
+      color: #fff;
+      padding: 0;
+    }
+    .episode .mark svg { width: 18px; height: 18px; display: block; }
+    .episode .mark[aria-pressed="true"] { background: var(--live); }
     .poster img { width: 100%; height: 112px; object-fit: cover; display: block; background: #2c241c; }
     .poster b, .poster span { padding: 0 10px; }
     .stage { position: relative; display: flex; flex-direction: column; flex: 1; min-height: 0; background: #000; }
@@ -357,6 +381,10 @@
       <div class="rail" id="episodeRail"></div>
     </main>
     <div class="stage" id="stage" hidden>
+      <div class="catalogue" id="catalogue">
+        <p class="programme-note">Programmes from the Afia TV channel, in the same sections. Tap one to watch it here. The mark keeps it for later on this phone.</p>
+        <div id="programmeList"></div>
+      </div>
       <div class="player" id="player">
         <div class="player-bar">
           <button type="button" id="playToggle" aria-label="Play"></button>
@@ -386,7 +414,7 @@
       <button type="button" data-tab="home" aria-current="page">Home</button>
       <button type="button" data-tab="live">Live</button>
       <button type="button" data-tab="listen" id="lineup">99.3</button>
-      <button type="button" data-tab="library">Library</button>
+      <button type="button" data-tab="library">Shows</button>
       <button type="button" id="more" data-tab="more">More</button>
     </nav>
   </div>
@@ -415,7 +443,7 @@
       <button type="button" data-url="https://www.afiatv.net/about">About Afia<small>The station</small></button>
       <button type="button" data-url="https://www.afiatv.net/contact">Reach us<small>Contact the newsroom</small></button>
       <button type="button" id="listenRadio">Afia Radio<small>Listen in the app</small></button>
-      <button type="button" id="openSaved">Library<small>Episodes kept on this phone</small></button>
+      <button type="button" id="openSaved">Shows<small>Programmes and episodes to watch later</small></button>
       <button type="button" data-url="https://www.afiatv.net/privacy">Privacy<small>How Afia handles information</small></button>
       <button type="button" data-url="https://www.afiatv.net/terms">Terms<small>Terms of use</small></button>
       <button type="button" data-url="https://afiahomecoming.com/">Events<small>Afia homecoming</small></button>
@@ -898,7 +926,9 @@
         setRadio("Paused for live TV", "▶");
       }
       document.getElementById("home").hidden = true;
-      document.getElementById("stage").hidden = false;
+      const stage = document.getElementById("stage");
+      stage.hidden = false;
+      stage.classList.remove("cataloguing");
       offline.classList.remove("show");
       back.classList.remove("show");
       document.body.classList.add("watching");
@@ -913,7 +943,9 @@
     function showHome() {
       leaveLive();
       document.getElementById("home").hidden = false;
-      document.getElementById("stage").hidden = true;
+      const stage = document.getElementById("stage");
+      stage.hidden = true;
+      stage.classList.remove("cataloguing");
       back.classList.remove("show");
       offline.classList.remove("show");
       markTab("home");
@@ -922,7 +954,9 @@
     function show(url, tab) {
       leaveLive();
       document.getElementById("home").hidden = true;
-      document.getElementById("stage").hidden = false;
+      const stage = document.getElementById("stage");
+      stage.hidden = false;
+      stage.classList.remove("cataloguing");
       offline.classList.remove("show");
       progress.classList.remove("show");
       void progress.offsetWidth;
@@ -989,13 +1023,7 @@
         }
         if (button.dataset.tab === "listen") return;
         if (button.dataset.tab === "library") {
-          leaveLive();
-          document.getElementById("home").hidden = true;
-          document.getElementById("stage").hidden = false;
-          markTab("library");
-          document.getElementById("offlineText").textContent = "Episodes and stories kept on this phone. Playing one needs a connection, because Afia hosts the video on YouTube.";
-          offline.classList.add("show");
-          paintSaved();
+          openLibrary();
           return;
         }
         show(TABS[button.dataset.tab], button.dataset.tab);
@@ -1125,6 +1153,102 @@
       }
     }
 
+    const MARK = {
+      off: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 4h10a1 1 0 0 1 1 1v15l-6-3-6 3V5a1 1 0 0 1 1-1zm1 2v10.2l4-2 4 2V6H8z"/></svg>',
+      on: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 4h10a1 1 0 0 1 1 1v15l-6-3-6 3V5a1 1 0 0 1 1-1z"/></svg>'
+    };
+    let programmes = null;
+
+    function laterItems() {
+      try { return JSON.parse(localStorage.getItem("afia-later") || "[]"); }
+      catch (error) { return []; }
+    }
+
+    function youtubeId(url) {
+      const match = String(url || "").match(/(?:youtu\.be\/|live\/|embed\/|v=)([\w-]{6,})/);
+      return match ? match[1] : "";
+    }
+
+    function watchEpisode(id) {
+      show("https://www.youtube.com/embed/" + encodeURIComponent(id) + "?rel=0&playsinline=1", null);
+    }
+
+    function episodeCard(row, section) {
+      const wrap = document.createElement("div");
+      wrap.className = "episode";
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "poster";
+      const img = document.createElement("img");
+      img.alt = "";
+      img.src = "https://i.ytimg.com/vi/" + row.id + "/hqdefault.jpg";
+      const title = document.createElement("b");
+      title.textContent = row.title;
+      card.append(img, title);
+      card.addEventListener("click", () => watchEpisode(row.id));
+      const saved = laterItems().some((item) => item.id === row.id);
+      const mark = document.createElement("button");
+      mark.type = "button";
+      mark.className = "mark";
+      mark.setAttribute("aria-label", saved ? "Remove from watch later" : "Watch later");
+      mark.setAttribute("aria-pressed", saved ? "true" : "false");
+      mark.innerHTML = saved ? MARK.on : MARK.off;
+      mark.addEventListener("click", () => {
+        const next = laterItems().filter((item) => item.id !== row.id);
+        if (!saved) next.unshift({ id: row.id, title: row.title, section });
+        localStorage.setItem("afia-later", JSON.stringify(next.slice(0, 60)));
+        paintProgrammes();
+      });
+      wrap.append(card, mark);
+      return wrap;
+    }
+
+    function paintProgrammes() {
+      const root = document.getElementById("programmeList");
+      const blocks = [];
+      const later = laterItems();
+      if (later.length) blocks.push({ title: "Watch later", episodes: later });
+      (programmes && programmes.sections || []).forEach((section) => {
+        blocks.push({ title: section.title, episodes: section.episodes || [] });
+      });
+      root.replaceChildren(...blocks.map((block) => {
+        const section = document.createElement("section");
+        const heading = document.createElement("h2");
+        heading.textContent = block.title;
+        const rail = document.createElement("div");
+        rail.className = "rail";
+        block.episodes.forEach((row) => rail.append(episodeCard(row, block.title)));
+        section.append(heading, rail);
+        return section;
+      }));
+    }
+
+    async function openLibrary() {
+      leaveLive();
+      document.getElementById("home").hidden = true;
+      const stage = document.getElementById("stage");
+      stage.hidden = false;
+      stage.classList.add("cataloguing");
+      offline.classList.remove("show");
+      back.classList.remove("show");
+      markTab("library");
+      if (!programmes) {
+        try {
+          const response = await fetch("programmes.json", { cache: "no-store" });
+          if (response.ok) {
+            programmes = await response.json();
+            localStorage.setItem("afia-programmes", JSON.stringify(programmes));
+          }
+        } catch (error) { /* use the copy kept on this phone */ }
+        if (!programmes) {
+          try { programmes = JSON.parse(localStorage.getItem("afia-programmes") || "null"); }
+          catch (error) { programmes = null; }
+        }
+        if (!programmes) programmes = { sections: [] };
+      }
+      paintProgrammes();
+    }
+
     function paintHome(feed) {
       if (!feed) return;
       const current = feed.onAir && feed.onAir.show ? feed.onAir : (feed.today || [])[0];
@@ -1169,10 +1293,11 @@
         const title = document.createElement("b");
         title.textContent = row.title || "Episode";
         const span = document.createElement("span");
-        span.textContent = "Opens the episode";
+        span.textContent = "Watch in the app";
         card.append(title, span);
         card.addEventListener("click", () => {
-          if (row.embedUrl) window.open(row.embedUrl, "_blank", "noopener");
+          const id = youtubeId(row.embedUrl);
+          if (id) watchEpisode(id);
         });
         return card;
       }));
@@ -1202,7 +1327,7 @@
     });
     document.getElementById("openSaved").addEventListener("click", () => {
       sheet.classList.remove("show");
-      showOffline();
+      openLibrary();
     });
     window.addEventListener("offline", showOffline);
     window.addEventListener("online", () => offline.classList.remove("show"));
