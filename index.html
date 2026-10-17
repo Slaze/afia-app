@@ -162,7 +162,18 @@
     }
     .episode .mark svg { width: 18px; height: 18px; display: block; }
     .episode .mark[aria-pressed="true"] { background: var(--live); }
-    .poster img { width: 100%; height: 112px; object-fit: cover; display: block; background: #2c241c; }
+    .poster img { width: 100%; height: 112px; object-fit: contain; object-position: center; display: block; background: #000; }
+    #episodePoster {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      background: #000;
+    }
+    #episodePoster[hidden] { display: none; }
     .poster b, .poster span { padding: 0 10px; }
     .stage { position: relative; display: flex; flex-direction: column; flex: 1; min-height: 0; background: #000; }
     iframe { width: 100%; flex: 1; min-height: 0; border: 0; background: #000; }
@@ -498,7 +509,7 @@
           <div class="live-caption" id="liveCaption"><b id="liveNow">Afia TV</b><span id="liveNext">Watch the channel</span></div>
         </div>
       </div>
-      <div id="ytSlot"><div id="ytPlayer"></div><p class="episode-when" id="episodeWhen" hidden></p></div>
+      <div id="ytSlot"><div id="ytPlayer"></div><img id="episodePoster" alt="" hidden><p class="episode-when" id="episodeWhen" hidden></p></div>
       <iframe id="frame" title="Afia" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
       <div class="up-next" id="upNext" hidden>
         <p id="upNextLabel"></p>
@@ -1397,6 +1408,10 @@
 
     function onEpisodeState(event) {
       if (!window.YT || !ytPlayer) return;
+      if (event.data === YT.PlayerState.PLAYING) {
+        const poster = document.getElementById("episodePoster");
+        poster.hidden = true;
+      }
       if (event.data === YT.PlayerState.PLAYING && currentEpisode && heardEpisode !== currentEpisode.id) {
         heardEpisode = currentEpisode.id;
         hearEpisode();
@@ -1475,6 +1490,7 @@
       returnBar.classList.add("show");
       document.getElementById("shareEpisode").hidden = false;
       document.getElementById("upNext").hidden = true;
+      showEpisodePoster(id);
       uploadedLine(id);
       markTab(null);
       const start = (progressMap()[id] && progressMap()[id].seconds) || 0;
@@ -1596,6 +1612,33 @@
       }));
     }
 
+    function fullPoster(img, id) {
+      img.alt = "";
+      img.referrerPolicy = "no-referrer";
+      if (!img.dataset.posterBound) {
+        img.dataset.posterBound = "1";
+        img.addEventListener("error", () => {
+          if (img.dataset.fallback === img.dataset.wanted) return;
+          img.dataset.fallback = img.dataset.wanted;
+          img.src = "https://i.ytimg.com/vi/" + img.dataset.wanted + "/hqdefault.jpg";
+        });
+        img.addEventListener("load", () => {
+          if (img.dataset.fallback === img.dataset.wanted || img.naturalWidth >= 400) return;
+          img.dataset.fallback = img.dataset.wanted;
+          img.src = "https://i.ytimg.com/vi/" + img.dataset.wanted + "/hqdefault.jpg";
+        });
+      }
+      img.dataset.wanted = id;
+      delete img.dataset.fallback;
+      img.src = "https://i.ytimg.com/vi/" + id + "/maxresdefault.jpg";
+    }
+
+    function showEpisodePoster(id) {
+      const poster = document.getElementById("episodePoster");
+      poster.hidden = false;
+      fullPoster(poster, id);
+    }
+
     function episodeCard(row, section, title, note) {
       const wrap = document.createElement("div");
       wrap.className = "episode";
@@ -1604,7 +1647,7 @@
       card.className = "poster";
       const img = document.createElement("img");
       img.alt = "";
-      img.src = "https://i.ytimg.com/vi/" + row.id + "/hqdefault.jpg";
+      fullPoster(img, row.id);
       const name = document.createElement("b");
       name.textContent = title || row.title;
       card.append(img, name);
