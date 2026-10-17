@@ -107,7 +107,21 @@
     .up-next[hidden] { display: none; }
     .up-next p { flex: 1; margin: 0; font: 650 14px/1.3 var(--ui); }
     .up-next button { border: 0; border-radius: 999px; background: var(--live); color: white; padding: 10px 14px; font: 700 13px/1 var(--ui); }
-    #ytSlot { display: none; flex: 1; min-height: 0; background: #000; }
+    #ytSlot { display: none; position: relative; flex: 1; min-height: 0; background: #000; }
+    .episode-when {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      margin: 0;
+      padding: 28px 16px 16px;
+      background: linear-gradient(to top, rgba(12, 9, 7, 0.9), transparent);
+      color: var(--paper);
+      font: 600 14px/1.35 var(--ui);
+      pointer-events: none;
+    }
+    .episode-when[hidden] { display: none; }
     .stage.episode #ytSlot { display: flex; }
     .stage.episode #frame { display: none; }
     #ytSlot iframe { width: 100%; height: 100%; flex: 1; border: 0; }
@@ -435,7 +449,7 @@
           <div class="live-caption" id="liveCaption"><b id="liveNow">Afia TV</b><span id="liveNext">Watch the channel</span></div>
         </div>
       </div>
-      <div id="ytSlot"><div id="ytPlayer"></div></div>
+      <div id="ytSlot"><div id="ytPlayer"></div><p class="episode-when" id="episodeWhen" hidden></p></div>
       <iframe id="frame" title="Afia" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
       <div class="up-next" id="upNext" hidden>
         <p id="upNextLabel"></p>
@@ -1346,6 +1360,27 @@
       }
     }
 
+    function uploadedLine(id) {
+      const line = document.getElementById("episodeWhen");
+      let published = "";
+      ((programmes && programmes.sections) || []).some((section) => {
+        const row = (section.episodes || []).find((item) => item.id === id);
+        if (!row || !row.published) return false;
+        published = row.published;
+        return true;
+      });
+      const when = published ? new Date(published) : null;
+      if (!when || Number.isNaN(when.getTime())) {
+        line.hidden = true;
+        line.textContent = "";
+        return;
+      }
+      const date = when.toLocaleDateString("en-GB", { timeZone: "Africa/Lagos", weekday: "long", day: "numeric", month: "long", year: "numeric" });
+      const time = when.toLocaleTimeString("en-GB", { timeZone: "Africa/Lagos", hour: "2-digit", minute: "2-digit" });
+      line.textContent = "Uploaded " + date + ", " + time + " WAT";
+      line.hidden = false;
+    }
+
     function watchEpisode(id, section, title) {
       if (audio.src && !audio.paused) {
         pausedForLive = true;
@@ -1363,6 +1398,7 @@
       returnBar.classList.add("show");
       document.getElementById("shareEpisode").hidden = false;
       document.getElementById("upNext").hidden = true;
+      uploadedLine(id);
       markTab(null);
       const start = (progressMap()[id] && progressMap()[id].seconds) || 0;
       if (ytPlayer && ytPlayer.loadVideoById) {

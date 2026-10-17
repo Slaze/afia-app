@@ -142,6 +142,7 @@ def player_stats(version, video_id):
         "views": int(micro.get("viewCount") or 0),
         "likes": int(str(micro.get("likeCount") or "0").split()[0] or 0),
         "days": days,
+        "published": published if days is not None else "",
     }
 
 
@@ -173,6 +174,8 @@ def enrich(version, sections):
             row["likes"] = stats["likes"]
             if stats["days"] is not None:
                 row["days"] = stats["days"]
+            if stats.get("published"):
+                row["published"] = stats["published"]
     return len(found)
 
 
