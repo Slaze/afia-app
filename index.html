@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Afia">
+  <title>Afia TV</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: #111; overflow: hidden; }
+    body { font-family: system-ui, sans-serif; }
+    .app {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      height: 100dvh;
+      padding-top: env(safe-area-inset-top);
+      overflow: hidden;
+    }
+    .stage { position: relative; flex: 1; min-height: 0; background: #fff; }
+    iframe { width: 100%; height: 100%; border: 0; background: #fff; }
+    .offline {
+      display: none;
+      position: absolute;
+      inset: 0;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      background: #fff;
+      color: #111;
+    }
+    .offline.show { display: flex; flex-direction: column; align-items: stretch; overflow: auto; text-align: left; }
+    .offline button.retry { margin: 8px auto 16px; border: 0; border-radius: 8px; background: #111; color: #fff; padding: 12px 18px; }
+    .saved-card { display: block; width: 100%; margin: 0 0 16px; padding: 0; border: 0; background: transparent; text-align: left; color: #111; }
+    .saved-card img { width: 100%; height: auto; display: block; }
+    .saved-card b, .saved-card span { display: block; }
+    nav {
+      display: flex;
+      background: #111;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    nav button {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 12px 0 10px;
+      font: 600 11px/1 system-ui, sans-serif;
+    }
+    nav button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    nav button svg { width: 22px; height: 22px; stroke: currentColor; fill: none; }
+    nav button[aria-current="page"] { color: #f15a22; }
+    .radio {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex: 1;
+      border: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: #111;
+      color: #fff;
+      padding: 8px 12px 8px 16px;
+      text-align: left;
+    }
+    .radio .mark { width: 28px; flex: none; color: #f15a22; font-size: 16px; }
+    .radio > span:last-child { min-width: 0; flex: 1; }
+    .radio b { display: block; font-size: 14px; }
+    .radio small {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      color: rgba(255, 255, 255, 0.65);
+      font: 400 12px/1.3 system-ui, sans-serif;
+    }
+    .radio-row {
+      display: flex;
+      background: #111;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+    .lineup-open {
+      flex: none;
+      border: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: #111;
+      color: #f15a22;
+      font: 700 14px/1 system-ui, sans-serif;
+      padding: 0 16px;
+    }
+    .guide-copy { margin: 8px 16px 12px; color: #444; font: 400 14px/1.4 system-ui, sans-serif; }
+    .guide-block { margin: 0 16px 14px; }
+    .guide-block h2 { margin: 0 0 8px; color: #f15a22; font: 700 13px/1 system-ui, sans-serif; }
+    .guide-card { background: #111; color: #fff; padding: 12px 14px; margin: 0 0 8px; }
+    .guide-card b { display: block; font-size: 16px; }
+    .guide-card span { display: block; color: #f15a22; font-size: 13px; margin-top: 2px; }
+    .guide-card p { margin: 6px 0 0; color: rgba(255,255,255,.72); font-size: 13px; }
+    .guide-card button, .guide-alert {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      border: 0;
+      background: #111;
+      color: #fff;
+      text-align: left;
+      padding: 14px 16px;
+      font: 600 15px/1.2 system-ui, sans-serif;
+    }
+    .return {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      border: 0;
+      background: #111;
+      color: #fff;
+      padding: 10px 16px;
+      padding-left: calc(16px + env(safe-area-inset-left));
+      padding-right: calc(16px + env(safe-area-inset-right));
+      font: 600 14px/1 system-ui, sans-serif;
+      text-align: left;
+    }
+    .return.show { display: flex; }
+    .return img { height: 22px; width: auto; }
+    .panel img.brand { height: 28px; width: auto; margin: 12px 16px 4px; }
+    .return b { margin-left: auto; color: #f15a22; }
+    .progress {
+      height: 3px;
+      background: #f15a22;
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+    .progress.show { animation: load 1.1s ease forwards; }
+    @keyframes load { to { transform: scaleX(1); } }
+    .panel .handle {
+      width: 36px;
+      height: 4px;
+      margin: 6px auto 8px;
+      border-radius: 4px;
+      background: #ddd;
+    }
+    .panel button small {
+      display: block;
+      margin-top: 2px;
+      color: #666;
+      font: 400 13px/1.3 system-ui, sans-serif;
+    }
+    a.credit {
+      display: block;
+      padding: 8px 16px 14px;
+      color: #666;
+      font: 400 13px/1.3 system-ui, sans-serif;
+      text-decoration: none;
+    }
+    .sheet {
+      position: fixed;
+      z-index: 30;
+      inset: 0;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.45);
+      padding-top: calc(12px + env(safe-area-inset-top));
+    }
+    .sheet.show { display: flex; }
+    .panel {
+      width: min(420px, 100%);
+      max-height: calc(100dvh - 12px - env(safe-area-inset-top));
+      margin: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      background: #fff;
+      color: #111;
+      border-radius: 16px 16px 0 0;
+      padding: 8px 8px calc(12px + env(safe-area-inset-bottom));
+    }
+    @media (max-height: 420px) {
+      nav button { padding: 6px 0 4px; }
+      nav button svg { width: 18px; height: 18px; }
+      .radio { padding-top: 4px; padding-bottom: 4px; }
+      .return { padding-top: 6px; padding-bottom: 6px; }
+    }
+    .panel button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: 0;
+      background: transparent;
+      padding: 14px 16px;
+      font: 500 16px/1.2 system-ui, sans-serif;
+      color: #111;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <button class="return" id="return" type="button"><img src="afia-wordmark-white.png" alt="Afia">On air<b>Watch</b></button>
+    <div class="progress" id="progress"></div>
+    <div class="stage">
+      <iframe id="frame" title="Afia TV" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen src="https://www.afiatv.net/live"></iframe>
+      <div class="offline" id="offline">
+        <p id="offlineText"></p>
+        <button class="retry" id="retryFrame" type="button">Try again</button>
+        <div id="savedList"></div>
+      </div>
+    </div>
+    <div class="radio-row">
+      <button class="radio" id="radio" type="button"><span class="mark" id="radioMark">▶</span><span><b>Afia 99.3</b><small id="radioStatus">Tap to listen</small></span></button>
+      <button class="lineup-open" id="lineup" type="button">Lineup</button>
+    </div>
+    <audio id="radioAudio" preload="none"></audio>
+    <nav aria-label="Afia">
+      <button type="button" data-tab="live" aria-current="page"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/><path d="M7.5 7.5a6.4 6.4 0 0 0 0 9M16.5 7.5a6.4 6.4 0 0 1 0 9" stroke-linecap="round"/></svg>Live</button>
+      <button type="button" data-tab="news"><svg viewBox="0 0 24 24"><path d="M5 4h11a2 2 0 0 1 2 2v14l-3-2-3 2-3-2-3 2V6a2 2 0 0 1 2-2z" fill="currentColor" stroke="none"/></svg>News</button>
+      <button type="button" data-tab="enugu"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11H4zm6-2h4v-4h-4v4z" fill="currentColor" stroke="none"/></svg>Enugu</button>
+      <button type="button" data-tab="podcast"><svg viewBox="0 0 24 24"><path d="M12 3a4 4 0 0 0-4 4v4a4 4 0 0 0 8 0V7a4 4 0 0 0-4-4zM8 12a4 4 0 0 0 8 0M12 16v4" fill="currentColor" stroke="none"/></svg>Podcast</button>
+      <button type="button" id="more" data-tab="more"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg>More</button>
+    </nav>
+  </div>
+  <div class="sheet" id="guide">
+    <div class="panel" role="dialog" aria-label="What’s on">
+      <div class="handle"></div>
+      <img class="brand" src="afia-wordmark.png" alt="Afia">
+      <p class="guide-copy">Afia TV stays on Live. This timetable is Afia 99.3, and it repeats every week. New stories show up here when Afia publishes them.</p>
+      <div id="guideBody"></div>
+      <a class="credit" href="https://iconiaglobal.com" target="_blank" rel="noopener">Developed by Iconia Global</a>
+    </div>
+  </div>
+  <div class="sheet" id="sheet">
+    <div class="panel" role="dialog" aria-label="Afia">
+      <div class="handle"></div>
+      <img class="brand" src="afia-wordmark.png" alt="Afia">
+      <button type="button" data-url="https://www.afiatv.net/obuzo">Obuzo<small>Programme page</small></button>
+      <button type="button" data-url="https://www.afiatv.net/about">About Afia<small>The station</small></button>
+      <button type="button" data-url="https://www.afiatv.net/contact">Reach us<small>Contact the newsroom</small></button>
+      <button type="button" id="listenRadio">Afia Radio<small>Listen live in the app</small></button>
+      <button type="button" id="openSaved">Saved<small>Episodes kept on this phone</small></button>
+      <button type="button" data-url="https://www.afiatv.net/privacy">Privacy<small>How Afia handles information</small></button>
+      <button type="button" data-url="https://www.afiatv.net/terms">Terms<small>Terms of use</small></button>
+      <button type="button" data-url="https://afiahomecoming.com/">Events<small>Afia homecoming</small></button>
+      <a class="credit" href="https://iconiaglobal.com" target="_blank" rel="noopener">Developed by Iconia Global</a>
+      <button type="button" id="install" hidden>Install Afia<small>Add this app to your phone</small></button>
+    </div>
+  </div>
+  <script>
+    const ORIGIN = "https://www.afiatv.net";
+    const TABS = {
+      live: ORIGIN + "/live",
+      news: ORIGIN + "/news",
+      enugu: ORIGIN + "/enugustory",
+      podcast: ORIGIN + "/podcast"
+    };
+    const frame = document.getElementById("frame");
+    const sheet = document.getElementById("sheet");
+    const offline = document.getElementById("offline");
+    const back = document.getElementById("return");
+    const progress = document.getElementById("progress");
+    const buttons = [...document.querySelectorAll("nav button")];
+    const STREAM = "https://stream.afia993.com/stream";
+    const DESK = "https://iconiaglobal.com/afiatv-app/api/config.php";
+    let deskStream = "";
+    fetch(DESK).then((response) => response.json()).then((data) => {
+      if (data.radio && data.radio.enabled === false) deskStream = "";
+      else if (data.radio && data.radio.stream) deskStream = data.radio.stream;
+    }).catch(() => {});
+    const audio = document.getElementById("radioAudio");
+    const radioStatus = document.getElementById("radioStatus");
+    const radioMark = document.getElementById("radioMark");
+    let deferredInstall = null;
+    let pausedForLive = false;
+
+    function setRadio(status, mark) {
+      radioStatus.textContent = status;
+      radioMark.textContent = mark;
+    }
+
+    async function toggleRadio() {
+      pausedForLive = false;
+      if (!audio.paused && audio.src) {
+        audio.pause();
+        setRadio("Paused", "▶");
+        return;
+      }
+      setRadio("Connecting", "…");
+      const source = deskStream || STREAM;
+      if (audio.src !== source) audio.src = source;
+      try {
+        await audio.play();
+        setRadio("Live", "❚❚");
+        if ("mediaSession" in navigator) {
+          navigator.mediaSession.metadata = new MediaMetadata({ title: "Afia 99.3", artist: "Afia Radio" });
+          navigator.mediaSession.playbackState = "playing";
+        }
+      } catch (error) {
+        radioFail();
+      }
+    }
+
+    audio.addEventListener("playing", () => setRadio("Live", "❚❚"));
+    audio.addEventListener("waiting", () => {
+      if (!audio.paused) setRadio("Connecting", "…");
+    });
+    function radioFail() {
+      setRadio(navigator.onLine
+        ? "Afia 99.3 didn't start. The station stream may be off. Try again shortly."
+        : "Afia 99.3 needs a connection. Live radio cannot be saved for later.", "▶");
+    }
+    audio.addEventListener("error", radioFail);
+    document.getElementById("radio").addEventListener("click", toggleRadio);
+
+    const guide = document.getElementById("guide");
+    const guideBody = document.getElementById("guideBody");
+    const RADIO_API = "https://afia-radio-backend.onrender.com/v1";
+    const FEED = "https://slaze.github.io/afia-app/feed.json";
+    const NEWS_QUERY = '*[_type=="news" && !(_id in path("drafts.**"))] | order(publishedAt desc)[0...6]{title,publishedAt,category,"slug":slug.current}';
+    const DAYS = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+
+    function lagosNow() {
+      return new Date(new Date().toLocaleString("en-US", { timeZone: "Africa/Lagos" }));
+    }
+
+    function slotCard(row) {
+      const show = row.show || {};
+      const host = show.host && show.host.name ? show.host.name : "";
+      const card = document.createElement("div");
+      card.className = "guide-card";
+      card.innerHTML = "<b></b><span></span>";
+      card.querySelector("b").textContent = show.title || "Afia 99.3";
+      card.querySelector("span").textContent = [row.startTime && row.endTime ? row.startTime + "–" + row.endTime : "", host].filter(Boolean).join(" · ");
+      return card;
+    }
+
+    async function fillGuide() {
+      guideBody.textContent = "Loading the lineup…";
+      const start = lagosNow();
+      try {
+        const feed = await fetch(FEED, { cache: "no-store" }).then((response) => response.ok ? response.json() : null).catch(() => null);
+        const day = DAYS[start.getDay()];
+        const [onAir, today, news] = feed && Array.isArray(feed.week) && feed.week.length
+          ? [feed.onAir, feed.today || [], { result: feed.news || [] }]
+          : await Promise.all([
+          fetch(RADIO_API + "/shows/on-air").then((response) => response.json()),
+          fetch(RADIO_API + "/shows/schedule/" + day).then((response) => response.json()),
+          fetch("https://p9qytxax.apicdn.sanity.io/v2021-06-07/data/query/production?query=" + encodeURIComponent(NEWS_QUERY)).then((response) => response.json()).catch(() => ({ result: [] }))
+        ]);
+        const week = feed && Array.isArray(feed.week) && feed.week.length ? feed.week : [];
+        if (!week.length) {
+          for (let offset = 0; offset < 7; offset += 1) {
+            const date = new Date(start);
+            date.setDate(start.getDate() + offset);
+            const rows = (offset === 0 ? today : await fetch(RADIO_API + "/shows/schedule/" + DAYS[date.getDay()]).then((response) => response.json())).sort((a, b) => String(a.startTime).localeCompare(String(b.startTime)));
+            week.push({ label: date.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "short" }), rows });
+          }
+        }
+        localStorage.setItem("afia-guide", JSON.stringify({ savedAt: Date.now(), week }));
+        guideBody.replaceChildren();
+        const alert = document.createElement("button");
+        alert.className = "guide-alert";
+        alert.type = "button";
+        alert.textContent = Notification.permission === "granted" ? "Alerts are on" : "Alert me about what’s on";
+        alert.addEventListener("click", () => armPageAlerts(onAir, today, news.result || []));
+        const weekBlock = document.createElement("div");
+        weekBlock.className = "guide-block";
+        const weekHeading = document.createElement("h2");
+        weekHeading.textContent = "This week";
+        weekBlock.append(weekHeading);
+        week.forEach((dayRows) => {
+          const heading = document.createElement("h2");
+          heading.textContent = dayRows.label;
+          weekBlock.append(heading, ...dayRows.rows.map(slotCard));
+        });
+        const todaySorted = [...today].sort((a, b) => String(a.startTime).localeCompare(String(b.startTime)));
+        guideBody.append(alert, block("On now", [slotCard(onAir)]), block("Today", todaySorted.map(slotCard)), weekBlock);
+        const stories = (news.result || []).map((story) => {
+          const card = document.createElement("button");
+          card.className = "guide-card";
+          card.type = "button";
+          card.innerHTML = "<b></b><span></span>";
+          card.querySelector("b").textContent = story.title;
+          card.querySelector("span").textContent = story.category || "News";
+          const share = document.createElement("span");
+          share.textContent = "Share";
+          share.style.color = "#f15a22";
+          share.style.display = "block";
+          share.style.marginTop = "8px";
+          card.append(share);
+          card.addEventListener("click", async (event) => {
+            const url = "https://www.afiatv.net/news/" + story.slug;
+            if (event.target === share) {
+              if (navigator.share) await navigator.share({ title: story.title, url });
+              return;
+            }
+            guide.classList.remove("show");
+            show(url, null);
+          });
+          return card;
+        });
+        guideBody.append(block("Stories", stories));
+        if (radioStatus.textContent === "Tap to listen" && onAir.show) {
+          setRadio("On now · " + onAir.show.title, "▶");
+        }
+        if (Notification.permission === "granted") armPageAlerts(onAir, today, news.result || []);
+      } catch (error) {
+        const raw = localStorage.getItem("afia-guide");
+        if (!raw) {
+          guideBody.textContent = navigator.onLine
+            ? "The lineup didn't load. Afia's schedule server didn't answer. Try again in a moment."
+            : "You're offline, and no timetable is saved on this phone yet. Open Lineup once while you have a connection.";
+          return;
+        }
+        const saved = JSON.parse(raw);
+        guideBody.replaceChildren();
+        const note = document.createElement("p");
+        note.textContent = "The live lineup didn't load. This is the timetable saved on this phone.";
+        guideBody.append(note);
+        const weekBlock = document.createElement("div");
+        weekBlock.className = "guide-block";
+        (saved.week || []).forEach((dayRows) => {
+          const heading = document.createElement("h2");
+          heading.textContent = dayRows.label;
+          weekBlock.append(heading, ...(dayRows.rows || []).map(slotCard));
+        });
+        guideBody.append(weekBlock);
+      }
+    }
+
+    function block(title, nodes) {
+      const wrap = document.createElement("div");
+      wrap.className = "guide-block";
+      const heading = document.createElement("h2");
+      heading.textContent = title;
+      wrap.append(heading, ...nodes);
+      return wrap;
+    }
+
+    function minutesUntil(start) {
+      const parts = String(start || "").split(":");
+      if (parts.length < 2) return null;
+      const now = lagosNow();
+      const target = new Date(now);
+      target.setHours(Number(parts[0]), Number(parts[1]), 0, 0);
+      return (target - now) / 60000;
+    }
+
+    async function armPageAlerts(onAir, today, stories, week) {
+      const permission = await Notification.requestPermission();
+      if (permission !== "granted" || !("serviceWorker" in navigator)) return;
+      const registration = await navigator.serviceWorker.ready;
+      const seen = JSON.parse(localStorage.getItem("afia-seen") || "{}");
+      const dayKey = lagosNow().toDateString();
+      if (onAir && onAir.id && seen.onAir !== onAir.id) {
+        const show = onAir.show || {};
+        registration.showNotification("On now · " + (show.title || "Afia 99.3"), {
+          body: [show.host && show.host.name, onAir.startTime && onAir.endTime ? onAir.startTime + "–" + onAir.endTime : ""].filter(Boolean).join(" · "),
+          tag: "afia-on-now",
+          data: { url: "./" }
+        });
+      }
+      if (today.length && seen.day !== dayKey) {
+        registration.showNotification("Today on Afia 99.3", {
+          body: today.slice(0, 4).map((row) => row.startTime + " " + (row.show ? row.show.title : "Afia")).join("\n"),
+          tag: "afia-today",
+          data: { url: "./" }
+        });
+      }
+      const lineup = (week && week.length ? week : today);
+      const programmeIds = lineup.map((row) => row.id).filter(Boolean);
+      if (Array.isArray(seen.programmes)) {
+        const added = lineup.filter((row) => row.id && !seen.programmes.includes(row.id));
+        if (added.length) {
+          registration.showNotification(added.length === 1 ? "New programme · " + (added[0].show ? added[0].show.title : "Afia") : added.length + " new programmes", {
+            body: added.slice(0, 6).map((row) => row.startTime + " " + (row.show ? row.show.title : "Afia")).join("\n"),
+            tag: "afia-new-programme",
+            data: { url: "./" }
+          });
+        }
+      }
+      const upcoming = Array.isArray(seen.upcoming) ? seen.upcoming : [];
+      today.forEach((row) => {
+        const mins = minutesUntil(row.startTime);
+        const key = dayKey + ":" + row.id;
+        if (mins !== null && mins >= 5 && mins <= 50 && !upcoming.includes(key)) {
+          registration.showNotification("Coming up · " + (row.show ? row.show.title : "Afia 99.3"), {
+            body: [row.startTime, row.show && row.show.host && row.show.host.name].filter(Boolean).join(" · "),
+            tag: "afia-up-" + row.id,
+            data: { url: "./" }
+          });
+          upcoming.push(key);
+        }
+      });
+      const seenNews = Array.isArray(seen.news) ? seen.news : [];
+      const fresh = (stories || []).filter((story) => story.slug && Date.now() - Date.parse(story.publishedAt) < 14 * 86400000);
+      if (Array.isArray(seen.news)) {
+        fresh.filter((story) => !seenNews.includes(story.slug)).slice(0, 3).forEach((story) => {
+          registration.showNotification(story.title, {
+            body: "Afia News · " + (story.category || "Story"),
+            tag: "afia-news-" + story.slug,
+            data: { url: "https://www.afiatv.net/news/" + story.slug }
+          });
+        });
+      }
+      localStorage.setItem("afia-seen", JSON.stringify({
+        onAir: onAir && onAir.id,
+        day: dayKey,
+        programmes: programmeIds,
+        upcoming: upcoming.filter((key) => key.startsWith(dayKey)),
+        news: (stories || []).map((story) => story.slug).filter(Boolean)
+      }));
+      localStorage.setItem("afia-alerts", "1");
+    }
+
+    async function watchStation() {
+      if (Notification.permission !== "granted") return;
+      try {
+        const start = lagosNow();
+        const day = DAYS[start.getDay()];
+        const [onAir, today, news] = await Promise.all([
+          fetch(RADIO_API + "/shows/on-air").then((response) => response.json()),
+          fetch(RADIO_API + "/shows/schedule/" + day).then((response) => response.json()),
+          fetch("https://p9qytxax.apicdn.sanity.io/v2021-06-07/data/query/production?query=" + encodeURIComponent(NEWS_QUERY)).then((response) => response.json()).catch(() => ({ result: [] }))
+        ]);
+        const week = [];
+        for (let offset = 0; offset < 7; offset += 1) {
+          const date = new Date(start);
+          date.setDate(start.getDate() + offset);
+          const name = DAYS[date.getDay()];
+          const rows = name === day ? today : await fetch(RADIO_API + "/shows/schedule/" + name).then((response) => response.json());
+          week.push(...rows);
+        }
+        await armPageAlerts(onAir, today, news.result || [], week);
+      } catch (error) {
+        return;
+      }
+    }
+
+    if (localStorage.getItem("afia-alerts") === "1") watchStation();
+    setInterval(watchStation, 15 * 60 * 1000);
+
+    document.getElementById("lineup").addEventListener("click", () => {
+      guide.classList.add("show");
+      fillGuide();
+    });
+    guide.addEventListener("click", (event) => {
+      if (event.target === guide) guide.classList.remove("show");
+    });
+
+    function show(url, tab) {
+      if (tab === "live" && audio.src && !audio.paused) {
+        pausedForLive = true;
+        audio.pause();
+        setRadio("Paused for live TV", "▶");
+      }
+      offline.classList.remove("show");
+      progress.classList.remove("show");
+      void progress.offsetWidth;
+      progress.classList.add("show");
+      frame.src = url;
+      back.classList.toggle("show", tab !== "live");
+      buttons.forEach((button) => {
+        if (button.dataset.tab === tab) button.setAttribute("aria-current", "page");
+        else button.removeAttribute("aria-current");
+      });
+    }
+
+    frame.addEventListener("load", () => progress.classList.remove("show"));
+    back.addEventListener("click", () => show(TABS.live, "live"));
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.dataset.tab === "more") {
+          sheet.classList.add("show");
+          return;
+        }
+        show(TABS[button.dataset.tab], button.dataset.tab);
+      });
+    });
+
+    sheet.addEventListener("click", (event) => {
+      if (event.target === sheet) sheet.classList.remove("show");
+    });
+
+    document.getElementById("listenRadio").addEventListener("click", () => {
+      sheet.classList.remove("show");
+      if (audio.paused) toggleRadio();
+    });
+
+    document.querySelectorAll(".panel [data-url]").forEach((button) => {
+      button.addEventListener("click", () => {
+        sheet.classList.remove("show");
+        show(button.dataset.url, null);
+      });
+    });
+
+    const VIDEO_QUERY = '*[_type=="videos" && !(_id in path("drafts.**"))] | order(publishedAt desc)[0...12]{title,description,publishedAt,embedUrl,"thumbnail":thumbnail.asset->url}';
+    const STORY_QUERY = '*[_type=="news" && !(_id in path("drafts.**"))] | order(publishedAt desc)[0...8]{title,description,publishedAt,category,"slug":slug.current}';
+
+    function sanity(query) {
+      return "https://p9qytxax.apicdn.sanity.io/v2021-06-07/data/query/production?query=" + encodeURIComponent(query);
+    }
+
+    function whenLabel(value) {
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return "";
+      return date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    }
+
+    async function refreshLibrary() {
+      try {
+        const feed = await fetch(FEED, { cache: "no-store" }).then((response) => response.ok ? response.json() : null).catch(() => null);
+        const [videos, stories] = feed && Array.isArray(feed.episodes)
+          ? [{ result: feed.episodes }, { result: feed.stories || [] }]
+          : await Promise.all([
+          fetch(sanity(VIDEO_QUERY)).then((response) => response.json()),
+          fetch(sanity(STORY_QUERY)).then((response) => response.json())
+        ]);
+        const cache = await caches.open("afia-library-1");
+        const pieces = [];
+        for (const row of videos.result || []) {
+          let thumb = "";
+          if (typeof row.thumbnail === "string" && row.thumbnail.startsWith("https://cdn.sanity.io/")) {
+            thumb = row.thumbnail + "?w=640&h=360&fit=crop";
+            const image = await fetch(thumb);
+            if (image.ok) await cache.put(thumb, image.clone());
+          }
+          pieces.push({
+            title: row.title || "Afia",
+            detail: String(row.description || "").slice(0, 320),
+            when: whenLabel(row.publishedAt),
+            url: row.embedUrl || "",
+            thumb,
+            kind: "Episode"
+          });
+        }
+        for (const row of stories.result || []) {
+          pieces.push({
+            title: row.title || "Afia",
+            detail: String(row.description || "").slice(0, 320),
+            when: whenLabel(row.publishedAt),
+            url: row.slug ? "https://www.afiatv.net/news/" + row.slug : "",
+            thumb: "",
+            kind: row.category || "Story"
+          });
+        }
+        localStorage.setItem("afia-library", JSON.stringify({ savedAt: Date.now(), pieces }));
+      } catch (error) {
+        return;
+      }
+    }
+
+    async function paintSaved() {
+      const savedList = document.getElementById("savedList");
+      savedList.replaceChildren();
+      const raw = localStorage.getItem("afia-library");
+      if (!raw) {
+        const empty = document.createElement("p");
+        empty.textContent = "Nothing is saved yet. Open Afia once while you are online and the latest episodes stay on this phone.";
+        savedList.append(empty);
+        return;
+      }
+      const saved = JSON.parse(raw);
+      const note = document.createElement("p");
+      const stamp = new Date(saved.savedAt);
+      note.textContent = "Saved " + stamp.toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+      savedList.append(note);
+      const cache = await caches.open("afia-library-1");
+      for (const piece of saved.pieces || []) {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "saved-card";
+        if (piece.thumb) {
+          const hit = await cache.match(piece.thumb);
+          if (hit) {
+            const img = document.createElement("img");
+            img.alt = "";
+            img.src = URL.createObjectURL(await hit.blob());
+            card.append(img);
+          }
+        }
+        const title = document.createElement("b");
+        title.textContent = piece.title;
+        const meta = document.createElement("span");
+        meta.textContent = [piece.kind, piece.when, navigator.onLine ? "" : "Needs a connection to play"].filter(Boolean).join(" · ");
+        card.append(title, meta);
+        if (piece.detail) {
+          const detail = document.createElement("span");
+          detail.textContent = piece.detail;
+          card.append(detail);
+        }
+        card.addEventListener("click", () => {
+          if (!navigator.onLine || !piece.url) return;
+          offline.classList.remove("show");
+          if (piece.url.includes("afiatv.net")) show(piece.url, null);
+          else window.open(piece.url, "_blank", "noopener");
+        });
+        savedList.append(card);
+      }
+    }
+
+    function showOffline() {
+      document.getElementById("offlineText").textContent = navigator.onLine
+        ? "Afia TV didn't open. The site didn't answer. Saved episodes on this phone are still here."
+        : "You're offline. Live TV needs a connection. Pictures and details of saved episodes stay on this phone. Playing one needs a connection, because Afia hosts them on YouTube.";
+      offline.classList.add("show");
+      paintSaved();
+    }
+
+    document.getElementById("retryFrame").addEventListener("click", () => {
+      offline.classList.remove("show");
+      frame.src = frame.src;
+    });
+    document.getElementById("openSaved").addEventListener("click", () => {
+      sheet.classList.remove("show");
+      showOffline();
+    });
+    window.addEventListener("offline", showOffline);
+    window.addEventListener("online", () => offline.classList.remove("show"));
+    if (!navigator.onLine) showOffline();
+    refreshLibrary();
+    window.addEventListener("beforeinstallprompt", (event) => {
+      event.preventDefault();
+      deferredInstall = event;
+      document.getElementById("install").hidden = false;
+    });
+    document.getElementById("install").addEventListener("click", async () => {
+      if (!deferredInstall) return;
+      deferredInstall.prompt();
+      await deferredInstall.userChoice;
+      deferredInstall = null;
+      document.getElementById("install").hidden = true;
+      sheet.classList.remove("show");
+    });
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
+    }
+  </script>
+</body>
+</html>

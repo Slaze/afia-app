@@ -1,0 +1,28 @@
+name: Public feed
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refresh the public feed
+        run: python scripts/build_feed.py
+      - name: Publish when the lineup or stories changed
+        run: |
+          git diff --quiet -- feed.json && exit 0
+          git config user.name "afia-feed"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed.json
+          git commit -m "Update the public feed"
+          git push

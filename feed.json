@@ -1,0 +1,584 @@
+{
+  "updatedAt": "2026-10-17T20:33:36.078411+01:00",
+  "onAir": null,
+  "today": [
+    {
+      "id": "66d78d6a5d81f931ec015f0a",
+      "day": "SATURDAY",
+      "startTime": "07:00",
+      "endTime": "12:00",
+      "duration": 299,
+      "showId": "66d78d695d81f931ec015f09",
+      "show": {
+        "id": "66d78d695d81f931ec015f09",
+        "title": "Weekend Special",
+        "description": "Kick off your weekend with a mix of music, entertainment, and lifestyle content.",
+        "coverArt": "https://8kvl2urisy.ufs.sh/f/BxfEHnSVCZL4iGV9AFqNRrcIoYjUSlfe7WmO10wFA4Nvn9QB",
+        "category": "Weekend",
+        "tags": [
+          "weekend-special",
+          "saturday"
+        ],
+        "hostId": "66e0086199b3ff089a298c50",
+        "createdAt": "2024-09-03T22:27:53.862Z",
+        "updatedAt": "2024-09-10T09:04:44.980Z",
+        "host": {
+          "id": "66e0086199b3ff089a298c50",
+          "name": "CutyLight",
+          "bio": "",
+          "instagram_handle": "https://www.instagram.com/realcutylight/",
+          "x_handle": "https://x.com/realcutylight/",
+          "facebook": null,
+          "instagram": null,
+          "twitter": null
+        }
+      }
+    },
+    {
+      "id": "66d78d6c5d81f931ec015f0e",
+      "day": "SATURDAY",
+      "startTime": "16:00",
+      "endTime": "17:00",
+      "duration": 60,
+      "showId": "66d78d6c5d81f931ec015f0d",
+      "show": {
+        "id": "66d78d6c5d81f931ec015f0d",
+        "title": "Afia Oma",
+        "description": "Explore local culture and traditions with engaging discussions and music.",
+        "coverArt": "https://utfs.io/f/38d6a4d7-5e51-412a-aa4a-5d517f0ca3b1-bayyv5.jpg",
+        "category": "Weekend",
+        "tags": [
+          "afia-oma",
+          "saturday"
+        ],
+        "hostId": "66e0061299b3ff089a298c4b",
+        "createdAt": "2024-09-03T22:27:56.309Z",
+        "updatedAt": "2024-09-10T09:04:44.980Z",
+        "host": {
+          "id": "66e0061299b3ff089a298c4b",
+          "name": "Kosi",
+          "bio": "Anukwu Kosi Chinyere is a Nigerian from Ọzara in Nkanụ West Local Government Area of Enugu State. She studied Banking and Finance after a diploma in Business Administration from Enugu State University of Technology, ESUT.   Kosi is an extraordinary and amazing presenter, who achieved so much knowledge from her previous jobs experiences.           Awards: \"Face of Nice Moment Tea\" (Transglobe Pharmaceutical Company Limited), Best B.A(Union Bank), Brand Ambassador, Crystal Garden Estate (Real Estate Company, Headquartered in Onitsha, Anambra State)   Hobbies:  Cooking, Reading, Listening to music, Dancing",
+          "instagram_handle": "https://www.instagram.com/anukwukosi",
+          "x_handle": "https://x.com/AnukwuK",
+          "facebook": null,
+          "instagram": null,
+          "twitter": null
+        }
+      }
+    },
+    {
+      "id": "66d78d6b5d81f931ec015f0c",
+      "day": "SATURDAY",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "duration": 60,
+      "showId": "66d78d6b5d81f931ec015f0b",
+      "show": {
+        "id": "66d78d6b5d81f931ec015f0b",
+        "title": "Top 10 Countdown Show",
+        "description": "Count down of the top 10 hits of the week.",
+        "coverArt": "https://utfs.io/f/287b4e13-d8cd-46e4-ad55-82c4550b380a-14k2jg.jpg",
+        "category": "Weekend",
+        "tags": [
+          "top-10-countdown-show",
+          "saturday"
+        ],
+        "hostId": "66e000e899b3ff089a298c3c",
+        "createdAt": "2024-09-03T22:27:55.130Z",
+        "updatedAt": "2024-09-10T09:04:44.980Z",
+        "host": {
+          "id": "66e000e899b3ff089a298c3c",
+          "name": "G'son Emaefa",
+          "bio": "Orji Nwachukwu (G’son Emaefa).\nManager, Afia Radio.\n\nIs an ace producer, a profound Radio/Video jockey. \nA voice actor, model, actor, artiste and an engineer.\nHe’s an all round entertainment and music connoisseur, with decades experience in multimedia productions.\n \nAs an A&R, Publicist, Talent manager, and a music executive, with his meticulous slant in sourcing, packaging and distribution of raw contents and talents.\nHe has been an instrument in promoting and projecting so many talents, who are now established.\n\nHe has successfully worked and also built brands in the entertainment industry, it's business and media sphere.\nAlso the flamboyant host of the much talked about WEEKLY TOP 10 COUNTDOWN SHOW WITH G’SON EMAEFA which airs every weekend by 6pm, on Afia 99.3fm Enugu.",
+          "instagram_handle": "https://www.instagram.com/gsonemaefa",
+          "x_handle": "https://x.com/gsonemaefa",
+          "facebook": null,
+          "instagram": null,
+          "twitter": null
+        }
+      }
+    }
+  ],
+  "week": [
+    {
+      "label": "Saturday 17 Oct",
+      "rows": [
+        {
+          "id": "66d78d6a5d81f931ec015f0a",
+          "day": "SATURDAY",
+          "startTime": "07:00",
+          "endTime": "12:00",
+          "duration": 299,
+          "showId": "66d78d695d81f931ec015f09",
+          "show": {
+            "id": "66d78d695d81f931ec015f09",
+            "title": "Weekend Special",
+            "description": "Kick off your weekend with a mix of music, entertainment, and lifestyle content.",
+            "coverArt": "https://8kvl2urisy.ufs.sh/f/BxfEHnSVCZL4iGV9AFqNRrcIoYjUSlfe7WmO10wFA4Nvn9QB",
+            "category": "Weekend",
+            "tags": [
+              "weekend-special",
+              "saturday"
+            ],
+            "hostId": "66e0086199b3ff089a298c50",
+            "createdAt": "2024-09-03T22:27:53.862Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66e0086199b3ff089a298c50",
+              "name": "CutyLight",
+              "bio": "",
+              "instagram_handle": "https://www.instagram.com/realcutylight/",
+              "x_handle": "https://x.com/realcutylight/",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        },
+        {
+          "id": "66d78d6c5d81f931ec015f0e",
+          "day": "SATURDAY",
+          "startTime": "16:00",
+          "endTime": "17:00",
+          "duration": 60,
+          "showId": "66d78d6c5d81f931ec015f0d",
+          "show": {
+            "id": "66d78d6c5d81f931ec015f0d",
+            "title": "Afia Oma",
+            "description": "Explore local culture and traditions with engaging discussions and music.",
+            "coverArt": "https://utfs.io/f/38d6a4d7-5e51-412a-aa4a-5d517f0ca3b1-bayyv5.jpg",
+            "category": "Weekend",
+            "tags": [
+              "afia-oma",
+              "saturday"
+            ],
+            "hostId": "66e0061299b3ff089a298c4b",
+            "createdAt": "2024-09-03T22:27:56.309Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66e0061299b3ff089a298c4b",
+              "name": "Kosi",
+              "bio": "Anukwu Kosi Chinyere is a Nigerian from Ọzara in Nkanụ West Local Government Area of Enugu State. She studied Banking and Finance after a diploma in Business Administration from Enugu State University of Technology, ESUT.   Kosi is an extraordinary and amazing presenter, who achieved so much knowledge from her previous jobs experiences.           Awards: \"Face of Nice Moment Tea\" (Transglobe Pharmaceutical Company Limited), Best B.A(Union Bank), Brand Ambassador, Crystal Garden Estate (Real Estate Company, Headquartered in Onitsha, Anambra State)   Hobbies:  Cooking, Reading, Listening to music, Dancing",
+              "instagram_handle": "https://www.instagram.com/anukwukosi",
+              "x_handle": "https://x.com/AnukwuK",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        },
+        {
+          "id": "66d78d6b5d81f931ec015f0c",
+          "day": "SATURDAY",
+          "startTime": "18:00",
+          "endTime": "19:00",
+          "duration": 60,
+          "showId": "66d78d6b5d81f931ec015f0b",
+          "show": {
+            "id": "66d78d6b5d81f931ec015f0b",
+            "title": "Top 10 Countdown Show",
+            "description": "Count down of the top 10 hits of the week.",
+            "coverArt": "https://utfs.io/f/287b4e13-d8cd-46e4-ad55-82c4550b380a-14k2jg.jpg",
+            "category": "Weekend",
+            "tags": [
+              "top-10-countdown-show",
+              "saturday"
+            ],
+            "hostId": "66e000e899b3ff089a298c3c",
+            "createdAt": "2024-09-03T22:27:55.130Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66e000e899b3ff089a298c3c",
+              "name": "G'son Emaefa",
+              "bio": "Orji Nwachukwu (G’son Emaefa).\nManager, Afia Radio.\n\nIs an ace producer, a profound Radio/Video jockey. \nA voice actor, model, actor, artiste and an engineer.\nHe’s an all round entertainment and music connoisseur, with decades experience in multimedia productions.\n \nAs an A&R, Publicist, Talent manager, and a music executive, with his meticulous slant in sourcing, packaging and distribution of raw contents and talents.\nHe has been an instrument in promoting and projecting so many talents, who are now established.\n\nHe has successfully worked and also built brands in the entertainment industry, it's business and media sphere.\nAlso the flamboyant host of the much talked about WEEKLY TOP 10 COUNTDOWN SHOW WITH G’SON EMAEFA which airs every weekend by 6pm, on Afia 99.3fm Enugu.",
+              "instagram_handle": "https://www.instagram.com/gsonemaefa",
+              "x_handle": "https://x.com/gsonemaefa",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "Sunday 18 Oct",
+      "rows": [
+        {
+          "id": "66d78d6d5d81f931ec015f10",
+          "day": "SUNDAY",
+          "startTime": "12:00",
+          "endTime": "18:00",
+          "duration": 360,
+          "showId": "66d78d695d81f931ec015f09",
+          "show": {
+            "id": "66d78d695d81f931ec015f09",
+            "title": "Weekend Special",
+            "description": "Kick off your weekend with a mix of music, entertainment, and lifestyle content.",
+            "coverArt": "https://8kvl2urisy.ufs.sh/f/BxfEHnSVCZL4iGV9AFqNRrcIoYjUSlfe7WmO10wFA4Nvn9QB",
+            "category": "Weekend",
+            "tags": [
+              "weekend-special",
+              "saturday"
+            ],
+            "hostId": "66e0086199b3ff089a298c50",
+            "createdAt": "2024-09-03T22:27:53.862Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66e0086199b3ff089a298c50",
+              "name": "CutyLight",
+              "bio": "",
+              "instagram_handle": "https://www.instagram.com/realcutylight/",
+              "x_handle": "https://x.com/realcutylight/",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        },
+        {
+          "id": "66d78d6f5d81f931ec015f12",
+          "day": "SUNDAY",
+          "startTime": "18:00",
+          "endTime": "19:00",
+          "duration": 60,
+          "showId": "66d78d6b5d81f931ec015f0b",
+          "show": {
+            "id": "66d78d6b5d81f931ec015f0b",
+            "title": "Top 10 Countdown Show",
+            "description": "Count down of the top 10 hits of the week.",
+            "coverArt": "https://utfs.io/f/287b4e13-d8cd-46e4-ad55-82c4550b380a-14k2jg.jpg",
+            "category": "Weekend",
+            "tags": [
+              "top-10-countdown-show",
+              "saturday"
+            ],
+            "hostId": "66e000e899b3ff089a298c3c",
+            "createdAt": "2024-09-03T22:27:55.130Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66e000e899b3ff089a298c3c",
+              "name": "G'son Emaefa",
+              "bio": "Orji Nwachukwu (G’son Emaefa).\nManager, Afia Radio.\n\nIs an ace producer, a profound Radio/Video jockey. \nA voice actor, model, actor, artiste and an engineer.\nHe’s an all round entertainment and music connoisseur, with decades experience in multimedia productions.\n \nAs an A&R, Publicist, Talent manager, and a music executive, with his meticulous slant in sourcing, packaging and distribution of raw contents and talents.\nHe has been an instrument in promoting and projecting so many talents, who are now established.\n\nHe has successfully worked and also built brands in the entertainment industry, it's business and media sphere.\nAlso the flamboyant host of the much talked about WEEKLY TOP 10 COUNTDOWN SHOW WITH G’SON EMAEFA which airs every weekend by 6pm, on Afia 99.3fm Enugu.",
+              "instagram_handle": "https://www.instagram.com/gsonemaefa",
+              "x_handle": "https://x.com/gsonemaefa",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "Monday 19 Oct",
+      "rows": [
+        {
+          "id": "66d78d685d81f931ec015f04",
+          "day": "MONDAY",
+          "startTime": "19:00",
+          "endTime": "22:00",
+          "duration": 180,
+          "showId": "66d78d685d81f931ec015f03",
+          "show": {
+            "id": "66d78d685d81f931ec015f03",
+            "title": "Night Market",
+            "description": "Tune into the hottest tracks, catch the latest social media trends, and dive into engaging conversations! Join us for a high-energy evening where music, games, and trends come together to keep you in the know and on the pulse of what's now. Let's vibe, thrive, and stay connected!",
+            "coverArt": "https://utfs.io/f/a63c722f-1d84-4f24-8788-5596cd25b334-ok1b2b.jpg",
+            "category": "Regular",
+            "tags": [
+              "night-market"
+            ],
+            "hostId": "66dffff899b3ff089a298c37",
+            "createdAt": "2024-09-03T22:27:52.604Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66dffff899b3ff089a298c37",
+              "name": "Choko",
+              "bio": "Also known as \"THE DARKCHILD ON THE RADIO\"...ANI WILSON CHOKO,preferably loves to be called  \"CHOKO\" kick started his media career professionally as a co-host on Radio active saturday and church on Radio on wish fm in portharcourt, Rivers state, he later moved on to become the host of \"Da afro drippin clan\" on lovedabeat radio, london u.k, before becoming a part of the distinguished and high profiled Afia team.  \n\nAn incessant media dopehead, voiceover king, OAP extraordinaire, hypeman unplugged, mad singer(with the voice of an angel by the way) amazing rapper, songwriter, a great actor and a fine voice actor, tv host with the flows, entertainer 360 and ironically, on the flipside, a licensed practicing civil engineer......in the words of lil wayne, I should prolly say \"GOD DID HIS THING WHEN HE MADE ME\"  \n\nSONGS THAT BEST TELL MY STORY AT THE MOMENT-\"WILD DREAMS BY BURNA BOY & GOD DID BY DJ KHALED, cos honestly, it's just been GOD ALL THE WAY\"  THINGS YOU PROLLY DUNNO ABOUT ME-am a very fun, easy going, free spirited, humble, lovable guy(I no dey look down on anybody, but then I hate what I don't like) and just so you know, my presence is contagious & addictive and its prolly the reason why \"EVERYBODY LOVES CHOKO\"  \n\nMY SIGNATURE LINE -\"they call me choko, who don't do nothing loko, cos i always stay flyyyyyyy, like i'm supposed to",
+              "instagram_handle": "https://www.instagram.com/official_chokoani/",
+              "x_handle": "https://twitter.com/Dheycallmechoko/",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "Tuesday 20 Oct",
+      "rows": [
+        {
+          "id": "66d78d685d81f931ec015f05",
+          "day": "TUESDAY",
+          "startTime": "19:00",
+          "endTime": "22:00",
+          "duration": 180,
+          "showId": "66d78d685d81f931ec015f03",
+          "show": {
+            "id": "66d78d685d81f931ec015f03",
+            "title": "Night Market",
+            "description": "Tune into the hottest tracks, catch the latest social media trends, and dive into engaging conversations! Join us for a high-energy evening where music, games, and trends come together to keep you in the know and on the pulse of what's now. Let's vibe, thrive, and stay connected!",
+            "coverArt": "https://utfs.io/f/a63c722f-1d84-4f24-8788-5596cd25b334-ok1b2b.jpg",
+            "category": "Regular",
+            "tags": [
+              "night-market"
+            ],
+            "hostId": "66dffff899b3ff089a298c37",
+            "createdAt": "2024-09-03T22:27:52.604Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66dffff899b3ff089a298c37",
+              "name": "Choko",
+              "bio": "Also known as \"THE DARKCHILD ON THE RADIO\"...ANI WILSON CHOKO,preferably loves to be called  \"CHOKO\" kick started his media career professionally as a co-host on Radio active saturday and church on Radio on wish fm in portharcourt, Rivers state, he later moved on to become the host of \"Da afro drippin clan\" on lovedabeat radio, london u.k, before becoming a part of the distinguished and high profiled Afia team.  \n\nAn incessant media dopehead, voiceover king, OAP extraordinaire, hypeman unplugged, mad singer(with the voice of an angel by the way) amazing rapper, songwriter, a great actor and a fine voice actor, tv host with the flows, entertainer 360 and ironically, on the flipside, a licensed practicing civil engineer......in the words of lil wayne, I should prolly say \"GOD DID HIS THING WHEN HE MADE ME\"  \n\nSONGS THAT BEST TELL MY STORY AT THE MOMENT-\"WILD DREAMS BY BURNA BOY & GOD DID BY DJ KHALED, cos honestly, it's just been GOD ALL THE WAY\"  THINGS YOU PROLLY DUNNO ABOUT ME-am a very fun, easy going, free spirited, humble, lovable guy(I no dey look down on anybody, but then I hate what I don't like) and just so you know, my presence is contagious & addictive and its prolly the reason why \"EVERYBODY LOVES CHOKO\"  \n\nMY SIGNATURE LINE -\"they call me choko, who don't do nothing loko, cos i always stay flyyyyyyy, like i'm supposed to",
+              "instagram_handle": "https://www.instagram.com/official_chokoani/",
+              "x_handle": "https://twitter.com/Dheycallmechoko/",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "Wednesday 21 Oct",
+      "rows": [
+        {
+          "id": "66d78d685d81f931ec015f06",
+          "day": "WEDNESDAY",
+          "startTime": "19:00",
+          "endTime": "22:00",
+          "duration": 180,
+          "showId": "66d78d685d81f931ec015f03",
+          "show": {
+            "id": "66d78d685d81f931ec015f03",
+            "title": "Night Market",
+            "description": "Tune into the hottest tracks, catch the latest social media trends, and dive into engaging conversations! Join us for a high-energy evening where music, games, and trends come together to keep you in the know and on the pulse of what's now. Let's vibe, thrive, and stay connected!",
+            "coverArt": "https://utfs.io/f/a63c722f-1d84-4f24-8788-5596cd25b334-ok1b2b.jpg",
+            "category": "Regular",
+            "tags": [
+              "night-market"
+            ],
+            "hostId": "66dffff899b3ff089a298c37",
+            "createdAt": "2024-09-03T22:27:52.604Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66dffff899b3ff089a298c37",
+              "name": "Choko",
+              "bio": "Also known as \"THE DARKCHILD ON THE RADIO\"...ANI WILSON CHOKO,preferably loves to be called  \"CHOKO\" kick started his media career professionally as a co-host on Radio active saturday and church on Radio on wish fm in portharcourt, Rivers state, he later moved on to become the host of \"Da afro drippin clan\" on lovedabeat radio, london u.k, before becoming a part of the distinguished and high profiled Afia team.  \n\nAn incessant media dopehead, voiceover king, OAP extraordinaire, hypeman unplugged, mad singer(with the voice of an angel by the way) amazing rapper, songwriter, a great actor and a fine voice actor, tv host with the flows, entertainer 360 and ironically, on the flipside, a licensed practicing civil engineer......in the words of lil wayne, I should prolly say \"GOD DID HIS THING WHEN HE MADE ME\"  \n\nSONGS THAT BEST TELL MY STORY AT THE MOMENT-\"WILD DREAMS BY BURNA BOY & GOD DID BY DJ KHALED, cos honestly, it's just been GOD ALL THE WAY\"  THINGS YOU PROLLY DUNNO ABOUT ME-am a very fun, easy going, free spirited, humble, lovable guy(I no dey look down on anybody, but then I hate what I don't like) and just so you know, my presence is contagious & addictive and its prolly the reason why \"EVERYBODY LOVES CHOKO\"  \n\nMY SIGNATURE LINE -\"they call me choko, who don't do nothing loko, cos i always stay flyyyyyyy, like i'm supposed to",
+              "instagram_handle": "https://www.instagram.com/official_chokoani/",
+              "x_handle": "https://twitter.com/Dheycallmechoko/",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "Thursday 22 Oct",
+      "rows": [
+        {
+          "id": "66d78d685d81f931ec015f07",
+          "day": "THURSDAY",
+          "startTime": "19:00",
+          "endTime": "22:00",
+          "duration": 180,
+          "showId": "66d78d685d81f931ec015f03",
+          "show": {
+            "id": "66d78d685d81f931ec015f03",
+            "title": "Night Market",
+            "description": "Tune into the hottest tracks, catch the latest social media trends, and dive into engaging conversations! Join us for a high-energy evening where music, games, and trends come together to keep you in the know and on the pulse of what's now. Let's vibe, thrive, and stay connected!",
+            "coverArt": "https://utfs.io/f/a63c722f-1d84-4f24-8788-5596cd25b334-ok1b2b.jpg",
+            "category": "Regular",
+            "tags": [
+              "night-market"
+            ],
+            "hostId": "66dffff899b3ff089a298c37",
+            "createdAt": "2024-09-03T22:27:52.604Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66dffff899b3ff089a298c37",
+              "name": "Choko",
+              "bio": "Also known as \"THE DARKCHILD ON THE RADIO\"...ANI WILSON CHOKO,preferably loves to be called  \"CHOKO\" kick started his media career professionally as a co-host on Radio active saturday and church on Radio on wish fm in portharcourt, Rivers state, he later moved on to become the host of \"Da afro drippin clan\" on lovedabeat radio, london u.k, before becoming a part of the distinguished and high profiled Afia team.  \n\nAn incessant media dopehead, voiceover king, OAP extraordinaire, hypeman unplugged, mad singer(with the voice of an angel by the way) amazing rapper, songwriter, a great actor and a fine voice actor, tv host with the flows, entertainer 360 and ironically, on the flipside, a licensed practicing civil engineer......in the words of lil wayne, I should prolly say \"GOD DID HIS THING WHEN HE MADE ME\"  \n\nSONGS THAT BEST TELL MY STORY AT THE MOMENT-\"WILD DREAMS BY BURNA BOY & GOD DID BY DJ KHALED, cos honestly, it's just been GOD ALL THE WAY\"  THINGS YOU PROLLY DUNNO ABOUT ME-am a very fun, easy going, free spirited, humble, lovable guy(I no dey look down on anybody, but then I hate what I don't like) and just so you know, my presence is contagious & addictive and its prolly the reason why \"EVERYBODY LOVES CHOKO\"  \n\nMY SIGNATURE LINE -\"they call me choko, who don't do nothing loko, cos i always stay flyyyyyyy, like i'm supposed to",
+              "instagram_handle": "https://www.instagram.com/official_chokoani/",
+              "x_handle": "https://twitter.com/Dheycallmechoko/",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "Friday 23 Oct",
+      "rows": [
+        {
+          "id": "66d78d685d81f931ec015f08",
+          "day": "FRIDAY",
+          "startTime": "19:00",
+          "endTime": "22:00",
+          "duration": 180,
+          "showId": "66d78d685d81f931ec015f03",
+          "show": {
+            "id": "66d78d685d81f931ec015f03",
+            "title": "Night Market",
+            "description": "Tune into the hottest tracks, catch the latest social media trends, and dive into engaging conversations! Join us for a high-energy evening where music, games, and trends come together to keep you in the know and on the pulse of what's now. Let's vibe, thrive, and stay connected!",
+            "coverArt": "https://utfs.io/f/a63c722f-1d84-4f24-8788-5596cd25b334-ok1b2b.jpg",
+            "category": "Regular",
+            "tags": [
+              "night-market"
+            ],
+            "hostId": "66dffff899b3ff089a298c37",
+            "createdAt": "2024-09-03T22:27:52.604Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66dffff899b3ff089a298c37",
+              "name": "Choko",
+              "bio": "Also known as \"THE DARKCHILD ON THE RADIO\"...ANI WILSON CHOKO,preferably loves to be called  \"CHOKO\" kick started his media career professionally as a co-host on Radio active saturday and church on Radio on wish fm in portharcourt, Rivers state, he later moved on to become the host of \"Da afro drippin clan\" on lovedabeat radio, london u.k, before becoming a part of the distinguished and high profiled Afia team.  \n\nAn incessant media dopehead, voiceover king, OAP extraordinaire, hypeman unplugged, mad singer(with the voice of an angel by the way) amazing rapper, songwriter, a great actor and a fine voice actor, tv host with the flows, entertainer 360 and ironically, on the flipside, a licensed practicing civil engineer......in the words of lil wayne, I should prolly say \"GOD DID HIS THING WHEN HE MADE ME\"  \n\nSONGS THAT BEST TELL MY STORY AT THE MOMENT-\"WILD DREAMS BY BURNA BOY & GOD DID BY DJ KHALED, cos honestly, it's just been GOD ALL THE WAY\"  THINGS YOU PROLLY DUNNO ABOUT ME-am a very fun, easy going, free spirited, humble, lovable guy(I no dey look down on anybody, but then I hate what I don't like) and just so you know, my presence is contagious & addictive and its prolly the reason why \"EVERYBODY LOVES CHOKO\"  \n\nMY SIGNATURE LINE -\"they call me choko, who don't do nothing loko, cos i always stay flyyyyyyy, like i'm supposed to",
+              "instagram_handle": "https://www.instagram.com/official_chokoani/",
+              "x_handle": "https://twitter.com/Dheycallmechoko/",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "news": [
+    {
+      "category": "culture",
+      "description": "If you step into the Centre for Memories (Ncheta Ndigbo) in Independence Layout, Enugu, you won't find a dusty repository of silent artifacts. Instead, you enter a vibrant ecosystem humming with kinetic energy—where university students debate historical narratives, children gather for traditional storytelling, visitors engage with immersive art exhibitions, and cutting-edge 3D scanning technology works to preserve centuries-old monuments.",
+      "publishedAt": "2026-10-07T15:33:36.675Z",
+      "slug": "culture/living-infrastructure-how-iheanyi-igboko-is-safeguarding-the-soul-of-igbo-heritage",
+      "title": "Living Infrastructure: How Iheanyi Igboko is Safeguarding the Soul of Igbo Heritage"
+    },
+    {
+      "category": "business",
+      "description": "Discover how Adaora Lumina Mbelu transitioned from corporate finance to brand strategy, building sustainable ecosystems for African creators and global brands.",
+      "publishedAt": "2026-09-30T11:06:00.000Z",
+      "slug": "business/the-creative-consigliere-how-adaora-lumina-mbelu-is-building-ecosystems-of-purpose-and-impact",
+      "title": "The Creative Consigliere: How Adaora Lumina Mbelu is Building Ecosystems of Purpose and Impact"
+    },
+    {
+      "category": "technology",
+      "description": "From IGHub Aba to Special Assistant to the Governor, learn how Future Awards winner Elizabeth Chijioke is building a sustainable tech ecosystem in Abia.",
+      "publishedAt": "2026-09-16T10:08:09.424Z",
+      "slug": "technology/the-architect-of-tomorrow-how-chibuzor-elizabeth-chijioke-is-engineering-a-new-digital-dawn-for-abia-state",
+      "title": "The Architect of Tomorrow: How Chibuzor Elizabeth Chijioke is Engineering a New Digital Dawn for Abia State"
+    },
+    {
+      "category": "sports",
+      "description": "There are footballers who define matches, and then there are executives who define eras. From Aba to Stamford Bridge and the Saudi Pro League, discover how Michael Emenalo built a blueprint for African leadership in global sports administration.",
+      "publishedAt": "2026-09-09T17:00:56.357Z",
+      "slug": "sports/from-aba-to-chelsea-the-untold-story-of-michael-emenalo",
+      "title": "From Aba to Chelsea: The Untold Story of Michael Emenalo"
+    },
+    {
+      "category": "business",
+      "description": "For generations, the Igbo phrase \"Ụwa Bụ Ạfịa\", the world is a marketplace; was taken literally. It was our cultural thesis, our economic engine, and our survival mechanism. It meant that wherever an Igbo person landed on earth, they could carve out a stall, study the local demand, source products, and trade their way to prosperity.",
+      "publishedAt": "2026-09-07T07:58:33.288Z",
+      "slug": "business/wa-b-fa-beyond-the-market-square-how-trading-ideas-will-build-the-next-igbo-century",
+      "title": "Ụwa Bụ Ạfịa: Beyond the Market Square: How Trading Ideas Will Build the Next Igbo Century"
+    },
+    {
+      "category": "human-interest",
+      "description": "Discover the inspiring journey of Prof. Joy Ngozi Ezeilo; legal scholar, WACOL founder, and global defender of women’s and human rights across Nigeria.",
+      "publishedAt": "2026-09-02T13:11:45.007Z",
+      "slug": "human-interest/defying-odds-the-legacy-of-professor-joy-ngozi-ezeilo",
+      "title": "Defying Odds: The Legacy of Professor Joy Ngozi Ezeilo"
+    },
+    {
+      "category": "human-interest",
+      "description": "For the people of post-war Eastern Nigeria, football became all three, and at the heart of that transformation stood Godwin Achebe, a remarkable footballer, captain and coach whose career became intertwined with the rise of Rangers International of Enugu.",
+      "publishedAt": "2026-08-27T12:47:16.678Z",
+      "slug": "human-interest/the-general-of-coal-city-how-godwin-achebe-turned-resilience-into-a-blueprint-for-greatness",
+      "title": "The General of Coal City: How Godwin Achebe Turned Resilience into a Blueprint for Greatness"
+    },
+    {
+      "category": "lifestyle",
+      "description": "From orchestrating complex public sector internal audits to pioneering groundbreaking lifestyle transformation movements across the Eastern region, Ikwumelu’s journey stands as a masterclass in civic responsibility, strategic vision, and an unyielding dedication to social impact.",
+      "publishedAt": "2026-08-26T10:18:12.974Z",
+      "slug": "lifestyle/the-architect-of-renewal-how-ikwumelu-ikenna-is-restoring-community-and-inspiring-a-generation",
+      "title": "The Architect of Renewal: How Ikwumelu Ikenna Is Restoring Community and Inspiring a Generation "
+    }
+  ],
+  "episodes": [
+    {
+      "description": "President Bola Ahmed Tinubu and the leadership of the Catholic Bishops’ Conference of Nigeria (CBCN) met in a closed-door meeting which has continued to generate debate across the country. The debate is in the wake of comments by Cardinal John Onaiyekan on the engagement and the Presidency’s response to it.",
+      "embedUrl": "https://youtu.be/UBkl8qO_sSI",
+      "publishedAt": "2026-08-12T13:23:00.000Z",
+      "thumbnail": "https://cdn.sanity.io/images/p9qytxax/production/b5d712d35081a5c664c442176a030b0a573802ea-1919x1069.png",
+      "title": "'IF YOU'RE OVERWHELMED, RESIGN' – MSGR OBIORA IKE TO NIGERIAN LEADERS"
+    },
+    {
+      "description": "After a record-breaking participation of over 11,500 students across Anambra, Enugu, Imo, Abia, and Ebonyi in the South East Maths Olympiad CBT exam, the best of the best are moving forward.  The top three students per state and category will now face off in the grand finale on March 7, airing on Afia TV.  From standout performances in Anambra and Enugu to region-wide debates about merit and excellence, this competition has raised the bar for academic standards in the Southeast.  Now, it all comes down to one final showdown.   Excellence meets the spotlight.",
+      "embedUrl": "https://youtube.com/live/F8Dk3EFXMr4",
+      "publishedAt": "2026-03-08T07:17:00.000Z",
+      "thumbnail": "https://cdn.sanity.io/images/p9qytxax/production/583846ecac6c286f6f1e806b0e7712fe03f2a577-1080x810.jpg",
+      "title": "SOUTHEAST MATHS OLYMPIAD 2026"
+    },
+    {
+      "description": "Welcome to this special hybrid edition of AFIA TALKS. Today, we are diving deep into a critical yet overlooked challenge facing South East Nigeria: Digital Misattribution. Despite being a hub of commerce and growing tech talent, digital activity from the South East is frequently routed through and attributed to other southern states. This isn't just a technical glitch, it’s a major barrier to regional development, investment flows, and digital equity.",
+      "embedUrl": "https://www.youtube.com/live/vfMyVr0bmHM?si=6lnnJCdv2v5BmtGJ",
+      "publishedAt": "2026-02-01T14:23:00.000Z",
+      "thumbnail": "https://cdn.sanity.io/images/p9qytxax/production/27afac68b72d52ad8e5bf813415a50adc1fb64fa-1919x979.png",
+      "title": "Where Is Our Data? Digital Sovereignty & Economic Development in SE Nigeria | AFIA TALKS"
+    },
+    {
+      "description": "In Nigeria’s South-East, a region celebrated for its grit, ingenuity, and relentless entrepreneurial drive, a silent revolution is unfolding. From the bustling alleys of Ogbete Market in Enugu, to the vast commercial nerve centres of Onitsha Main Market and Ariaria International Market, technology is no longer knocking politely at the door. It is already inside the room. The big question is: are South-East businesses consciously using Artificial Intelligence, or is AI already shaping their decisions without them realizing it?",
+      "embedUrl": "https://youtu.be/N6M8ZXiZCRU?si=RQk9KUAKcQ1dQ2dv",
+      "publishedAt": "2026-01-29T15:10:00.000Z",
+      "thumbnail": "https://cdn.sanity.io/images/p9qytxax/production/f04057cc4ac84abb3831e2b8ddf2d95db1936dab-1914x1079.png",
+      "title": "IS AI QUIETLY TRANSFORMING SOUTH-EAST BUSINESSES? OPPORTUNITY, FEAR & THE FUTURE OF TRADE"
+    },
+    {
+      "description": "In a decisive move to restore clarity and curb misinformation within the National Assembly, Senate President Godswill Akpabio has stepped in to address growing confusion surrounding Nigeria’s newly signed Tax Reform Acts. During plenary on Wednesday, Akpabio ordered the immediate distribution of officially gazetted copies of the laws to all senators, a procedural step with significant political and legislative implications.",
+      "embedUrl": "https://youtu.be/n8ImNmn2fMM?si=o9XLsSb7SfXjJTJQ",
+      "publishedAt": "2026-01-29T07:45:00.000Z",
+      "thumbnail": "https://cdn.sanity.io/images/p9qytxax/production/c28512f918c878568a3efe842ad8637a4427fa64-1919x1079.png",
+      "title": "AKPABIO ORDERS OFFICIAL TAX REFORM ACTS DISTRIBUTED TO SENATORS TO END LEGISLATIVE CONFUSION"
+    },
+    {
+      "description": "It’s a decisive week in Anambra State, and the government is making one thing unmistakably clear: the era of enforced economic standstill on Mondays is being challenged head-on. On today’s AM Show, we dive into the escalating enforcement of the Monday sit-at-home ban and what it means for traders, workers, families, and the broader future of the state’s economy.",
+      "embedUrl": "https://youtu.be/qapbmXk0xmI?si=9VPmjjGvuQlKMN8Y",
+      "publishedAt": "2026-01-27T16:04:00.000Z",
+      "thumbnail": "https://cdn.sanity.io/images/p9qytxax/production/22e27c05601bddb00bea7c8b41a5cc4df2ed2e44-1919x1079.png",
+      "title": "ANAMBRA CRACKS DOWN ON MONDAY SIT-AT-HOME, MARKET SHUTDOWNS, SANCTIONS & THE BIG DEBATE"
+    },
+    {
+      "description": "Leprosy. Just the mention of the word still carries centuries of fear, myths, and painful social exclusion. But here’s the truth the world is trying to amplify, leprosy is curable. The real battle today is not the bacteria, but the stigma that continues to isolate, silence, and wound people long after treatment is available.",
+      "embedUrl": "https://youtu.be/TCfaYOfjAdY?si=q7d8Us7Tq6VWLHEX",
+      "publishedAt": "2026-01-22T16:14:00.000Z",
+      "thumbnail": "https://cdn.sanity.io/images/p9qytxax/production/794a0f32a70325c4b14dc5c5867c5fb6a7de5e8e-1912x1079.png",
+      "title": "WORLD LEPROSY DAY: LEPROSY IS CURABLE: STIGMA IS THE REAL DISEASE"
+    },
+    {
+      "description": "Birthdays are milestones, but some birthdays become moments of reflection, gratitude, and collective celebration. Today on the Morning Show, the spotlight turns warmly to Nnamdi Obanya, the Group Managing Director of Afia TV, as heartfelt birthday felicitations pour in to mark his 43rd birthday.",
+      "embedUrl": "https://youtu.be/5RqkxFP_HQ4?si=cHO0czgs9GtG4ncA",
+      "publishedAt": "2026-01-20T13:06:00.000Z",
+      "thumbnail": "https://cdn.sanity.io/images/p9qytxax/production/c8dc7706adef6fca3868dbc35e62d53b8256855b-1915x1076.png",
+      "title": "43 CHEERS AND COUNTING: AFIA TV CELEBRATES GM NNAMDI OBANYA ON HIS BIRTHDAY"
+    },
+    {
+      "description": "Former Enugu State Governor, Sullivan Chime, has endorsed President Bola Tinubu for a second term, expressing confidence that the APC will sweep the South East in the 2027 elections.",
+      "embedUrl": "https://youtu.be/QbYKRcY9bBc?si=yyMEaBbOaDbkgHfI",
+      "publishedAt": "2026-01-20T10:25:26.590Z",
+      "thumbnail": "https://cdn.sanity.io/images/p9qytxax/production/de71868e94e18662f2f1667f37d5d6ba9a6ce769-1079x675.jpg",
+      "title": "2027: Sullivan Chime Backs Tinubu, Says APC Will Sweep South East"
+    },
+    {
+      "description": "Chalkboards are getting smarter, classrooms are getting greener, and education in Enugu State is getting a serious upgrade. On today’s Morning Show conversation segment, we step into the evolving world of the Enugu Smart Green Schools, where innovation meets imagination and learning is designed for the future, not the past.",
+      "embedUrl": "https://youtu.be/Sr-hfI1nJAY?si=F289q-A_tYHn8JLk",
+      "publishedAt": "2026-01-19T16:09:00.000Z",
+      "thumbnail": "https://cdn.sanity.io/images/p9qytxax/production/939d9dba847240c70d021ed6539873edfcdc987f-1919x1079.png",
+      "title": "INSIDE ENUGU’S SMART GREEN SCHOOLS: ENROLMENT GROWS AS FUTURE-READY LEARNING TAKES ROOT"
+    }
+  ]
+}
