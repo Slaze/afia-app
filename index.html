@@ -236,6 +236,28 @@
     .guide-alert { background: var(--ink); color: var(--paper); border-radius: 12px; margin: 0 12px 12px; width: calc(100% - 24px); }
     .panel button small { display: block; margin-top: 2px; color: #6d6458; font: 500 13px/1.3 var(--ui); }
     a.credit { display: block; padding: 8px 16px 14px; color: #6d6458; font: 500 13px/1.3 var(--ui); text-decoration: none; }
+    .sheet-close {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: var(--paper);
+      color: var(--ink);
+      font: 700 16px/1 var(--ui);
+    }
+    .add-phone[hidden] { display: none; }
+    .add-phone {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: transparent;
+      color: var(--paper);
+      text-align: left;
+      padding: 12px 14px;
+      font: 650 14px/1.3 var(--ui);
+    }
+    .add-phone small { display: block; margin-top: 3px; color: var(--mute); font: 500 12px/1.3 var(--ui); }
     @media (max-height: 420px) {
       .live-card strong { font-size: 36px; }
       nav button { padding: 6px 0 8px; }
@@ -259,6 +281,7 @@
         <strong id="nowTitle">Afia TV</strong>
         <em id="nowMeta">Watch the channel</em>
       </button>
+      <button class="add-phone" id="addPhone" type="button" hidden>Add Afia to this iPhone<small>Safari does not show an Install button. Use Share, then Add to Home Screen.</small></button>
       <h2>Today on 99.3</h2>
       <div class="rail" id="todayRail"></div>
       <h2>Stories</h2>
@@ -288,6 +311,7 @@
   </div>
   <div class="sheet" id="guide">
     <div class="panel" role="dialog" aria-label="What’s on">
+      <button class="sheet-close" type="button" data-close>Close</button>
       <div class="handle"></div>
       <img class="brand" src="afia-wordmark.png" alt="Afia">
       <p class="guide-copy">Today and the week on Afia 99.3. The grid repeats, so the month follows the same shows.</p>
@@ -297,6 +321,7 @@
   </div>
   <div class="sheet" id="sheet">
     <div class="panel" role="dialog" aria-label="Afia">
+      <button class="sheet-close" type="button" data-close>Close</button>
       <div class="handle"></div>
       <img class="brand" src="afia-wordmark.png" alt="Afia">
       <button type="button" data-url="https://www.afiatv.net/obuzo">Obuzo<small>Programme page</small></button>
@@ -911,10 +936,24 @@
     window.addEventListener("online", () => offline.classList.remove("show"));
     if (!navigator.onLine) showOffline();
     refreshLibrary();
+    document.querySelectorAll("[data-close]").forEach((button) => {
+      button.addEventListener("click", () => button.closest(".sheet").classList.remove("show"));
+    });
+    const standalone = window.navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
+    const iphone = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (iphone && !standalone) {
+      document.getElementById("addPhone").hidden = false;
+      const install = document.getElementById("install");
+      install.hidden = false;
+      install.innerHTML = "Add to iPhone<small>Tap Share, then Add to Home Screen</small>";
+    }
+    document.getElementById("addPhone").addEventListener("click", () => sheet.classList.add("show"));
     window.addEventListener("beforeinstallprompt", (event) => {
       event.preventDefault();
       deferredInstall = event;
       document.getElementById("install").hidden = false;
+      document.getElementById("addPhone").hidden = false;
+      document.getElementById("addPhone").innerHTML = "Install Afia<small>Add this app to your phone</small>";
     });
     document.getElementById("install").addEventListener("click", async () => {
       if (!deferredInstall) return;
@@ -922,6 +961,7 @@
       await deferredInstall.userChoice;
       deferredInstall = null;
       document.getElementById("install").hidden = true;
+      document.getElementById("addPhone").hidden = true;
       sheet.classList.remove("show");
     });
 
