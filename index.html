@@ -845,7 +845,7 @@
       if (!bw || !bh) return;
       let width = bw;
       let height = width / PICTURE;
-      if (height < bh) {
+      if (height > bh) {
         height = bh;
         width = height * PICTURE;
       }
