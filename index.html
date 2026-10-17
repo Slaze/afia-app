@@ -137,7 +137,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: calc(8px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) 28px calc(10px + env(safe-area-inset-left));
+      padding: 8px calc(10px + env(safe-area-inset-right)) 10px calc(10px + env(safe-area-inset-left));
       background: linear-gradient(to bottom, rgba(12, 9, 7, 0.72), transparent);
       pointer-events: none;
     }
@@ -541,6 +541,7 @@
           await audio.play();
           return;
         } catch (error) {
+          radioFail();
           return;
         }
       }
@@ -840,8 +841,10 @@
       const mount = document.getElementById("twitchMount");
       const node = mount.querySelector("iframe");
       if (!box || !node) return;
+      const bar = document.querySelector(".player-bar");
+      const barH = bar ? bar.offsetHeight : 0;
       const bw = box.clientWidth;
-      const bh = box.clientHeight;
+      const bh = Math.max(0, box.clientHeight - barH);
       if (!bw || !bh) return;
       let width = bw;
       let height = width / PICTURE;
@@ -852,7 +855,7 @@
       mount.style.width = width + "px";
       mount.style.height = height + "px";
       mount.style.left = ((bw - width) / 2) + "px";
-      mount.style.top = ((bh - height) / 2) + "px";
+      mount.style.top = (barH + (bh - height) / 2) + "px";
       node.style.setProperty("width", "100%", "important");
       node.style.setProperty("height", "100%", "important");
     }
