@@ -1,5 +1,5 @@
-const CACHE = "afia-shell-41";
-const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./afia-wordmark.png", "./afia-wordmark-white.png"];
+const CACHE = "afia-shell-42";
+const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-maskable.png", "./apple-touch-icon.png", "./afia-wordmark.png", "./afia-wordmark-white.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -40,6 +40,10 @@ self.addEventListener("fetch", (event) => {
         caches.open(CACHE).then((cache) => cache.put(event.request, copy));
         return response;
       })
-      .catch(() => caches.match(event.request).then((hit) => hit || caches.match("./index.html")))
+      .catch(() => caches.match(event.request).then((hit) => {
+        if (hit) return hit;
+        if (/\.(png|webmanifest)$/.test(url.pathname)) return new Response("", { status: 404 });
+        return caches.match("./index.html");
+      }))
   );
 });
