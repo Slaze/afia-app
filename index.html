@@ -2350,10 +2350,16 @@
       const frame = pictureFrame(host);
       if (!frame) return;
       const bars = [frame.bottom, frame.top, frame.left, frame.right];
+      let titleH = 0;
       if (host.id === "ytSlot") {
         const when = document.getElementById("episodeWhen");
-        if (when && !when.hidden) bars[0] = { ...bars[0], h: Math.max(0, bars[0].h - when.offsetHeight) };
+        if (when && !when.hidden) titleH = when.offsetHeight;
       }
+      if (host.classList.contains("player-screen")) {
+        const caption = document.getElementById("liveCaption");
+        if (caption && getComputedStyle(caption).display !== "none") titleH = Math.max(titleH, caption.offsetHeight);
+      }
+      if (titleH) bars[0] = { ...bars[0], h: Math.max(0, bars[0].h - titleH - 8) };
       const room = bars
         .map((bar) => ({ ...bar, area: bar.w * bar.h }))
         .filter((bar) => bar.w >= 120 && bar.h >= 72)

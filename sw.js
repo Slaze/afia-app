@@ -1,4 +1,4 @@
-const CACHE = "afia-shell-43";
+const CACHE = "afia-shell-44";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-maskable.png", "./apple-touch-icon.png", "./afia-wordmark.png", "./afia-wordmark-white.png"];
 
 self.addEventListener("install", (event) => {
