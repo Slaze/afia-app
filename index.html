@@ -2106,7 +2106,14 @@
 
     function startChat(lines) {
       stopChat();
-      const source = lines && lines.length ? lines : chatPool();
+      const seen = new Set();
+      const source = [];
+      (lines && lines.length ? lines : chatPool()).forEach((line) => {
+        const key = String(line.text || "").trim();
+        if (!key || seen.has(key)) return;
+        seen.add(key);
+        source.push(line);
+      });
       if (!source.length) return;
       const box = document.getElementById("chatter");
       const host = document.getElementById("stage").classList.contains("episode")
@@ -2116,11 +2123,19 @@
       placeChat(box, host);
       box.hidden = false;
       let index = 0;
+      let resumeAt = 0;
       const tick = () => {
         if (box.parentElement !== host) host.append(box);
         placeChat(box, host);
         if (box.classList.contains("reading")) return;
-        const line = source[index % source.length];
+        if (Date.now() < resumeAt) return;
+        if (index >= source.length) {
+          box.replaceChildren();
+          index = 0;
+          resumeAt = Date.now() + 8000;
+          return;
+        }
+        const line = source[index];
         index += 1;
         const row = document.createElement("button");
         row.type = "button";
