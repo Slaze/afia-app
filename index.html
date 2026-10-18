@@ -498,7 +498,13 @@
     .guide-card b { display: block; font-size: 16px; }
     .guide-card span { display: block; color: #d7cfc2; font-size: 13px; margin-top: 2px; }
     .account-form { display: flex; flex-direction: column; gap: 8px; margin: 0 12px 12px; }
-    .account-form h2 { margin: 4px 4px 0; color: var(--ink); letter-spacing: 0.08em; }
+    .account-form.session h2 {
+      margin: 12px 4px 0;
+      color: var(--ink);
+      font: 700 40px/0.9 var(--display);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
     .account-form label { display: block; color: #6d6458; font: 600 12px/1.2 var(--ui); }
     .account-form label[hidden], .account-form button[hidden], .account-form p[hidden] { display: none; }
     .account-form input {
@@ -1861,7 +1867,7 @@
       const signedIn = accountMode === "session" && accountSession;
       accountTitle.textContent = signedIn ? accountSession.name : accountMode === "up" ? "Sign up" : accountMode === "forgot" ? "Reset password" : "Sign in";
       accountNote.textContent = signedIn
-        ? "Signed in as " + accountSession.name + "."
+        ? accountSession.email
         : accountMode === "up"
           ? "We'll email you to confirm the account."
           : accountMode === "forgot"
@@ -1882,6 +1888,7 @@
       document.getElementById("accountSwitch").textContent = "Back to sign in";
       document.getElementById("accountForgot").hidden = accountMode !== "in";
       document.getElementById("accountOut").hidden = !signedIn;
+      accountForm.classList.toggle("session", signedIn);
       accountPassword.autocomplete = accountMode === "up" ? "new-password" : "current-password";
     }
 
@@ -1915,7 +1922,9 @@
       event.preventDefault();
       showAccountError("");
       const submit = document.getElementById("accountSubmit");
+      const waiting = accountMode === "up" ? "Creating account..." : accountMode === "forgot" ? "Sending..." : "Signing in...";
       submit.disabled = true;
+      submit.textContent = waiting;
       try {
         if (accountMode === "forgot") {
           const email = accountId.value.trim();
@@ -1985,6 +1994,7 @@
           phone: (data.user && data.user.phone) || body.phone || "",
         });
         accountPassword.value = "";
+        document.querySelector("#sheet .panel").scrollTop = 0;
       } catch (error) {
         let text = error && error.message ? error.message : "Something went wrong. Try again.";
         if (accountMode === "forgot" && /find a user|do not match|records/i.test(text)) {
@@ -1997,6 +2007,7 @@
         showAccountError(text);
       } finally {
         submit.disabled = false;
+        if (accountMode !== "session") paintAccount();
       }
     });
 
