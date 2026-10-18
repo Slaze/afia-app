@@ -623,7 +623,7 @@
         <strong id="nowTitle">Afia TV</strong>
         <em id="nowMeta">Watch the channel</em>
       </button>
-      <button class="add-phone" id="addPhone" type="button" hidden>Add Afia to this iPhone<small>Safari does not show an Install button. Use Share, then Add to Home Screen.</small></button>
+      <button class="add-phone" id="addPhone" type="button" hidden>Add Afia to this iPhone<small>Tap Share, then Add to Home Screen.</small></button>
       <section id="continueBlock" hidden>
         <h2>Continue</h2>
         <div class="rail" id="continueRail"></div>
@@ -688,7 +688,7 @@
       </div>
       <div class="handle"></div>
       <img class="brand" src="afia-wordmark.png" alt="Afia">
-      <p class="guide-copy">Today and the week on Afia 99.3. The grid repeats, so the month follows the same shows.</p>
+      <p class="guide-copy">Today and the week on Afia 99.3.</p>
       <div id="guideBody"></div>
       <a class="credit" href="https://iconiaglobal.com" target="_blank" rel="noopener">Developed by Iconia Global</a>
     </div>
@@ -815,7 +815,7 @@
       setRadio("Connecting", "…");
       sourceIndex = 0;
       if (!streamList.length) {
-        setRadio("Afia has switched the radio off for the app.", "▶");
+        setRadio("Afia 99.3 isn't on right now.", "▶");
         return;
       }
       if (audio.src !== streamList[0]) audio.src = streamList[0];
@@ -953,13 +953,13 @@
         if (!raw) {
           guideBody.textContent = navigator.onLine
             ? "The lineup didn't load. Try again in a moment."
-            : "You're offline. Open Lineup again when you're back online.";
+            : "You're offline. Open 99.3 again when you're back online.";
           return;
         }
         const saved = JSON.parse(raw);
         guideBody.replaceChildren();
         const note = document.createElement("p");
-        note.textContent = "Showing the last lineup we saved.";
+        note.textContent = "Last lineup.";
         guideBody.append(note);
         const weekBlock = document.createElement("div");
         weekBlock.className = "guide-block";
@@ -1829,7 +1829,7 @@
       const raw = localStorage.getItem("afia-library");
       if (!raw) {
         const empty = document.createElement("p");
-        empty.textContent = "Nothing is saved yet. Open Afia online once to keep episodes here.";
+        empty.textContent = "Nothing saved yet.";
         savedList.append(empty);
         return;
       }
@@ -2669,14 +2669,12 @@
         card.querySelector("span").textContent = badge.detail;
         grid.append(card);
       });
-      const globalHead = document.createElement("h2");
-      globalHead.textContent = "Global";
       const mine = document.createElement("div");
       mine.className = "board-row";
       mine.innerHTML = badgeSvg(rank.id) + "<b></b><em></em>";
       mine.querySelector("b").textContent = rank.title;
       mine.querySelector("em").textContent = hoursLabel(rankTotal(row));
-      body.append(heading, hours, bar, badgeHead, grid, globalHead, mine);
+      body.append(heading, hours, bar, badgeHead, grid, mine);
     }
 
     function creditRank(bucket, amount, section) {
@@ -2755,7 +2753,7 @@
       document.getElementById("addPhone").hidden = false;
       const install = document.getElementById("install");
       install.hidden = false;
-      install.innerHTML = "Add to iPhone<small>Tap Share, then Add to Home Screen</small>";
+      install.innerHTML = "Add to iPhone<small>Tap Share, then Add to Home Screen.</small>";
     }
     document.getElementById("addPhone").addEventListener("click", () => sheet.classList.add("show"));
     function openIntro() {
