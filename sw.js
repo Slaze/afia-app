@@ -1,4 +1,4 @@
-const CACHE = "afia-shell-42";
+const CACHE = "afia-shell-43";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-maskable.png", "./apple-touch-icon.png", "./afia-wordmark.png", "./afia-wordmark-white.png"];
 
 self.addEventListener("install", (event) => {
@@ -13,6 +13,18 @@ self.addEventListener("activate", (event) => {
       Promise.all(keys.filter((key) => key !== CACHE && key !== "afia-library-1" && key !== "afia-site-1").map((key) => caches.delete(key)))
     ).then(() => self.clients.claim())
   );
+});
+
+self.addEventListener("push", (event) => {
+  let payload = { title: "Afia", body: "", url: "./", tag: "afia" };
+  try {
+    payload = Object.assign(payload, event.data ? event.data.json() : {});
+  } catch (error) { /* show the plain title */ }
+  event.waitUntil(self.registration.showNotification(payload.title, {
+    body: payload.body || "",
+    tag: payload.tag || "afia",
+    data: { url: payload.url || "./" }
+  }));
 });
 
 self.addEventListener("notificationclick", (event) => {

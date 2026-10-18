@@ -5,6 +5,9 @@ const ALLOWED = new Set([
   "auth/reset-password",
   "auth/me",
   "auth/logout",
+  "push/key",
+  "push/devices",
+  "push/notices",
 ]);
 
 module.exports = async function handler(req, res) {
