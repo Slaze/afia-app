@@ -803,7 +803,7 @@
       <ol class="intro-steps">
         <li><b>Live</b><span>The channel plays on the Live tab.</span></li>
         <li><b>Shows</b><span>Tap an episode to watch it.</span></li>
-        <li><b>Comments</b><span>They sit under the picture. Tap one to read it.</span></li>
+        <li><b>Comments</b><span>On a show they sit under the picture. Tap one to read it.</span></li>
         <li><b>Minimize</b><span>The picture keeps playing while you look around.</span></li>
         <li><b>More</b><span>Sign in and Sign up are at the top.</span></li>
       </ol>
@@ -1519,10 +1519,10 @@
       pauseEpisode();
       document.body.classList.add("watching");
       markTab("live");
+      stopChat();
       ensurePlayer();
       await ensureProgrammes();
       if (!document.body.classList.contains("watching")) return;
-      startChat(chatPool());
       if (twitch && twitchReady) {
         hearLive();
         try { twitch.play(); } catch (error) { /* autoplay can be blocked until a tap */ }
