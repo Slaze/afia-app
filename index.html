@@ -466,6 +466,11 @@
     .panel .handle { width: 36px; height: 4px; margin: 8px auto 10px; border-radius: 4px; background: #c9c0b2; }
     .panel img.brand { height: 26px; width: auto; margin: 4px 16px 8px; }
     .guide-copy { margin: 4px 16px 12px; color: #5c5348; font: 500 14px/1.4 var(--ui); }
+    .intro-title { margin: 4px 16px 8px; color: var(--ink); font: 700 22px/1.1 var(--display); letter-spacing: 0.04em; text-transform: uppercase; }
+    .intro-steps li { padding: 12px 4px; border-top: 1px solid #e4dcd0; }
+    .intro-steps b { display: block; font-size: 16px; }
+    .intro-steps span { display: block; margin-top: 2px; color: #5c5348; font: 500 14px/1.4 var(--ui); }
+    .intro-done { margin: 4px 12px 8px; width: calc(100% - 24px) !important; text-align: center !important; border-radius: 999px; background: var(--ink) !important; color: var(--paper) !important; }
     .guide-block { margin: 0 12px 14px; }
     .guide-block h2 { margin: 0 0 8px; color: #8a8175; }
     .guide-card { background: var(--ink); color: var(--paper); border-radius: 12px; padding: 12px 14px; margin: 0 0 8px; }
@@ -713,7 +718,7 @@
         <button type="button" id="accountForgot">Forgot password</button>
         <button type="button" id="accountOut" hidden>Sign out</button>
       </form>
-      <button type="button" data-url="https://www.afiatv.net/obuzo">Obuzo<small>Programme page</small></button>
+      <button type="button" id="openIntro">How Afia works<small>A short guide</small></button>
       <button type="button" data-url="https://www.afiatv.net/about">About Afia<small>The station</small></button>
       <button type="button" data-url="https://www.afiatv.net/contact">Reach us<small>Contact the newsroom</small></button>
       <button type="button" id="listenRadio">Afia Radio<small>Listen in the app</small></button>
@@ -723,6 +728,21 @@
       <button type="button" data-url="https://afiahomecoming.com/">Events<small>Afia homecoming</small></button>
       <a class="credit" href="https://iconiaglobal.com" target="_blank" rel="noopener">Developed by Iconia Global</a>
       <button type="button" id="install" hidden>Install Afia<small>Add this app to your phone</small></button>
+    </div>
+  </div>
+  <div class="sheet" id="intro">
+    <div class="panel" role="dialog" aria-label="How Afia works">
+      <div class="handle"></div>
+      <img class="brand" src="afia-wordmark.png" alt="Afia">
+      <h2 class="intro-title">How Afia works</h2>
+      <ol class="intro-steps">
+        <li><b>Live</b><span>The channel plays on the Live tab.</span></li>
+        <li><b>Shows</b><span>Tap an episode to watch it.</span></li>
+        <li><b>Comments</b><span>They sit in the black bars. Tap one to read it.</span></li>
+        <li><b>Minimize</b><span>The picture keeps playing while you look around.</span></li>
+        <li><b>More</b><span>Sign in and Sign up are at the top.</span></li>
+      </ol>
+      <button class="intro-done" id="introDone" type="button">Got it</button>
     </div>
   </div>
   <div class="sheet" id="rank">
@@ -2708,6 +2728,23 @@
       install.innerHTML = "Add to iPhone<small>Tap Share, then Add to Home Screen</small>";
     }
     document.getElementById("addPhone").addEventListener("click", () => sheet.classList.add("show"));
+    function openIntro() {
+      document.getElementById("intro").classList.add("show");
+    }
+    document.getElementById("openIntro").addEventListener("click", () => {
+      sheet.classList.remove("show");
+      openIntro();
+    });
+    document.getElementById("introDone").addEventListener("click", () => {
+      try { localStorage.setItem("afia-intro", "1"); } catch (error) { /* the guide can show again next time */ }
+      document.getElementById("intro").classList.remove("show");
+    });
+    document.getElementById("intro").addEventListener("click", (event) => {
+      if (event.target.id === "intro") document.getElementById("introDone").click();
+    });
+    try {
+      if (!localStorage.getItem("afia-intro")) openIntro();
+    } catch (error) { /* skip the guide if storage is blocked */ }
     window.addEventListener("beforeinstallprompt", (event) => {
       event.preventDefault();
       deferredInstall = event;
