@@ -1,4 +1,4 @@
-const CACHE = "afia-shell-39";
+const CACHE = "afia-shell-40";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./afia-wordmark.png", "./afia-wordmark-white.png"];
 
 self.addEventListener("install", (event) => {
@@ -10,7 +10,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((key) => key !== CACHE && key !== "afia-library-1").map((key) => caches.delete(key)))
+      Promise.all(keys.filter((key) => key !== CACHE && key !== "afia-library-1" && key !== "afia-site-1").map((key) => caches.delete(key)))
     ).then(() => self.clients.claim())
   );
 });

@@ -1424,6 +1424,105 @@
       markTab("home");
     }
 
+    const SITE_PAGES = [
+      ORIGIN + "/",
+      ORIGIN + "/about",
+      ORIGIN + "/contact",
+      ORIGIN + "/privacy",
+      ORIGIN + "/terms",
+      ORIGIN + "/news",
+      ORIGIN + "/enugustory",
+      ORIGIN + "/podcast",
+      ORIGIN + "/obuzo",
+    ];
+    const SITE_CACHE = "afia-site-1";
+    let sitePage = "";
+    let siteRefreshing = false;
+
+    function siteHashes() {
+      try { return JSON.parse(localStorage.getItem("afia-site-hash") || "{}"); }
+      catch (error) { return {}; }
+    }
+
+    async function siteDigest(text) {
+      const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+      return [...new Uint8Array(buf)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function readSite(url) {
+      try {
+        const cache = await caches.open(SITE_CACHE);
+        const hit = await cache.match(url);
+        return hit ? await hit.text() : "";
+      } catch (error) {
+        return "";
+      }
+    }
+
+    async function prepareSite(html, pageUrl) {
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      doc.querySelectorAll("script, noscript").forEach((node) => node.remove());
+      const base = doc.createElement("base");
+      base.href = ORIGIN + "/";
+      doc.head.prepend(base);
+      const links = [...doc.querySelectorAll('link[rel="stylesheet"]')].slice(0, 6);
+      for (const link of links) {
+        let absolute = link.getAttribute("href") || "";
+        try { absolute = new URL(absolute, pageUrl).href; } catch (error) { /* keep the address */ }
+        if (!absolute.startsWith(ORIGIN)) continue;
+        try {
+          const css = await fetch(absolute).then((response) => response.ok ? response.text() : "");
+          if (!css) continue;
+          const style = doc.createElement("style");
+          style.textContent = css;
+          link.replaceWith(style);
+        } catch (error) {
+          link.setAttribute("href", absolute);
+        }
+      }
+      return "<!DOCTYPE html>" + doc.documentElement.outerHTML;
+    }
+
+    async function saveSite(url, html) {
+      const hash = await siteDigest(html);
+      const hashes = siteHashes();
+      if (hashes[url] === hash) return;
+      const view = await prepareSite(html, url);
+      const cache = await caches.open(SITE_CACHE);
+      delete hashes[url];
+      hashes[url] = hash;
+      const extras = Object.keys(hashes).filter((key) => !SITE_PAGES.includes(key));
+      while (extras.length > 24) {
+        const drop = extras.shift();
+        delete hashes[drop];
+        cache.delete(drop);
+      }
+      await cache.put(url, new Response(view, { headers: { "Content-Type": "text/html; charset=utf-8" } }));
+      localStorage.setItem("afia-site-hash", JSON.stringify(hashes));
+    }
+
+    async function refreshSite(url) {
+      const response = await fetch(url, { cache: "no-store" });
+      if (!response.ok) return false;
+      await saveSite(url, await response.text());
+      return true;
+    }
+
+    async function refreshSitePages(force) {
+      if (!navigator.onLine || siteRefreshing) return;
+      const last = Number(localStorage.getItem("afia-site-at") || 0);
+      if (!force && last && Date.now() - last < 30 * 60 * 1000) return;
+      siteRefreshing = true;
+      try {
+        for (const url of SITE_PAGES) {
+          try { await refreshSite(url); } catch (error) { /* the last copy stays */ }
+        }
+        localStorage.setItem("afia-site-at", String(Date.now()));
+      } finally {
+        siteRefreshing = false;
+      }
+    }
+
     function show(url, tab) {
       leaveLive();
       document.getElementById("home").hidden = true;
@@ -1436,9 +1535,38 @@
       progress.classList.remove("show");
       void progress.offsetWidth;
       progress.classList.add("show");
-      if (frame.src !== url) frame.src = url;
+      sitePage = url;
+      openSite(url);
       returnBar.classList.toggle("show", tab !== "live");
       markTab(tab);
+    }
+
+    async function openSite(url) {
+      if (navigator.onLine) {
+        try {
+          const response = await fetch(url, { cache: "no-store" });
+          if (response.ok) {
+            const html = await response.text();
+            saveSite(url, html).catch(() => {});
+            if (sitePage !== url) return;
+            frame.removeAttribute("srcdoc");
+            if (frame.src !== url) frame.src = url;
+            else progress.classList.remove("show");
+            return;
+          }
+        } catch (error) { /* the saved copy opens when this page was readable before */ }
+      }
+      const saved = await readSite(url);
+      if (sitePage !== url) return;
+      if (saved && (!navigator.onLine || siteHashes()[url])) {
+        frame.removeAttribute("src");
+        frame.srcdoc = saved;
+        progress.classList.remove("show");
+        return;
+      }
+      frame.removeAttribute("srcdoc");
+      if (frame.src !== url) frame.src = url;
+      else progress.classList.remove("show");
     }
 
     frame.addEventListener("load", () => progress.classList.remove("show"));
@@ -2510,7 +2638,8 @@
 
     document.getElementById("retryFrame").addEventListener("click", () => {
       offline.classList.remove("show");
-      frame.src = frame.src;
+      if (sitePage) openSite(sitePage);
+      else frame.src = frame.src;
     });
     document.getElementById("shareEpisode").addEventListener("click", async () => {
       if (!currentEpisode) return;
@@ -2718,7 +2847,13 @@
     }
 
     window.addEventListener("offline", showOffline);
-    window.addEventListener("online", () => offline.classList.remove("show"));
+    window.addEventListener("online", () => {
+      offline.classList.remove("show");
+      if (sitePage && frame.getAttribute("srcdoc") && !document.getElementById("stage").hidden) openSite(sitePage);
+      refreshSitePages();
+    });
+    refreshSitePages();
+    setInterval(() => refreshSitePages(), 30 * 60 * 1000);
     if (!navigator.onLine) showOffline();
     refreshLibrary();
     paintRank(false);
