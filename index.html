@@ -45,7 +45,8 @@
     .home[hidden], .stage[hidden] { display: none; }
     .top { display: flex; align-items: center; justify-content: space-between; padding: 8px 0 14px; }
     .top img { height: 22px; width: auto; }
-    .clock { color: var(--mute); font: 600 12px/1 var(--ui); letter-spacing: 0.08em; }
+    .clock { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; color: var(--mute); font: 600 12px/1 var(--ui); letter-spacing: 0.08em; }
+    .clock span { letter-spacing: 0.04em; text-transform: uppercase; }
     .live-card {
       display: block;
       width: 100%;
@@ -614,7 +615,7 @@
           <button class="orient-lock" id="orientLock" type="button" aria-label="Lock portrait" aria-pressed="false"></button>
           <button class="orient-lock" id="pipBack" type="button" hidden aria-label="Restore" aria-pressed="true"></button>
           <button class="rank-open" id="rankOpen" type="button" aria-label="Your rank"><span id="rankBadge"></span><span id="rankTitle">Guest</span></button>
-          <time class="clock" id="clock">WAT</time>
+          <time class="clock" id="clock"><b>WAT</b><span id="marketDay">Market day</span></time>
         </div>
       </header>
       <button class="live-card" id="openLive" type="button">
@@ -2460,9 +2461,23 @@
       paintHomeRows();
     }
 
+    function marketDay(date) {
+      const parts = new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Lagos", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(date);
+      const year = Number(parts.find((part) => part.type === "year").value);
+      const month = Number(parts.find((part) => part.type === "month").value);
+      const day = Number(parts.find((part) => part.type === "day").value);
+      const index = Math.round((Date.UTC(year, month - 1, day) - Date.UTC(year, 0, 1)) / 86400000) % 4;
+      return ["Orie", "Afo", "Nkwo", "Eke"][index];
+    }
+
     function tick() {
+      const now = new Date();
+      const time = now.toLocaleTimeString("en-GB", { timeZone: "Africa/Lagos", hour: "2-digit", minute: "2-digit" });
+      const market = marketDay(now);
       const clock = document.getElementById("clock");
-      clock.textContent = new Date().toLocaleTimeString("en-GB", { timeZone: "Africa/Lagos", hour: "2-digit", minute: "2-digit" }) + " WAT";
+      clock.querySelector("b").textContent = time + " WAT";
+      document.getElementById("marketDay").textContent = market;
+      clock.setAttribute("aria-label", time + " WAT, " + market + " market day");
     }
     tick();
     setInterval(tick, 30000);
