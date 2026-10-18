@@ -439,6 +439,30 @@
       font: 650 11px/1 var(--ui);
     }
     nav button[aria-current="page"] { color: var(--paper); }
+    nav button[data-tab="home"] {
+      margin: 8px 8px 10px;
+      padding: 8px 0 9px;
+      border-radius: 14px;
+      color: var(--paper);
+      background: linear-gradient(180deg, #4a4036 0%, #2a231c 48%, #17130f 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 244, 228, 0.34),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.35),
+        0 6px 10px rgba(0, 0, 0, 0.38);
+    }
+    nav button[data-tab="home"][aria-current="page"] {
+      background: linear-gradient(180deg, #5a4d40 0%, #322920 46%, #1b1612 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 244, 228, 0.48),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.28),
+        0 8px 14px rgba(0, 0, 0, 0.42);
+    }
+    nav button[data-tab="home"]:active {
+      transform: translateY(1px);
+      box-shadow:
+        inset 0 2px 5px rgba(0, 0, 0, 0.45),
+        0 2px 4px rgba(0, 0, 0, 0.3);
+    }
     .sheet {
       position: fixed;
       z-index: 30;
@@ -595,8 +619,41 @@
     .board-row { display: flex; align-items: center; gap: 10px; margin: 0 12px 8px; padding: 10px 12px; border-radius: 12px; background: var(--ink); color: var(--paper); }
     .board-row b { flex: 1; font-size: 14px; }
     .board-row em { font-style: normal; color: #d7cfc2; font-size: 13px; }
+    .reading {
+      display: none;
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 22px 18px 32px;
+      background: var(--studio);
+    }
+    .stage.sourced .reading { display: block; }
+    .stage.sourced #frame,
+    .stage.sourced .player,
+    .stage.sourced #ytSlot,
+    .stage.sourced .catalogue,
+    .stage.sourced .offline { display: none; }
+    .reading h1 {
+      margin: 0 0 16px;
+      font: 700 42px/0.92 var(--display);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .reading h2 {
+      margin: 22px 0 6px;
+      color: var(--paper);
+      font: 700 26px/1 var(--display);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .reading p {
+      margin: 0 0 14px;
+      color: #d9d0c3;
+      font: 500 16px/1.5 var(--ui);
+    }
     @media (prefers-reduced-motion: reduce) {
       .progress.show { animation: none; transform: scaleX(1); }
+      nav button[data-tab="home"]:active { transform: none; }
     }
   </style>
 </head>
@@ -623,7 +680,8 @@
         <strong id="nowTitle">Afia TV</strong>
         <em id="nowMeta">Watch the channel</em>
       </button>
-      <button class="add-phone" id="addPhone" type="button" hidden>Add Afia to this iPhone<small>Tap Share, then Add to Home Screen.</small></button>
+      <button class="add-phone" id="addPhone" type="button" hidden>Add Afia to this iPhone<small>Tap Share, then Add to Home Screen. Open Afia from the icon to allow alerts.</small></button>
+      <button class="add-phone" id="alertAsk" type="button" hidden>Allow alerts<small>Afia can tell you when a show is on.</small></button>
       <section id="continueBlock" hidden>
         <h2>Continue</h2>
         <div class="rail" id="continueRail"></div>
@@ -657,6 +715,10 @@
       </div>
       <div id="ytSlot"><div id="ytPlayer"></div><img id="episodePoster" alt="" hidden><p class="episode-when" id="episodeWhen" hidden></p></div>
       <iframe id="frame" title="Afia" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      <article class="reading" id="reading" hidden>
+        <h1 id="readingTitle"></h1>
+        <div id="readingBody"></div>
+      </article>
       <div class="chatter" id="chatter" hidden></div>
       <div class="up-next" id="upNext" hidden>
         <p id="upNextLabel"></p>
@@ -1387,7 +1449,8 @@
       document.getElementById("home").hidden = true;
       const stage = document.getElementById("stage");
       stage.hidden = false;
-      stage.classList.remove("cataloguing");
+      stage.classList.remove("cataloguing", "sourced");
+      document.getElementById("reading").hidden = true;
       offline.classList.remove("show");
       returnBar.classList.remove("show");
       document.getElementById("stage").classList.remove("episode");
@@ -1416,7 +1479,8 @@
       document.getElementById("home").hidden = false;
       const stage = document.getElementById("stage");
       stage.hidden = true;
-      stage.classList.remove("cataloguing", "episode");
+      stage.classList.remove("cataloguing", "episode", "sourced");
+      document.getElementById("reading").hidden = true;
       document.getElementById("upNext").hidden = true;
       pauseEpisode();
       returnBar.classList.remove("show");
@@ -1535,10 +1599,54 @@
       progress.classList.remove("show");
       void progress.offsetWidth;
       progress.classList.add("show");
+      document.getElementById("stage").classList.remove("sourced");
+      document.getElementById("reading").hidden = true;
       sitePage = url;
       openSite(url);
       returnBar.classList.toggle("show", tab !== "live");
       markTab(tab);
+    }
+
+    function readPage(html) {
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      doc.querySelectorAll("script, style, noscript, svg, nav, footer, form, button").forEach((node) => node.remove());
+      const rawTitle = (doc.querySelector("title") && doc.querySelector("title").textContent) || "";
+      const title = rawTitle.replace(/\s+[-|].*$/, "").trim();
+      const blocks = [];
+      const seen = new Set();
+      doc.querySelectorAll("h1, h2, h3, h4, p, li, div, span").forEach((node) => {
+        if ((node.tagName === "DIV" || node.tagName === "SPAN") && node.querySelector("h1, h2, h3, h4, p, li, div, span")) return;
+        const text = node.textContent.replace(/\s+/g, " ").trim();
+        if (text.length < 4 || text.length > 700 || seen.has(text)) return;
+        if (/search button|blinking-dot|market day/i.test(text)) return;
+        if (/^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/i.test(text)) return;
+        seen.add(text);
+        const heading = /^H[1-4]$/.test(node.tagName) || (text.length <= 52 && !/[.!?]$/.test(text) && text.split(" ").length <= 8);
+        blocks.push({ kind: heading ? "h" : "p", text });
+      });
+      const texts = blocks.map((block) => block.text);
+      return {
+        title,
+        blocks: blocks.filter((block) => !texts.some((other) => other !== block.text && other.length > 8 && block.text.includes(other)))
+      };
+    }
+
+    function showReading(html) {
+      const page = readPage(html);
+      if (page.blocks.length < 2) return false;
+      document.getElementById("readingTitle").textContent = page.title || "Afia";
+      const body = document.getElementById("readingBody");
+      body.replaceChildren();
+      page.blocks.forEach((block) => {
+        const node = document.createElement(block.kind === "h" ? "h2" : "p");
+        node.textContent = block.text;
+        body.append(node);
+      });
+      document.getElementById("reading").hidden = false;
+      document.getElementById("stage").classList.add("sourced");
+      frame.removeAttribute("srcdoc");
+      progress.classList.remove("show");
+      return true;
     }
 
     async function openSite(url) {
@@ -1549,6 +1657,7 @@
             const html = await response.text();
             saveSite(url, html).catch(() => {});
             if (sitePage !== url) return;
+            if (showReading(html)) return;
             frame.removeAttribute("srcdoc");
             if (frame.src !== url) frame.src = url;
             else progress.classList.remove("show");
@@ -1559,6 +1668,7 @@
       const saved = await readSite(url);
       if (sitePage !== url) return;
       if (saved && (!navigator.onLine || siteHashes()[url])) {
+        if (showReading(saved)) return;
         frame.removeAttribute("src");
         frame.srcdoc = saved;
         progress.classList.remove("show");
@@ -2312,7 +2422,8 @@
       document.getElementById("home").hidden = true;
       const stage = document.getElementById("stage");
       stage.hidden = false;
-      stage.classList.remove("cataloguing");
+      stage.classList.remove("cataloguing", "sourced");
+      document.getElementById("reading").hidden = true;
       stage.classList.add("episode");
       offline.classList.remove("show");
       returnBar.classList.add("show");
@@ -2564,7 +2675,8 @@
       const stage = document.getElementById("stage");
       stage.hidden = false;
       stage.classList.add("cataloguing");
-      stage.classList.remove("episode");
+      stage.classList.remove("episode", "sourced");
+      document.getElementById("reading").hidden = true;
       document.getElementById("upNext").hidden = true;
       pauseEpisode();
       offline.classList.remove("show");
@@ -2888,7 +3000,7 @@
       document.getElementById("addPhone").hidden = false;
       const install = document.getElementById("install");
       install.hidden = false;
-      install.innerHTML = "Add to iPhone<small>Tap Share, then Add to Home Screen.</small>";
+      install.innerHTML = "Add to iPhone<small>Tap Share, then Add to Home Screen. Open Afia from the icon to allow alerts.</small>";
     }
     document.getElementById("addPhone").addEventListener("click", () => sheet.classList.add("show"));
     function openIntro() {
@@ -2924,6 +3036,22 @@
       document.getElementById("addPhone").hidden = true;
       sheet.classList.remove("show");
     });
+
+    const alertAsk = document.getElementById("alertAsk");
+    function offerAlerts() {
+      const installed = window.navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
+      alertAsk.hidden = !(installed && "Notification" in window && Notification.permission === "default");
+    }
+    alertAsk.addEventListener("click", async () => {
+      let permission = "default";
+      try { permission = await Notification.requestPermission(); } catch (error) { permission = "default"; }
+      alertAsk.hidden = permission !== "default";
+      if (permission === "granted") {
+        try { localStorage.setItem("afia-alerts", "1"); } catch (error) { /* alerts still wait for the next visit */ }
+        watchStation();
+      }
+    });
+    offerAlerts();
 
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("sw.js");
