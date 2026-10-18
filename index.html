@@ -803,7 +803,7 @@
       <ol class="intro-steps">
         <li><b>Live</b><span>The channel plays on the Live tab.</span></li>
         <li><b>Shows</b><span>Tap an episode to watch it.</span></li>
-        <li><b>Comments</b><span>They sit in the black bars. Tap one to read it.</span></li>
+        <li><b>Comments</b><span>They sit under the picture. Tap one to read it.</span></li>
         <li><b>Minimize</b><span>The picture keeps playing while you look around.</span></li>
         <li><b>More</b><span>Sign in and Sign up are at the top.</span></li>
       </ol>
@@ -2360,7 +2360,7 @@
     function placeChat(box, host) {
       const frame = pictureFrame(host);
       if (!frame) return;
-      const bars = [frame.bottom, frame.top, frame.left, frame.right];
+      const bar = frame.bottom;
       let titleH = 0;
       if (host.id === "ytSlot") {
         const when = document.getElementById("episodeWhen");
@@ -2370,19 +2370,20 @@
         const caption = document.getElementById("liveCaption");
         if (caption && getComputedStyle(caption).display !== "none") titleH = Math.max(titleH, caption.offsetHeight);
       }
-      if (titleH) bars[0] = { ...bars[0], h: Math.max(0, bars[0].h - titleH - 8) };
-      const room = bars
-        .map((bar) => ({ ...bar, area: bar.w * bar.h }))
-        .filter((bar) => bar.w >= 120 && bar.h >= 72)
-        .sort((a, b) => b.area - a.area);
-      const bar = room[0] || bars.slice().sort((a, b) => (b.w * b.h) - (a.w * a.h))[0];
+      const roomH = Math.max(0, bar.h - titleH - 8);
       const pad = 10;
+      if (roomH < 36 || bar.w < 120) {
+        box.style.visibility = "hidden";
+        box.style.height = "0px";
+        return;
+      }
+      box.style.visibility = "visible";
       box.style.left = Math.round(bar.x + pad) + "px";
       box.style.top = Math.round(bar.y + pad) + "px";
       box.style.right = "auto";
       box.style.bottom = "auto";
       box.style.width = Math.max(0, Math.round(bar.w - pad * 2)) + "px";
-      box.style.height = Math.max(0, Math.round(bar.h - pad * 2)) + "px";
+      box.style.height = Math.max(0, Math.round(roomH - pad)) + "px";
       box.style.maxHeight = "none";
     }
 
