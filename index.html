@@ -105,31 +105,47 @@
     .live-caption span { display: block; margin-top: 4px; color: var(--mute); font: 500 13px/1.3 var(--ui); }
     .chatter {
       position: absolute;
-      left: 10px;
-      bottom: 48px;
       z-index: 4;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      gap: 6px;
-      width: min(168px, 46%);
-      max-height: 48px;
-      overflow: hidden;
-      pointer-events: none;
+      gap: 8px;
+      overflow: auto;
+      pointer-events: auto;
     }
-    #ytSlot .chatter { bottom: 72px; }
     .chatter[hidden] { display: none; }
-    .chatter p {
+    .chatter .chat-line {
       margin: 0;
+      border: 0;
+      background: transparent;
       color: #fff;
-      font: 600 13px/1.3 var(--ui);
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
-      white-space: nowrap;
+      text-align: left;
+      font: 600 14px/1.35 var(--ui);
+      padding: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
       overflow: hidden;
-      text-overflow: ellipsis;
       animation: chat-in 0.35s ease;
     }
     .chatter b { margin-right: 6px; font-weight: 700; }
+    .chatter.reading { justify-content: flex-start; }
+    .chatter.reading p {
+      margin: 0;
+      color: #fff;
+      font: 500 15px/1.4 var(--ui);
+      white-space: normal;
+    }
+    .chatter .chat-close {
+      align-self: flex-start;
+      width: auto;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+      padding: 6px 12px;
+      font: 700 13px/1 var(--ui);
+    }
     @keyframes chat-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
     .up-next { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 5; display: flex; align-items: center; gap: 12px; background: var(--set); color: var(--paper); border-radius: 14px; padding: 12px; }
     .up-next[hidden] { display: none; }
@@ -463,6 +479,17 @@
       display: block; width: 100%; margin-top: 4px; border: 1px solid #e0d8cc; border-radius: 12px;
       background: #f6f1e8; color: var(--ink); padding: 12px 14px; font: 500 16px/1.2 var(--ui);
     }
+    .account-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .account-modes[hidden] { display: none; }
+    .account-form .account-modes button {
+      width: auto;
+      text-align: center;
+      border-radius: 999px;
+      background: #efe8dc;
+      color: var(--ink);
+      padding: 12px 10px;
+    }
+    .account-form .account-modes button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
     .account-form .account-note, .account-form .account-error { margin: 0 4px; font: 500 13px/1.4 var(--ui); }
     .account-form .account-note { color: #6d6458; }
     .account-form .account-error { color: var(--live); }
@@ -669,6 +696,10 @@
       <div class="handle"></div>
       <img class="brand" src="afia-wordmark.png" alt="Afia">
       <form class="account-form" id="accountForm">
+        <div class="account-modes" id="accountModes">
+          <button type="button" id="modeIn" aria-pressed="true">Sign in</button>
+          <button type="button" id="modeUp">Sign up</button>
+        </div>
         <h2 id="accountTitle">Sign in</h2>
         <p class="account-note" id="accountNote">Use the email or phone on the account.</p>
         <label id="accountNameLabel" hidden>Username<input id="accountName" name="name" autocomplete="username" maxlength="80"></label>
@@ -1219,12 +1250,18 @@
       const box = document.querySelector(".player-screen");
       const mount = document.getElementById("twitchMount");
       const node = mount.querySelector("iframe");
-      if (!box || !node) return;
+      if (!box || !node) {
+        placeOpenChat();
+        return;
+      }
       const bar = document.querySelector(".player-bar");
       const barH = bar ? bar.offsetHeight : 0;
       const bw = box.clientWidth;
       const bh = Math.max(0, box.clientHeight - barH);
-      if (!bw || !bh) return;
+      if (!bw || !bh) {
+        placeOpenChat();
+        return;
+      }
       let width = bw;
       let height = width / PICTURE;
       if (height > bh) {
@@ -1237,6 +1274,13 @@
       mount.style.top = (barH + (bh - height) / 2) + "px";
       node.style.setProperty("width", "100%", "important");
       node.style.setProperty("height", "100%", "important");
+      placeOpenChat();
+    }
+
+    function placeOpenChat() {
+      const chat = document.getElementById("chatter");
+      if (!chat || chat.hidden || !chat.parentElement) return;
+      placeChat(chat, chat.parentElement);
     }
 
     function syncControls() {
@@ -1501,7 +1545,7 @@
 
     function paintAccount() {
       const signedIn = accountMode === "session" && accountSession;
-      accountTitle.textContent = signedIn ? accountSession.name : accountMode === "up" ? "Create account" : accountMode === "forgot" ? "Reset password" : "Sign in";
+      accountTitle.textContent = signedIn ? accountSession.name : accountMode === "up" ? "Sign up" : accountMode === "forgot" ? "Reset password" : "Sign in";
       accountNote.textContent = signedIn
         ? "Signed in as " + accountSession.name + "."
         : accountMode === "up"
@@ -1516,9 +1560,12 @@
       document.getElementById("accountPasswordLabel").hidden = signedIn || accountMode === "forgot";
       document.getElementById("accountConfirmLabel").hidden = accountMode !== "up";
       document.getElementById("accountSubmit").hidden = signedIn;
-      document.getElementById("accountSubmit").textContent = accountMode === "up" ? "Create account" : accountMode === "forgot" ? "Send reset link" : "Sign in";
-      document.getElementById("accountSwitch").hidden = signedIn;
-      document.getElementById("accountSwitch").textContent = accountMode === "in" ? "Create an account" : "Already have an account";
+      document.getElementById("accountSubmit").textContent = accountMode === "up" ? "Sign up" : accountMode === "forgot" ? "Send reset link" : "Sign in";
+      document.getElementById("accountModes").hidden = signedIn || accountMode === "forgot";
+      document.getElementById("modeIn").setAttribute("aria-pressed", accountMode === "in" ? "true" : "false");
+      document.getElementById("modeUp").setAttribute("aria-pressed", accountMode === "up" ? "true" : "false");
+      document.getElementById("accountSwitch").hidden = signedIn || accountMode === "in" || accountMode === "up";
+      document.getElementById("accountSwitch").textContent = "Back to sign in";
       document.getElementById("accountForgot").hidden = accountMode !== "in";
       document.getElementById("accountOut").hidden = !signedIn;
       accountPassword.autocomplete = accountMode === "up" ? "new-password" : "current-password";
@@ -1639,8 +1686,18 @@
       }
     });
 
+    document.getElementById("modeIn").addEventListener("click", () => {
+      accountMode = "in";
+      showAccountError("");
+      paintAccount();
+    });
+    document.getElementById("modeUp").addEventListener("click", () => {
+      accountMode = "up";
+      showAccountError("");
+      paintAccount();
+    });
     document.getElementById("accountSwitch").addEventListener("click", () => {
-      accountMode = accountMode === "in" ? "up" : "in";
+      accountMode = "in";
       showAccountError("");
       paintAccount();
     });
@@ -1948,26 +2005,82 @@
       return lines.length ? lines : chatPool();
     }
 
-    function placeChat(box, host) {
-      if (!host || host.id !== "ytSlot") {
-        box.style.bottom = "";
-        return;
-      }
+    function pictureFrame(host) {
       const bw = host.clientWidth;
       const bh = host.clientHeight;
-      if (!bw || !bh) return;
-      let height = bw / PICTURE;
-      if (height > bh) height = bh;
-      const top = (bh - height) / 2;
-      box.style.bottom = (bh - (top + height) + 68) + "px";
+      if (!bw || !bh) return null;
+      let chrome = 0;
+      if (host.classList.contains("player-screen")) {
+        const bar = document.querySelector(".player-bar");
+        chrome = bar ? bar.offsetHeight : 0;
+      }
+      const availH = Math.max(0, bh - chrome);
+      let width = bw;
+      let height = width / PICTURE;
+      if (height > availH) {
+        height = availH;
+        width = height * PICTURE;
+      }
+      const left = (bw - width) / 2;
+      const top = chrome + (availH - height) / 2;
+      const bottomY = top + height;
+      return {
+        top: { x: 0, y: chrome, w: bw, h: Math.max(0, top - chrome) },
+        bottom: { x: 0, y: bottomY, w: bw, h: Math.max(0, bh - bottomY) },
+        left: { x: 0, y: top, w: Math.max(0, left), h: height },
+        right: { x: left + width, y: top, w: Math.max(0, bw - (left + width)), h: height }
+      };
+    }
+
+    function placeChat(box, host) {
+      const frame = pictureFrame(host);
+      if (!frame) return;
+      const bars = [frame.bottom, frame.top, frame.left, frame.right];
+      if (host.id === "ytSlot") {
+        const when = document.getElementById("episodeWhen");
+        if (when && !when.hidden) bars[0] = { ...bars[0], h: Math.max(0, bars[0].h - when.offsetHeight) };
+      }
+      const room = bars
+        .map((bar) => ({ ...bar, area: bar.w * bar.h }))
+        .filter((bar) => bar.w >= 120 && bar.h >= 72)
+        .sort((a, b) => b.area - a.area);
+      const bar = room[0] || bars.slice().sort((a, b) => (b.w * b.h) - (a.w * a.h))[0];
+      const pad = 10;
+      box.style.left = Math.round(bar.x + pad) + "px";
+      box.style.top = Math.round(bar.y + pad) + "px";
+      box.style.right = "auto";
+      box.style.bottom = "auto";
+      box.style.width = Math.max(0, Math.round(bar.w - pad * 2)) + "px";
+      box.style.height = Math.max(0, Math.round(bar.h - pad * 2)) + "px";
+      box.style.maxHeight = "none";
     }
 
     function stopChat() {
       if (chatTimer) clearInterval(chatTimer);
       chatTimer = null;
       const box = document.getElementById("chatter");
+      box.classList.remove("reading");
       box.hidden = true;
       box.replaceChildren();
+    }
+
+    function showChatLine(line) {
+      const box = document.getElementById("chatter");
+      box.classList.add("reading");
+      box.replaceChildren();
+      const close = document.createElement("button");
+      close.type = "button";
+      close.className = "chat-close";
+      close.textContent = "Close";
+      close.addEventListener("click", () => {
+        box.classList.remove("reading");
+        box.replaceChildren();
+      });
+      const name = document.createElement("b");
+      name.textContent = line.name;
+      const text = document.createElement("p");
+      text.textContent = line.text;
+      box.append(close, name, text);
     }
 
     function startChat(lines) {
@@ -1977,7 +2090,7 @@
       const box = document.getElementById("chatter");
       const host = document.getElementById("stage").classList.contains("episode")
         ? document.getElementById("ytSlot")
-        : document.getElementById("twitchMount");
+        : document.querySelector(".player-screen");
       host.append(box);
       placeChat(box, host);
       box.hidden = false;
@@ -1985,14 +2098,19 @@
       const tick = () => {
         if (box.parentElement !== host) host.append(box);
         placeChat(box, host);
+        if (box.classList.contains("reading")) return;
         const line = source[index % source.length];
         index += 1;
-        const row = document.createElement("p");
+        const row = document.createElement("button");
+        row.type = "button";
+        row.className = "chat-line";
         const name = document.createElement("b");
         name.textContent = line.name;
         row.append(name, document.createTextNode(" " + line.text));
+        row.addEventListener("click", () => showChatLine(line));
         box.append(row);
-        while (box.children.length > 2) box.removeChild(box.firstChild);
+        const limit = Math.max(2, Math.min(8, Math.floor(box.clientHeight / 44)));
+        while (box.children.length > limit) box.removeChild(box.firstChild);
       };
       tick();
       chatTimer = setInterval(tick, 2800);
