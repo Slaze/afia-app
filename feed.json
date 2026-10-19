@@ -1,65 +1,32 @@
 {
-  "updatedAt": "2026-10-18T07:06:13.526031+01:00",
+  "updatedAt": "2026-10-19T15:11:46.545638+01:00",
   "onAir": null,
   "today": [
     {
-      "id": "66d78d6d5d81f931ec015f10",
-      "day": "SUNDAY",
-      "startTime": "12:00",
-      "endTime": "18:00",
-      "duration": 360,
-      "showId": "66d78d695d81f931ec015f09",
+      "id": "66d78d685d81f931ec015f04",
+      "day": "MONDAY",
+      "startTime": "19:00",
+      "endTime": "22:00",
+      "duration": 180,
+      "showId": "66d78d685d81f931ec015f03",
       "show": {
-        "id": "66d78d695d81f931ec015f09",
-        "title": "Weekend Special",
-        "description": "Kick off your weekend with a mix of music, entertainment, and lifestyle content.",
-        "coverArt": "https://8kvl2urisy.ufs.sh/f/BxfEHnSVCZL4iGV9AFqNRrcIoYjUSlfe7WmO10wFA4Nvn9QB",
-        "category": "Weekend",
+        "id": "66d78d685d81f931ec015f03",
+        "title": "Night Market",
+        "description": "Tune into the hottest tracks, catch the latest social media trends, and dive into engaging conversations! Join us for a high-energy evening where music, games, and trends come together to keep you in the know and on the pulse of what's now. Let's vibe, thrive, and stay connected!",
+        "coverArt": "https://utfs.io/f/a63c722f-1d84-4f24-8788-5596cd25b334-ok1b2b.jpg",
+        "category": "Regular",
         "tags": [
-          "weekend-special",
-          "saturday"
+          "night-market"
         ],
-        "hostId": "66e0086199b3ff089a298c50",
-        "createdAt": "2024-09-03T22:27:53.862Z",
+        "hostId": "66dffff899b3ff089a298c37",
+        "createdAt": "2024-09-03T22:27:52.604Z",
         "updatedAt": "2024-09-10T09:04:44.980Z",
         "host": {
-          "id": "66e0086199b3ff089a298c50",
-          "name": "CutyLight",
-          "bio": "",
-          "instagram_handle": "https://www.instagram.com/realcutylight/",
-          "x_handle": "https://x.com/realcutylight/",
-          "facebook": null,
-          "instagram": null,
-          "twitter": null
-        }
-      }
-    },
-    {
-      "id": "66d78d6f5d81f931ec015f12",
-      "day": "SUNDAY",
-      "startTime": "18:00",
-      "endTime": "19:00",
-      "duration": 60,
-      "showId": "66d78d6b5d81f931ec015f0b",
-      "show": {
-        "id": "66d78d6b5d81f931ec015f0b",
-        "title": "Top 10 Countdown Show",
-        "description": "Count down of the top 10 hits of the week.",
-        "coverArt": "https://utfs.io/f/287b4e13-d8cd-46e4-ad55-82c4550b380a-14k2jg.jpg",
-        "category": "Weekend",
-        "tags": [
-          "top-10-countdown-show",
-          "saturday"
-        ],
-        "hostId": "66e000e899b3ff089a298c3c",
-        "createdAt": "2024-09-03T22:27:55.130Z",
-        "updatedAt": "2024-09-10T09:04:44.980Z",
-        "host": {
-          "id": "66e000e899b3ff089a298c3c",
-          "name": "G'son Emaefa",
-          "bio": "Orji Nwachukwu (G’son Emaefa).\nManager, Afia Radio.\n\nIs an ace producer, a profound Radio/Video jockey. \nA voice actor, model, actor, artiste and an engineer.\nHe’s an all round entertainment and music connoisseur, with decades experience in multimedia productions.\n \nAs an A&R, Publicist, Talent manager, and a music executive, with his meticulous slant in sourcing, packaging and distribution of raw contents and talents.\nHe has been an instrument in promoting and projecting so many talents, who are now established.\n\nHe has successfully worked and also built brands in the entertainment industry, it's business and media sphere.\nAlso the flamboyant host of the much talked about WEEKLY TOP 10 COUNTDOWN SHOW WITH G’SON EMAEFA which airs every weekend by 6pm, on Afia 99.3fm Enugu.",
-          "instagram_handle": "https://www.instagram.com/gsonemaefa",
-          "x_handle": "https://x.com/gsonemaefa",
+          "id": "66dffff899b3ff089a298c37",
+          "name": "Choko",
+          "bio": "Also known as \"THE DARKCHILD ON THE RADIO\"...ANI WILSON CHOKO,preferably loves to be called  \"CHOKO\" kick started his media career professionally as a co-host on Radio active saturday and church on Radio on wish fm in portharcourt, Rivers state, he later moved on to become the host of \"Da afro drippin clan\" on lovedabeat radio, london u.k, before becoming a part of the distinguished and high profiled Afia team.  \n\nAn incessant media dopehead, voiceover king, OAP extraordinaire, hypeman unplugged, mad singer(with the voice of an angel by the way) amazing rapper, songwriter, a great actor and a fine voice actor, tv host with the flows, entertainer 360 and ironically, on the flipside, a licensed practicing civil engineer......in the words of lil wayne, I should prolly say \"GOD DID HIS THING WHEN HE MADE ME\"  \n\nSONGS THAT BEST TELL MY STORY AT THE MOMENT-\"WILD DREAMS BY BURNA BOY & GOD DID BY DJ KHALED, cos honestly, it's just been GOD ALL THE WAY\"  THINGS YOU PROLLY DUNNO ABOUT ME-am a very fun, easy going, free spirited, humble, lovable guy(I no dey look down on anybody, but then I hate what I don't like) and just so you know, my presence is contagious & addictive and its prolly the reason why \"EVERYBODY LOVES CHOKO\"  \n\nMY SIGNATURE LINE -\"they call me choko, who don't do nothing loko, cos i always stay flyyyyyyy, like i'm supposed to",
+          "instagram_handle": "https://www.instagram.com/official_chokoani/",
+          "x_handle": "https://twitter.com/Dheycallmechoko/",
           "facebook": null,
           "instagram": null,
           "twitter": null
@@ -68,75 +35,6 @@
     }
   ],
   "week": [
-    {
-      "label": "Sunday 18 Oct",
-      "rows": [
-        {
-          "id": "66d78d6d5d81f931ec015f10",
-          "day": "SUNDAY",
-          "startTime": "12:00",
-          "endTime": "18:00",
-          "duration": 360,
-          "showId": "66d78d695d81f931ec015f09",
-          "show": {
-            "id": "66d78d695d81f931ec015f09",
-            "title": "Weekend Special",
-            "description": "Kick off your weekend with a mix of music, entertainment, and lifestyle content.",
-            "coverArt": "https://8kvl2urisy.ufs.sh/f/BxfEHnSVCZL4iGV9AFqNRrcIoYjUSlfe7WmO10wFA4Nvn9QB",
-            "category": "Weekend",
-            "tags": [
-              "weekend-special",
-              "saturday"
-            ],
-            "hostId": "66e0086199b3ff089a298c50",
-            "createdAt": "2024-09-03T22:27:53.862Z",
-            "updatedAt": "2024-09-10T09:04:44.980Z",
-            "host": {
-              "id": "66e0086199b3ff089a298c50",
-              "name": "CutyLight",
-              "bio": "",
-              "instagram_handle": "https://www.instagram.com/realcutylight/",
-              "x_handle": "https://x.com/realcutylight/",
-              "facebook": null,
-              "instagram": null,
-              "twitter": null
-            }
-          }
-        },
-        {
-          "id": "66d78d6f5d81f931ec015f12",
-          "day": "SUNDAY",
-          "startTime": "18:00",
-          "endTime": "19:00",
-          "duration": 60,
-          "showId": "66d78d6b5d81f931ec015f0b",
-          "show": {
-            "id": "66d78d6b5d81f931ec015f0b",
-            "title": "Top 10 Countdown Show",
-            "description": "Count down of the top 10 hits of the week.",
-            "coverArt": "https://utfs.io/f/287b4e13-d8cd-46e4-ad55-82c4550b380a-14k2jg.jpg",
-            "category": "Weekend",
-            "tags": [
-              "top-10-countdown-show",
-              "saturday"
-            ],
-            "hostId": "66e000e899b3ff089a298c3c",
-            "createdAt": "2024-09-03T22:27:55.130Z",
-            "updatedAt": "2024-09-10T09:04:44.980Z",
-            "host": {
-              "id": "66e000e899b3ff089a298c3c",
-              "name": "G'son Emaefa",
-              "bio": "Orji Nwachukwu (G’son Emaefa).\nManager, Afia Radio.\n\nIs an ace producer, a profound Radio/Video jockey. \nA voice actor, model, actor, artiste and an engineer.\nHe’s an all round entertainment and music connoisseur, with decades experience in multimedia productions.\n \nAs an A&R, Publicist, Talent manager, and a music executive, with his meticulous slant in sourcing, packaging and distribution of raw contents and talents.\nHe has been an instrument in promoting and projecting so many talents, who are now established.\n\nHe has successfully worked and also built brands in the entertainment industry, it's business and media sphere.\nAlso the flamboyant host of the much talked about WEEKLY TOP 10 COUNTDOWN SHOW WITH G’SON EMAEFA which airs every weekend by 6pm, on Afia 99.3fm Enugu.",
-              "instagram_handle": "https://www.instagram.com/gsonemaefa",
-              "x_handle": "https://x.com/gsonemaefa",
-              "facebook": null,
-              "instagram": null,
-              "twitter": null
-            }
-          }
-        }
-      ]
-    },
     {
       "label": "Monday 19 Oct",
       "rows": [
@@ -387,6 +285,75 @@
         {
           "id": "66d78d6b5d81f931ec015f0c",
           "day": "SATURDAY",
+          "startTime": "18:00",
+          "endTime": "19:00",
+          "duration": 60,
+          "showId": "66d78d6b5d81f931ec015f0b",
+          "show": {
+            "id": "66d78d6b5d81f931ec015f0b",
+            "title": "Top 10 Countdown Show",
+            "description": "Count down of the top 10 hits of the week.",
+            "coverArt": "https://utfs.io/f/287b4e13-d8cd-46e4-ad55-82c4550b380a-14k2jg.jpg",
+            "category": "Weekend",
+            "tags": [
+              "top-10-countdown-show",
+              "saturday"
+            ],
+            "hostId": "66e000e899b3ff089a298c3c",
+            "createdAt": "2024-09-03T22:27:55.130Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66e000e899b3ff089a298c3c",
+              "name": "G'son Emaefa",
+              "bio": "Orji Nwachukwu (G’son Emaefa).\nManager, Afia Radio.\n\nIs an ace producer, a profound Radio/Video jockey. \nA voice actor, model, actor, artiste and an engineer.\nHe’s an all round entertainment and music connoisseur, with decades experience in multimedia productions.\n \nAs an A&R, Publicist, Talent manager, and a music executive, with his meticulous slant in sourcing, packaging and distribution of raw contents and talents.\nHe has been an instrument in promoting and projecting so many talents, who are now established.\n\nHe has successfully worked and also built brands in the entertainment industry, it's business and media sphere.\nAlso the flamboyant host of the much talked about WEEKLY TOP 10 COUNTDOWN SHOW WITH G’SON EMAEFA which airs every weekend by 6pm, on Afia 99.3fm Enugu.",
+              "instagram_handle": "https://www.instagram.com/gsonemaefa",
+              "x_handle": "https://x.com/gsonemaefa",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "Sunday 25 Oct",
+      "rows": [
+        {
+          "id": "66d78d6d5d81f931ec015f10",
+          "day": "SUNDAY",
+          "startTime": "12:00",
+          "endTime": "18:00",
+          "duration": 360,
+          "showId": "66d78d695d81f931ec015f09",
+          "show": {
+            "id": "66d78d695d81f931ec015f09",
+            "title": "Weekend Special",
+            "description": "Kick off your weekend with a mix of music, entertainment, and lifestyle content.",
+            "coverArt": "https://8kvl2urisy.ufs.sh/f/BxfEHnSVCZL4iGV9AFqNRrcIoYjUSlfe7WmO10wFA4Nvn9QB",
+            "category": "Weekend",
+            "tags": [
+              "weekend-special",
+              "saturday"
+            ],
+            "hostId": "66e0086199b3ff089a298c50",
+            "createdAt": "2024-09-03T22:27:53.862Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66e0086199b3ff089a298c50",
+              "name": "CutyLight",
+              "bio": "",
+              "instagram_handle": "https://www.instagram.com/realcutylight/",
+              "x_handle": "https://x.com/realcutylight/",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        },
+        {
+          "id": "66d78d6f5d81f931ec015f12",
+          "day": "SUNDAY",
           "startTime": "18:00",
           "endTime": "19:00",
           "duration": 60,

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Publish the public Afia lineup, stories, and episodes."""
 import json
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta
@@ -16,10 +18,35 @@ NEWS = '*[_type=="news" && !(_id in path("drafts.**"))] | order(publishedAt desc
 VIDEOS = '*[_type=="videos" && !(_id in path("drafts.**"))] | order(publishedAt desc)[0...12]{title,description,publishedAt,embedUrl,"thumbnail":thumbnail.asset->url}'
 
 
-def get(url):
+def fetch(url, timeout):
     request = urllib.request.Request(url, headers={"User-Agent": "AfiaFeed/1.0", "Accept": "application/json"})
-    with urllib.request.urlopen(request, timeout=30) as response:
+    with urllib.request.urlopen(request, timeout=timeout) as response:
         return json.load(response)
+
+
+def get(url):
+    return fetch(url, 30)
+
+
+def radio(path, attempts=2, timeout=45):
+    """Render sleeps this API. A cold start can take longer than one read."""
+    url = RADIO + path
+    delay = 5
+    last = None
+    for attempt in range(attempts):
+        try:
+            return fetch(url, timeout)
+        except urllib.error.HTTPError as error:
+            if error.code not in (502, 503, 504):
+                raise
+            last = error
+        except (TimeoutError, urllib.error.URLError) as error:
+            last = error
+        if attempt + 1 == attempts:
+            raise last
+        print(f"radio retry {attempt + 1} {path} {type(last).__name__}", flush=True)
+        time.sleep(delay)
+        delay = min(delay * 2, 20)
 
 
 def sanity(query):
@@ -39,12 +66,12 @@ def check(url):
 
 def main():
     now = datetime.now(ZoneInfo("Africa/Lagos"))
-    on_air = get(RADIO + "/shows/on-air")
+    on_air = radio("/shows/on-air", attempts=3, timeout=90)
     week = []
     for offset in range(7):
         date = now + timedelta(days=offset)
         name = date.strftime("%A").upper()
-        rows = get(RADIO + "/shows/schedule/" + name)
+        rows = radio("/shows/schedule/" + name)
         rows = sorted(rows, key=lambda row: str(row.get("startTime") or ""))
         week.append({"label": date.strftime("%A %-d %b"), "rows": rows})
     payload = {
