@@ -24,13 +24,6 @@
         "likes": 0
       },
       {
-        "id": "5MdOjONE654",
-        "title": "ENUGU KWENU EXCLUSIVE: GOVERNOR PETER MBAH ON THE JOURNEY TO A $30 BILLION ECONOMY",
-        "section": "ENUGU KWENU",
-        "views": 10000,
-        "likes": 0
-      },
-      {
         "id": "E_b6BCJTGZI",
         "title": "ENUGU SMART GREEN SCHOOLS LAUNCH | GOVERNOR PETER MBAH SPECIAL BROADCAST",
         "section": "AFIA DOCUMENTARIES",
@@ -57,6 +50,13 @@
         "section": "LIVE",
         "views": 4900,
         "likes": 0
+      },
+      {
+        "id": "PywZ_kqj-S0",
+        "title": "ENUGU’S CNG REVOLUTION: TERMINALS, BUSES & THE ROAD AHEAD",
+        "section": "ENUGU KWENU",
+        "views": 4800,
+        "likes": 0
       }
     ],
     "mostLiked": [
@@ -73,14 +73,14 @@
         "id": "PZHeR-TohzE",
         "title": "ENUGU KWENU: MEET THE CANDIDATES | EPISODE 1: GOV. PETER MBAH TOWNHALL | AFIA TV",
         "section": "LIVE",
-        "views": 1300,
+        "views": 1400,
         "likes": 0
       },
       {
         "id": "wwTMbL3zSo8",
         "title": "GOV MBAH SCRAPS ₦750 KEKE TICKET, EXTENDS OPERATING HOURS: WHAT NEXT FOR ENUGU TRICYCLE OPERATORS?",
         "section": "AROUND THE REGION",
-        "views": 428,
+        "views": 439,
         "likes": 0
       },
       {
@@ -101,7 +101,21 @@
         "id": "cV1ni7sctlA",
         "title": "NAFEST 2026 RETURNS TO ENUGU: OBI ASIKA ON CULTURE, TOURISM AND ECONOMIC OPPORTUNITIES",
         "section": "AROUND THE REGION",
-        "views": 133,
+        "views": 142,
+        "likes": 0
+      },
+      {
+        "id": "yjYodDypsj4",
+        "title": "HOLY GHOST BUS TERMINAL: HAS ORDER REALLY BEEN RESTORED? | ENUGU TRANSPORT UPDATE",
+        "section": "THE AM SHOW",
+        "views": 2900,
+        "likes": 0
+      },
+      {
+        "id": "dec8iTMcmBw",
+        "title": "'IF THE PRESIDENT IS INNOCENT, THEN WHY IS HE SPENDING BILLIONS ON STOPPING IT GOING PUBLIC' - CHIDI",
+        "section": "THE AM SHOW",
+        "views": 2400,
         "likes": 0
       },
       {
@@ -109,20 +123,6 @@
         "title": "\"ENUGU TERMINALS NEED TO BE MAINTAINED BETTER\"- NNAMDI OBANYA",
         "section": "THE AM SHOW",
         "views": 2100,
-        "likes": 0
-      },
-      {
-        "id": "BnYwPd5KnWA",
-        "title": "FIRST NIGER BRIDGE RENOVATION: CONCRETE BARRIERS SPARK MIXED REACTIONS IN ONITSHA",
-        "section": "News Today",
-        "views": 939,
-        "likes": 0
-      },
-      {
-        "id": "tcC1uj6bxag",
-        "title": "2026 OFALA FESTIVAL (DAY 2 - AZU OFALA) | LIVE FROM EZECHIMA SQUARE, ONITSHA ADO N'IDU",
-        "section": "LIVE",
-        "views": 223,
         "likes": 0
       }
     ]
@@ -132,6 +132,33 @@
       "title": "THE AM SHOW",
       "id": "PLdz5B1bVIMHM",
       "episodes": [
+        {
+          "id": "iLaqAUXsopA",
+          "title": "PRESS FREEDOM UNDER PRESSURE? JOURNALIST FRIDAY ALEFIA SHARES DETENTION ORDEAL",
+          "views": 979,
+          "likes": 0,
+          "chat": [
+            {
+              "name": "chrisdollaTv",
+              "text": "I'm writing a commentary on this."
+            },
+            {
+              "name": "chrisdollaTv",
+              "text": "Might write and keep as usual not everything I write I publish."
+            },
+            {
+              "name": "Ugojah",
+              "text": "In a nutshell, there's no press freedom in Nigeria. Journalists are being subjected to write what the government wants to hear, and if they "
+            }
+          ]
+        },
+        {
+          "id": "7ydOLX9sFqA",
+          "title": "“EBONYI IS ONE OF THE BACKWARD STATES IN THE REGION.\"",
+          "views": 246,
+          "likes": 0,
+          "chat": []
+        },
         {
           "id": "OQHqru2WOLs",
           "title": "“GEN MUSA IS TALKING TOO MUCH” | KIDNAPPING FEARS RAISE QUESTIONS OVER NIGERIA’S SECURITY",
@@ -147,9 +174,47 @@
           "chat": []
         },
         {
+          "id": "iL8RXrlEpaU",
+          "title": "SERAP DEMANDS ANSWERS OVER ₦78.8BN SOCIAL SAFETY NET FUNDS | WHERE ARE THE MONIES?",
+          "views": 62,
+          "likes": 0,
+          "chat": []
+        },
+        {
           "id": "NwSCEPPrOCA",
           "title": "NDLEA INTERCEPTS FUEL TANKER LOADED WITH 2,145KG OF CANNABIS",
           "views": 52,
+          "likes": 0,
+          "chat": []
+        },
+        {
+          "id": "f0iARKApQSY",
+          "title": "UNN SPECIAL NEEDS STUDENTS SHOWCASE EXTRAORDINARY ABILITIES | MORE THAN LIMITS",
+          "views": 143,
+          "likes": 0,
+          "chat": [
+            {
+              "name": "ugwuanyichristian7249",
+              "text": "Marvelous"
+            }
+          ]
+        },
+        {
+          "id": "lEyx-ubfcRI",
+          "title": "PROJECT VANGUARD PUSHES INDIGENOUS FILM REVIVAL, EYES TWO GUINNESS WORLD RECORD ATTEMPTS",
+          "views": 87,
+          "likes": 0,
+          "chat": [
+            {
+              "name": "fistandpen2505",
+              "text": "She is a smart young lady. But i hope she has a formal advisor to help consider any blind spots she may not be considering. She should defin"
+            }
+          ]
+        },
+        {
+          "id": "hABXI4rcxjk",
+          "title": "FRUSTRATION AS BENIN–AGBOR EXPRESSWAY GRIDLOCK PERSISTS",
+          "views": 152,
           "likes": 0,
           "chat": []
         },
@@ -160,36 +225,36 @@
           "likes": 0,
           "chat": [
             {
-              "name": "Albert-yc8lf",
-              "text": "All what is said here ordinarily isn't rocket science. However in Nigeria, it will shock you what's deemed as rocket science. Datti offers 0"
-            },
-            {
               "name": "Tobago1260",
               "text": "If Datti Baba Ahmed could turn around to attack his former principal in this manner, it shows that trusting any politician is a project bein"
             },
             {
-              "name": "CynthiaSunday-h6h",
-              "text": "He said all the presidential candidates cannot change Nigeria including Sowore"
+              "name": "enjay4381",
+              "text": "Very well said sir. Datti has no electoral value,he over rates himself,some one that couldn’t even win his pooling unit,the noise maker didn"
             },
             {
-              "name": "ObjectiveObserver-xh4vk",
-              "text": "If Peter Obi had not left LP , Tinubu would have destroyed LP . So Peter Obi made a smart political move. Datti is politically naive."
+              "name": "chinomsoobiekea6076",
+              "text": "Datti said Ahmed Tinubu should not handover any of the opposition leader leader even if he loses election shows that Datti Baba-Ahmed is an "
             },
             {
-              "name": "elizabethidemudia6039",
-              "text": "That is politics for you ,"
+              "name": "Albert-yc8lf",
+              "text": "All what is said here ordinarily isn't rocket science. However in Nigeria, it will shock you what's deemed as rocket science. Datti offers 0"
             },
             {
               "name": "JohnOsita-x3m",
               "text": "Datti Baba Ahmed should have stayed in LP pick the Presidential ticket & run since he thinks OBI should have stayed. As Obi's former running"
             },
             {
-              "name": "achukwuedith2873",
-              "text": "Datti is a bad loser!"
+              "name": "ObjectiveObserver-xh4vk",
+              "text": "If Peter Obi had not left LP , Tinubu would have destroyed LP . So Peter Obi made a smart political move. Datti is politically naive."
             },
             {
-              "name": "chinomsoobiekea6076",
-              "text": "Datti said Ahmed Tinubu should not handover any of the opposition leader leader even if he loses election shows that Datti Baba-Ahmed is an "
+              "name": "ebasski4958",
+              "text": "Datti has zero electoral value. Religious and ethnic bigot. Working for Atiku. That jab wasn’t kudos for Tinubu. It was aimed at Obi’s growi"
+            },
+            {
+              "name": "IhekeOkoronkwo-h9t",
+              "text": "He is making himself look so stupid, even if he is being sponsored by his paymaster Tinubu, he should know that he is belittling himself"
             }
           ]
         },
@@ -201,34 +266,68 @@
           "chat": []
         },
         {
+          "id": "4XuRqn1tUuY",
+          "title": "“WE DON’T HAVE MANY ENVIRONMENTAL LAWS TO GUIDE PEOPLE”",
+          "views": 59,
+          "likes": 0,
+          "chat": []
+        },
+        {
+          "id": "vv_sS_R1P_g",
+          "title": "'THE ONLY THING SOME POLITICIANS IN NIGERIA ARE AFRAID OF IS A FREE AND FAIR ELECTION' – BARR. CHIDI",
+          "views": 364,
+          "likes": 0,
+          "chat": []
+        },
+        {
+          "id": "dec8iTMcmBw",
+          "title": "'IF THE PRESIDENT IS INNOCENT, THEN WHY IS HE SPENDING BILLIONS ON STOPPING IT GOING PUBLIC' - CHIDI",
+          "views": 2400,
+          "likes": 0,
+          "chat": [
+            {
+              "name": "DalyopKwanga-z9t",
+              "text": "Nigerian government thinks through the anus, Americans are the masters of English they did not borrow it as Nigerians have done."
+            },
+            {
+              "name": "buzuzu2000",
+              "text": "Honestly i really pity the intellectually challenged folks amongst us,its all catch in the air news that makes the headlines. The most deplo"
+            },
+            {
+              "name": "Fidel67",
+              "text": "Trump govt will not allow the documents to be released because Tinubu has already ceded Nigeria’s oil to Exxon-Mobil through a major contrac"
+            }
+          ]
+        },
+        {
           "id": "z9kln95rwEo",
           "title": "\"ENUGU TERMINALS NEED TO BE MAINTAINED BETTER\"- NNAMDI OBANYA",
           "views": 2100,
           "likes": 0,
           "chat": [
             {
-              "name": "ucheani2078",
-              "text": "Very good observations. Thanks Nnamdi for your courage and objective views. You are making me a mega fan of Afia TV. Bravo bro!"
-            },
-            {
               "name": "OnyedikaNnadi-e2h",
               "text": "Thank you so much, I have been shouting to get your people attention on this matter"
             },
             {
-              "name": "eotlati1763",
-              "text": "Thank you Nnamdi Obaya, you always speak the truth no matter whose ox is gored. I cant believe it they killed a snake there. God have mercy "
+              "name": "ucheani2078",
+              "text": "Very good observations. Thanks Nnamdi for your courage and objective views. You are making me a mega fan of Afia TV. Bravo bro!"
             },
             {
               "name": "africanday7337",
               "text": "Enugu Government should go and learn from Abia State on how to operate a City Bus Service. You don't build what you can't maintain."
             },
             {
+              "name": "CosmasUdeshucwu",
+              "text": "A lot of noise about enugu terminal also very thing looks semi primitive, dirty everywhere"
+            },
+            {
               "name": "DogonTurenchi-c6y",
               "text": "Na so black man things de be. If na white man or even Asian, all those recruited to work in the terminals will undergo intensive training co"
             },
             {
-              "name": "CosmasUdeshucwu",
-              "text": "A lot of noise about enugu terminal also very thing looks semi primitive, dirty everywhere"
+              "name": "eotlati1763",
+              "text": "Thank you Nnamdi Obaya, you always speak the truth no matter whose ox is gored. I cant believe it they killed a snake there. God have mercy "
             },
             {
               "name": "justinokolo7876",
@@ -241,159 +340,56 @@
           ]
         },
         {
+          "id": "yjYodDypsj4",
+          "title": "HOLY GHOST BUS TERMINAL: HAS ORDER REALLY BEEN RESTORED? | ENUGU TRANSPORT UPDATE",
+          "views": 2900,
+          "likes": 0,
+          "chat": [
+            {
+              "name": "OkonkwoChibuzo-b3f",
+              "text": "Nice one afia tv"
+            },
+            {
+              "name": "jembamoh",
+              "text": "It also sounds like the terminal is run remotely. There has to be a proper management team on ground"
+            },
+            {
+              "name": "okorojnr",
+              "text": "Mbah should find Enugu people or Igbo people to manage these terminals. Period!"
+            },
+            {
+              "name": "theaitrakkstudio",
+              "text": "Okay, progress check - weldone, afia tv"
+            },
+            {
+              "name": "ucheuzuigwenwali1318",
+              "text": "Ndi Enugwu we have all seen where our challenges and problems are coming from, peter mbah na government ndi ofe mmanuo ike gwuru ndi Enugwu "
+            },
+            {
+              "name": "macanthony1982",
+              "text": "Mbah is a vanity governor"
+            },
+            {
+              "name": "emmanuelayodele7901",
+              "text": "So if you guys haven't call the attention of the government to it, the people who are supposed to make it run would have fold their hands an"
+            },
+            {
+              "name": "TonyBlend-s9n",
+              "text": "What is the bond between governor Mbah and yoruba people And they keep messing up, yet he keep getting them involved in Enugu's affairs"
+            }
+          ]
+        },
+        {
+          "id": "Dd76TdFAjdQ",
+          "title": "2026 WAEC-WASSCE: MATTERS ARISING AS WAEC ADDRESSES KEY ISSUES | OLANREWAJU ADEKUNLE FADEHAN",
+          "views": 261,
+          "likes": 0,
+          "chat": []
+        },
+        {
           "id": "NIorPOK-hrE",
           "title": "CECE EMECHEBE REATES TO SHARAF ADEEN ALLI’S VIDEO WITH STUDENT SPARKS REACTIONS",
           "views": 105,
-          "likes": 0,
-          "chat": []
-        },
-        {
-          "id": "omv9mqWFtVM",
-          "title": "Enugu has always been known for its fitness culture",
-          "views": 513,
-          "likes": 0,
-          "chat": [
-            {
-              "name": "nonyagbo",
-              "text": "Enugu Amaka"
-            }
-          ]
-        },
-        {
-          "id": "dBZiWr769PA",
-          "title": "EFCC has the record of all those who have governed Nigeria",
-          "views": 278,
-          "likes": 0,
-          "chat": []
-        },
-        {
-          "id": "pPZNDEVqAGE",
-          "title": "It's time we have an educational standardised measure with critical thinking",
-          "views": 38,
-          "likes": 0,
-          "chat": []
-        },
-        {
-          "id": "JZt2taV5nUU",
-          "title": "TINUBU & U.S. LAW ENFORCEMENT FILES: CLERIC WARNS DOCUMENT RELEASE COULD AFFECT 2027",
-          "views": 862,
-          "likes": 0,
-          "chat": [
-            {
-              "name": "tmstms2769",
-              "text": "I respect this guest and love to listern to his point of views. He is right, the west see africa or nigeria as subhuman existing for white t"
-            },
-            {
-              "name": "nnaemekaogbonna2420",
-              "text": "They should release the files heaven will not fall"
-            },
-            {
-              "name": "UkwaEast-m5q",
-              "text": "Those with crime backgrounds find it hard getting a job, talkless of the highest job role of the land. All the persons bending it otherwise "
-            },
-            {
-              "name": "emmylast6818",
-              "text": "A so called pastor defending evil, just imagine this nonesense. tinubu must step down and retire to his home. How can you support a confirme"
-            }
-          ]
-        },
-        {
-          "id": "zbUBQ6xWKTA",
-          "title": "RENO OMOKRI DEFENDS TINUBU OVER FBI RECORDS | HOLY GHOST TERMINAL DELAYS SPARK OUTCRY",
-          "views": 231,
-          "likes": 0,
-          "chat": []
-        },
-        {
-          "id": "aOg_Ut4Yb-M",
-          "title": "“PRESIDENT TINUBU HAS NO CRIMINAL RECORD” — RENO OMOKRI | WHAT DO FBI RECORDS REALLY MEAN?",
-          "views": 994,
-          "likes": 0,
-          "chat": [
-            {
-              "name": "tmstms2769",
-              "text": "Must Reno Omokri make fool of himself to keep eating the crumbs from master table ? I blame the america bureaucracy."
-            },
-            {
-              "name": "olugbengakayode2516",
-              "text": "Only fools keep applying the same strategy repeatedly but expect a different result. Investigation is not a crime and there was never a cour"
-            }
-          ]
-        },
-        {
-          "id": "mOiK0nQQpKM",
-          "title": "“IT KEEPS ME SLEEPLESS\"—GOV. OTTI RAISES ALARM OVER RISING KIDNEY & CANCER CASES IN ABIA",
-          "views": 778,
-          "likes": 0,
-          "chat": [
-            {
-              "name": "samueluwakaonye7903",
-              "text": "Government should be seriously checking people that manufacturers fake drugs, fake beverages, fake consuming cooking red oil, even GMO food "
-            },
-            {
-              "name": "TMT_GENERAL",
-              "text": "GOD bless you sir Dr Alex Oti"
-            },
-            {
-              "name": "dunhills-w7p",
-              "text": "One of the causes are our greediness in the SE. In Aba and Onitsha a lot fake and expired consumable products are being produced and sold. G"
-            },
-            {
-              "name": "uzoejekwumadu7731",
-              "text": "Fake, expired and pirated drinks and beverage products should be clamped down of which Aba and Onitsha are at the epicenter. These products "
-            },
-            {
-              "name": "tmstms2769",
-              "text": "NAFDAC has become a cashcow, it should be banned. Polluted drinking water. and chemical in the agriculture produce are some the likely cause"
-            },
-            {
-              "name": "adj5767",
-              "text": "You need more doctors, insurance provision and access to check-ups and hospitals. Also improve food hygiene and education."
-            },
-            {
-              "name": "ogumka1976",
-              "text": "Eat like a Nutritarian- eat to live don’t live to eat"
-            }
-          ]
-        },
-        {
-          "id": "tIxZNU2DZRg",
-          "title": "ENUGU CITY INTERNATIONAL MARATHON 2026: BEYOND THE FINISH LINE | THE MARATHON FROM THE SIDELINES",
-          "views": 284,
-          "likes": 0,
-          "chat": [
-            {
-              "name": "cyrilsixty544",
-              "text": "Good job Afia tv crew"
-            },
-            {
-              "name": "adj5767",
-              "text": "Looks like it was a fantastic event and a wonderful atmosphere of camaraderie, unity and purpose. Thank you Afia for promoting Igboland. May"
-            },
-            {
-              "name": "KhunPascas",
-              "text": "Enugu rising rapidly ❤❤"
-            }
-          ]
-        },
-        {
-          "id": "RSYf2uYlRHg",
-          "title": "I avoided a lot of things, especially alcohol, to stay healthy",
-          "views": 51,
-          "likes": 0,
-          "chat": []
-        },
-        {
-          "id": "Bg8tavKXLgc",
-          "title": "Fubara has made an effort to seek re-election",
-          "views": 47,
-          "likes": 0,
-          "chat": []
-        },
-        {
-          "id": "Qul36qOELQc",
-          "title": "The president has the right to take a leave",
-          "views": 226,
           "likes": 0,
           "chat": []
         }
@@ -537,24 +533,24 @@
           "likes": 0,
           "chat": [
             {
-              "name": "chinwubasixtus2861",
-              "text": "Slim wiz 🔥"
-            },
-            {
               "name": "candihammers",
               "text": "Slim Wiz is the next big thing"
+            },
+            {
+              "name": "chinwubasixtus2861",
+              "text": "Slim wiz 🔥"
             },
             {
               "name": "XRPQFSTeam1778",
               "text": "We can't wait for the EP 🎉❤"
             },
             {
-              "name": "LeoActive-k2g",
-              "text": "SlimWiz is a superstar 🔥"
-            },
-            {
               "name": "Emstunna-c9h",
               "text": "SlimWiz is the truth! 🎉"
+            },
+            {
+              "name": "LeoActive-k2g",
+              "text": "SlimWiz is a superstar 🔥"
             }
           ]
         },
@@ -565,16 +561,16 @@
           "likes": 0,
           "chat": [
             {
-              "name": "EgbuChiagozieSamuel",
-              "text": "Biggest 🎉"
-            },
-            {
               "name": "kizzyyoungflc1",
               "text": "Bigger u I pray brr 🎉"
             },
             {
               "name": "ChiomaEkwerike",
               "text": "Congrats to U kid brother. May God continue to shower his blessings upon U in Jesus name amen."
+            },
+            {
+              "name": "EgbuChiagozieSamuel",
+              "text": "Biggest 🎉"
             }
           ]
         },
@@ -594,7 +590,7 @@
         {
           "id": "qzzENiAHDgs",
           "title": "SUPER FALCONS IN TROUBLE? | VINICIUS JR’S 4-MATCH BAN: FAIR OR HARSH?",
-          "views": 29,
+          "views": 30,
           "likes": 0,
           "chat": [
             {
@@ -756,7 +752,7 @@
         {
           "id": "dV0ilpM9GuI",
           "title": "EASE OF DOING BUSINESS IN NIGERIA: ARE GOVERNMENT POLICIES REALLY WORKING?",
-          "views": 102,
+          "views": 103,
           "likes": 0,
           "chat": []
         },
@@ -778,12 +774,12 @@
               "text": "Good to know"
             },
             {
-              "name": "cyrilsixty544",
-              "text": "#Vera, welcome back. Is been a very longtime we heard from you."
-            },
-            {
               "name": "NecheXTech",
               "text": "I am working very hard to building Igbo land"
+            },
+            {
+              "name": "cyrilsixty544",
+              "text": "#Vera, welcome back. Is been a very longtime we heard from you."
             }
           ]
         },
@@ -968,47 +964,47 @@
         {
           "id": "PZHeR-TohzE",
           "title": "ENUGU KWENU: MEET THE CANDIDATES | EPISODE 1: GOV. PETER MBAH TOWNHALL | AFIA TV",
-          "views": 1300,
+          "views": 1400,
           "likes": 0,
           "chat": [
             {
-              "name": "ugwuonyekachi9019",
-              "text": "Dr Peter Ndubuisi Mbah, Governor Enugu State has no challenger not simply because he is offering us the best of leadership and governance; n"
-            },
-            {
-              "name": "tituschristopher3871",
-              "text": "There are few governors in Nigeria who can speak like this. This man is very articulate."
+              "name": "FidelisAni",
+              "text": "I ve said before and I will say again and again every state in Nigeria needs a Peter mba Respect to mba really tomorrow is hia"
             },
             {
               "name": "leventisonyekachinnamani1224",
               "text": "Nathalie U are truly amazing, U made this programme urs. Nnamdi U know am one of Ur biggest fan but u under performed on this programme and "
             },
             {
-              "name": "FidelisAni",
-              "text": "I ve said before and I will say again and again every state in Nigeria needs a Peter mba Respect to mba really tomorrow is hia"
+              "name": "tituschristopher3871",
+              "text": "There are few governors in Nigeria who can speak like this. This man is very articulate."
             },
             {
-              "name": "TonyBlend-s9n",
-              "text": "Mbah's commissioners and other appointees are the only ones that clap 👏"
-            },
-            {
-              "name": "cyrilsixty544",
-              "text": "Peter Mbah is brilliant and articulated and he understand his numbers."
+              "name": "leonardtrevor",
+              "text": "Nathalie is such a good anchor. Straight to the point questions. Very intelligent and bold. God bless Enugu"
             },
             {
               "name": "OkenwaBenDestiny",
               "text": "Peter Ndubisi Mbah is a rare gift given to Ndị Enugu by God Almighty"
             },
             {
-              "name": "Gaskiya-tk",
-              "text": "There are only two real governors in Igboland today. Alex Otti is by far the number one all round for halting and reversing the complete dec"
+              "name": "cyrilsixty544",
+              "text": "Peter Mbah is brilliant and articulated and he understand his numbers."
+            },
+            {
+              "name": "NecheXTech",
+              "text": "Peter Mbah made me feel interested in politics again He revived Enugu, let's keep industralizing Enugu and AlaIgbo"
+            },
+            {
+              "name": "TonyBlend-s9n",
+              "text": "Mbah's commissioners and other appointees are the only ones that clap 👏"
             }
           ]
         },
         {
           "id": "tcC1uj6bxag",
           "title": "2026 OFALA FESTIVAL (DAY 2 - AZU OFALA) | LIVE FROM EZECHIMA SQUARE, ONITSHA ADO N'IDU",
-          "views": 223,
+          "views": 224,
           "likes": 0,
           "chat": []
         },
@@ -1022,7 +1018,7 @@
         {
           "id": "_2jRP21oOLw",
           "title": "LIVE: 2026 OFALA FESTIVAL (DAY 1 - IRU OFALA) | LIVE FROM EZECHIMA SQUARE, ONITSHA ADO N'IDU",
-          "views": 245,
+          "views": 246,
           "likes": 0,
           "chat": []
         },
@@ -1086,16 +1082,20 @@
           "likes": 0,
           "chat": [
             {
-              "name": "brendanonyebuchi6769",
-              "text": "Watching you always makes me feel better, I will definitely be in Nigeria Come January to vote for you okwute But before then please minimiz"
+              "name": "marsuini",
+              "text": "I moved around in Anambra state when this man was governor no problem whatsoever. I slept overnight. At Opa Iweka bus stop no fear no worrie"
             },
             {
               "name": "chukwudivictor7124",
               "text": "Is Anambra state coursed or are we the cause, this was his slogan, am a living witness, a man of great integrity"
             },
             {
-              "name": "kennyniceofficial",
-              "text": "This man is totally a different breed of politician,Nigeria if you missed this man,you will never get his kind of personality."
+              "name": "tracyjacopin4325",
+              "text": "Rigged elections, but the people should take their destiny in their own hands!"
+            },
+            {
+              "name": "brendanonyebuchi6769",
+              "text": "Watching you always makes me feel better, I will definitely be in Nigeria Come January to vote for you okwute But before then please minimiz"
             },
             {
               "name": "Samcool-y7g",
@@ -1106,12 +1106,8 @@
               "text": "Some people don’t even understand how much we can earn from agriculture alone, and it can also provide job opportunities for Nigerians. We h"
             },
             {
-              "name": "olalekanadelodun3520",
-              "text": "Always joyful listening to HE Peter Obi ❤️ ♥️ 💕 Na only current, past and future criminals will 8 him. You cannot be a decent person and not"
-            },
-            {
-              "name": "ChukwuemekaNwagbara",
-              "text": "With Peter Obi Nigeria can be great again"
+              "name": "PayceVibes",
+              "text": "Peter Obi is indeed one of a kind"
             },
             {
               "name": "JohnJamesChannel",
@@ -1193,24 +1189,20 @@
               "text": "Nigeria kooo,Nigeria Niiiiii. They are team South East loud it team Igbo. Igbo South East"
             },
             {
-              "name": "mikenick685",
-              "text": "From the very bottom of my heart, I sincerely thank you guys from Afia TV for doing so much and granting them enough publicity. We truly app"
-            },
-            {
               "name": "henrilaw11",
               "text": "Sincerely, this is the way forward.... Nigerians are brilliant,the governments are just not giving the avenue to show the talent...."
             },
             {
-              "name": "UzoPaul-u3u",
-              "text": "Igbo win again ❤❤❤❤"
+              "name": "mikenick685",
+              "text": "From the very bottom of my heart, I sincerely thank you guys from Afia TV for doing so much and granting them enough publicity. We truly app"
             },
             {
               "name": "iykeukpabi1508",
               "text": "Afia TV thank you so much for the publicity you have given to this event,and I wish these wonderful children who have brought glory to both "
             },
             {
-              "name": "uchennanwosu4625",
-              "text": "I saw a video that suggests there were other Nigerians at the Olympiad. I saw students from a Jesuit college in Okija. I am not sure if it w"
+              "name": "PatrickObadigbo",
+              "text": "Thank you so much guys. A big congratulations ❤❤"
             },
             {
               "name": "tituschristopher3871",
@@ -1219,6 +1211,10 @@
             {
               "name": "dimanyaohacyril4526",
               "text": "Afia tv, thanks for the coverage."
+            },
+            {
+              "name": "chii-m4m",
+              "text": "KUDUS TO THE SMART TEACHERS WHO BUILT THESE BRAINS🎉🎉🎉🎉"
             }
           ]
         }
@@ -1311,21 +1307,21 @@
         {
           "id": "ET5U5vc3Vs0",
           "title": "IMO KIDNAP: DSS ARRAIGNS FIVE SUSPECTS OVER NYSC ABDUCTION IN OWERRI",
-          "views": 22,
+          "views": 26,
           "likes": 0,
           "chat": []
         },
         {
           "id": "xjkpmP-0Jzw",
           "title": "ONITSHA OFALA 2026: NGOLIKA WINS AGE-GRADE COMPETITION AS THOUSANDS HONOUR IGWE ACHEBE",
-          "views": 45,
+          "views": 46,
           "likes": 0,
           "chat": []
         },
         {
           "id": "cV1ni7sctlA",
           "title": "NAFEST 2026 RETURNS TO ENUGU: OBI ASIKA ON CULTURE, TOURISM AND ECONOMIC OPPORTUNITIES",
-          "views": 133,
+          "views": 142,
           "likes": 0,
           "chat": [
             {
@@ -1337,7 +1333,7 @@
         {
           "id": "wwTMbL3zSo8",
           "title": "GOV MBAH SCRAPS ₦750 KEKE TICKET, EXTENDS OPERATING HOURS: WHAT NEXT FOR ENUGU TRICYCLE OPERATORS?",
-          "views": 428,
+          "views": 439,
           "likes": 0,
           "chat": [
             {
@@ -1351,13 +1347,17 @@
             {
               "name": "tmstms2769",
               "text": "The 750 tax waiver is a bribe to me. This damage control won't work o, the electorates are not fools. How far with the investigation about t"
+            },
+            {
+              "name": "emmanuelodo9691",
+              "text": "This guy is lying"
             }
           ]
         },
         {
           "id": "vWUpjXCFMsE",
           "title": "GOV. MBAH SCRAPS ₦750 DAILY KEKE TICKET, EXTENDS OPERATING HOURS IN ENUGU",
-          "views": 50,
+          "views": 51,
           "likes": 0,
           "chat": [
             {
@@ -1369,7 +1369,7 @@
         {
           "id": "EZWhd-O4AFY",
           "title": "₦500 MILLION SCHOLARSHIP INITIATIVE! DE IMPERIAL PHILANTHROPIC FAMILY SUPPORTS SOUTHEAST STUDENTS",
-          "views": 100,
+          "views": 101,
           "likes": 0,
           "chat": []
         },
@@ -1440,14 +1440,14 @@
         {
           "id": "4LonYwZ3Nsg",
           "title": "AHỊA 4: THE ABIA MARKET WHERE CASSAVA SELLS EVERY DAY, EVEN ON SUNDAYS!",
-          "views": 82,
+          "views": 83,
           "likes": 0,
           "chat": []
         },
         {
           "id": "IhyqY8LRKU8",
           "title": "DIVINE EKWEREMADU BECOMES A DOCTOR! FAMILY, FRIENDS AND DIGNITARIES CELEBRATE",
-          "views": 138,
+          "views": 141,
           "likes": 0,
           "chat": [
             {
@@ -1513,12 +1513,12 @@
               "text": "No thief admit he / she is a thief. This is not first time."
             },
             {
-              "name": "game_on41",
-              "text": "NDC must secure themselves and try to catch some criminals and deal with them accordingly."
-            },
-            {
               "name": "onyedikachi5376",
               "text": "Peter Mbah I am very ashamed and disappointed at you."
+            },
+            {
+              "name": "game_on41",
+              "text": "NDC must secure themselves and try to catch some criminals and deal with them accordingly."
             },
             {
               "name": "Onyedikachi-gy4ll",
@@ -1535,47 +1535,47 @@
         {
           "id": "PZHeR-TohzE",
           "title": "ENUGU KWENU: MEET THE CANDIDATES | EPISODE 1: GOV. PETER MBAH TOWNHALL | AFIA TV",
-          "views": 1300,
+          "views": 1400,
           "likes": 0,
           "chat": [
             {
-              "name": "ugwuonyekachi9019",
-              "text": "Dr Peter Ndubuisi Mbah, Governor Enugu State has no challenger not simply because he is offering us the best of leadership and governance; n"
-            },
-            {
-              "name": "tituschristopher3871",
-              "text": "There are few governors in Nigeria who can speak like this. This man is very articulate."
+              "name": "FidelisAni",
+              "text": "I ve said before and I will say again and again every state in Nigeria needs a Peter mba Respect to mba really tomorrow is hia"
             },
             {
               "name": "leventisonyekachinnamani1224",
               "text": "Nathalie U are truly amazing, U made this programme urs. Nnamdi U know am one of Ur biggest fan but u under performed on this programme and "
             },
             {
-              "name": "FidelisAni",
-              "text": "I ve said before and I will say again and again every state in Nigeria needs a Peter mba Respect to mba really tomorrow is hia"
+              "name": "tituschristopher3871",
+              "text": "There are few governors in Nigeria who can speak like this. This man is very articulate."
             },
             {
-              "name": "TonyBlend-s9n",
-              "text": "Mbah's commissioners and other appointees are the only ones that clap 👏"
-            },
-            {
-              "name": "cyrilsixty544",
-              "text": "Peter Mbah is brilliant and articulated and he understand his numbers."
+              "name": "leonardtrevor",
+              "text": "Nathalie is such a good anchor. Straight to the point questions. Very intelligent and bold. God bless Enugu"
             },
             {
               "name": "OkenwaBenDestiny",
               "text": "Peter Ndubisi Mbah is a rare gift given to Ndị Enugu by God Almighty"
             },
             {
-              "name": "Gaskiya-tk",
-              "text": "There are only two real governors in Igboland today. Alex Otti is by far the number one all round for halting and reversing the complete dec"
+              "name": "cyrilsixty544",
+              "text": "Peter Mbah is brilliant and articulated and he understand his numbers."
+            },
+            {
+              "name": "NecheXTech",
+              "text": "Peter Mbah made me feel interested in politics again He revived Enugu, let's keep industralizing Enugu and AlaIgbo"
+            },
+            {
+              "name": "TonyBlend-s9n",
+              "text": "Mbah's commissioners and other appointees are the only ones that clap 👏"
             }
           ]
         },
         {
           "id": "tcC1uj6bxag",
           "title": "2026 OFALA FESTIVAL (DAY 2 - AZU OFALA) | LIVE FROM EZECHIMA SQUARE, ONITSHA ADO N'IDU",
-          "views": 223,
+          "views": 224,
           "likes": 0,
           "chat": []
         },
@@ -1589,7 +1589,7 @@
         {
           "id": "_2jRP21oOLw",
           "title": "LIVE: 2026 OFALA FESTIVAL (DAY 1 - IRU OFALA) | LIVE FROM EZECHIMA SQUARE, ONITSHA ADO N'IDU",
-          "views": 245,
+          "views": 246,
           "likes": 0,
           "chat": []
         },
@@ -1653,16 +1653,20 @@
           "likes": 0,
           "chat": [
             {
-              "name": "brendanonyebuchi6769",
-              "text": "Watching you always makes me feel better, I will definitely be in Nigeria Come January to vote for you okwute But before then please minimiz"
+              "name": "marsuini",
+              "text": "I moved around in Anambra state when this man was governor no problem whatsoever. I slept overnight. At Opa Iweka bus stop no fear no worrie"
             },
             {
               "name": "chukwudivictor7124",
               "text": "Is Anambra state coursed or are we the cause, this was his slogan, am a living witness, a man of great integrity"
             },
             {
-              "name": "kennyniceofficial",
-              "text": "This man is totally a different breed of politician,Nigeria if you missed this man,you will never get his kind of personality."
+              "name": "tracyjacopin4325",
+              "text": "Rigged elections, but the people should take their destiny in their own hands!"
+            },
+            {
+              "name": "brendanonyebuchi6769",
+              "text": "Watching you always makes me feel better, I will definitely be in Nigeria Come January to vote for you okwute But before then please minimiz"
             },
             {
               "name": "Samcool-y7g",
@@ -1673,12 +1677,8 @@
               "text": "Some people don’t even understand how much we can earn from agriculture alone, and it can also provide job opportunities for Nigerians. We h"
             },
             {
-              "name": "olalekanadelodun3520",
-              "text": "Always joyful listening to HE Peter Obi ❤️ ♥️ 💕 Na only current, past and future criminals will 8 him. You cannot be a decent person and not"
-            },
-            {
-              "name": "ChukwuemekaNwagbara",
-              "text": "With Peter Obi Nigeria can be great again"
+              "name": "PayceVibes",
+              "text": "Peter Obi is indeed one of a kind"
             },
             {
               "name": "JohnJamesChannel",
@@ -1735,12 +1735,16 @@
           "likes": 0,
           "chat": [
             {
+              "name": "akeemadetula7420",
+              "text": "This is nice . We need to have more of this in coal city 🥂"
+            },
+            {
               "name": "benitaannastecia530",
               "text": "Fashion is not just about clothing, it is an art. The Coal City Fashion Experience 2026 reminded me of that. From the Ankara party on day 1 "
             },
             {
-              "name": "akeemadetula7420",
-              "text": "This is nice . We need to have more of this in coal city 🥂"
+              "name": "Janielove",
+              "text": "This is phenomenal 👏 , really wish I attended"
             },
             {
               "name": "blessingchidozie2859",
@@ -1755,16 +1759,12 @@
               "text": "What we Love seeing Fashion at its best 🙌🙌🙌"
             },
             {
-              "name": "U.z.z.z.y",
-              "text": "Very happy to be a part of this"
+              "name": "AmidetuOarhe",
+              "text": "Amazing. Sky is your limit.❤"
             },
             {
-              "name": "johnokonkwo5",
-              "text": "It was such an awesome event. I'm really glad I attended."
-            },
-            {
-              "name": "Janielove",
-              "text": "This is phenomenal 👏 , really wish I attended"
+              "name": "adaobianiagu3419",
+              "text": "Lovely, I love everything about this"
             }
           ]
         },
@@ -1791,16 +1791,16 @@
               "text": "Beautiful and colourful"
             },
             {
-              "name": "OarheEhimika",
-              "text": "Amazing work!"
-            },
-            {
-              "name": "NecheXTech",
-              "text": "The men killed it But there's a lady that rocket everything"
-            },
-            {
               "name": "MichaelEjiofor-m3e9m",
               "text": "This is amazing ain't gonna lie ❤"
+            },
+            {
+              "name": "johnfrancisentertainment9715",
+              "text": "This is so beautiful 👏🏼"
+            },
+            {
+              "name": "OarheEhimika",
+              "text": "Amazing work!"
             },
             {
               "name": "tracyedegware4702",
@@ -1819,24 +1819,20 @@
               "text": "Nigeria kooo,Nigeria Niiiiii. They are team South East loud it team Igbo. Igbo South East"
             },
             {
-              "name": "mikenick685",
-              "text": "From the very bottom of my heart, I sincerely thank you guys from Afia TV for doing so much and granting them enough publicity. We truly app"
-            },
-            {
               "name": "henrilaw11",
               "text": "Sincerely, this is the way forward.... Nigerians are brilliant,the governments are just not giving the avenue to show the talent...."
             },
             {
-              "name": "UzoPaul-u3u",
-              "text": "Igbo win again ❤❤❤❤"
+              "name": "mikenick685",
+              "text": "From the very bottom of my heart, I sincerely thank you guys from Afia TV for doing so much and granting them enough publicity. We truly app"
             },
             {
               "name": "iykeukpabi1508",
               "text": "Afia TV thank you so much for the publicity you have given to this event,and I wish these wonderful children who have brought glory to both "
             },
             {
-              "name": "uchennanwosu4625",
-              "text": "I saw a video that suggests there were other Nigerians at the Olympiad. I saw students from a Jesuit college in Okija. I am not sure if it w"
+              "name": "PatrickObadigbo",
+              "text": "Thank you so much guys. A big congratulations ❤❤"
             },
             {
               "name": "tituschristopher3871",
@@ -1845,6 +1841,10 @@
             {
               "name": "dimanyaohacyril4526",
               "text": "Afia tv, thanks for the coverage."
+            },
+            {
+              "name": "chii-m4m",
+              "text": "KUDUS TO THE SMART TEACHERS WHO BUILT THESE BRAINS🎉🎉🎉🎉"
             }
           ]
         },
@@ -1882,15 +1882,15 @@
             },
             {
               "name": "nnezevitus995",
-              "text": "More grace my dear brother"
-            },
-            {
-              "name": "nnezevitus995",
               "text": "Congratulations to you Nwangele"
             },
             {
               "name": "gsupport5264",
               "text": "This guys need to be protected ❤❤"
+            },
+            {
+              "name": "nnezevitus995",
+              "text": "More grace my dear brother"
             },
             {
               "name": "crestwellschool2024",
@@ -1909,16 +1909,16 @@
               "text": "That is very impressive. Thank Afia for this eye-opening and motivating program."
             },
             {
-              "name": "marshallmallows7368",
-              "text": "This guy just gave out gem fam, Enugu is buy far the best place in Nigeria period!"
-            },
-            {
               "name": "nnezevitus995",
               "text": "Wow..!! That's great. Congratulations to you brother"
             },
             {
               "name": "mralex9146",
               "text": "Wow that great one.... thank you so much Afia TV team ❤🎉 🎉"
+            },
+            {
+              "name": "marshallmallows7368",
+              "text": "This guy just gave out gem fam, Enugu is buy far the best place in Nigeria period!"
             },
             {
               "name": "uzonduobillor9869",
@@ -1974,12 +1974,16 @@
               "text": "The newly launched Enugu Air will compliment nicely whatever plans he has for the resort."
             },
             {
-              "name": "NnamdiOkafor-h7o",
-              "text": "This is massive I am visiting Nike lake for my December holiday"
+              "name": "Ocean-w3k4",
+              "text": "I’m so proud of what the South Easterners are doing in their region. More power to them. Paul is a visionary. Big up to him❤"
             },
             {
               "name": "adj5767",
               "text": "An Architect and Businessman - a powerful combination."
+            },
+            {
+              "name": "NnamdiOkafor-h7o",
+              "text": "This is massive I am visiting Nike lake for my December holiday"
             },
             {
               "name": "tristandeportivo4990",
@@ -1988,10 +1992,6 @@
             {
               "name": "ernestkanu1247",
               "text": "Make sure you have a resident suya spot 24/7. That will be a #1 attraction for sure."
-            },
-            {
-              "name": "Ocean-w3k4",
-              "text": "I’m so proud of what the South Easterners are doing in their region. More power to them. Paul is a visionary. Big up to him❤"
             },
             {
               "name": "fistandpen2505",
@@ -2006,12 +2006,16 @@
           "likes": 0,
           "chat": [
             {
+              "name": "ikechukwuMkpume",
+              "text": "Afia tv, please Keep the good work you are doing in showcasing the south east permanently on. God bless afia tv"
+            },
+            {
               "name": "fridayndujiuba",
               "text": "Thank God the south east states are waking up to put road infrastructure in place."
             },
             {
-              "name": "ikechukwuMkpume",
-              "text": "Afia tv, please Keep the good work you are doing in showcasing the south east permanently on. God bless afia tv"
+              "name": "emmaakona4674",
+              "text": "Keep it up Afia Tv You are the best ❤"
             },
             {
               "name": "OAKDAVISGASDAVISGASLIMITED",
@@ -2022,20 +2026,16 @@
               "text": "Our people will express themselves better in Igbo!! #GwaMOkwuNIgbo"
             },
             {
-              "name": "emmaakona4674",
-              "text": "Keep it up Afia Tv You are the best ❤"
-            },
-            {
-              "name": "OAKDAVISGASDAVISGASLIMITED",
-              "text": "Roads can't continue to be this sandy and Dusty"
-            },
-            {
               "name": "AugustineAnijielo",
               "text": "Engr. you are doing great in explaining the projects and roles. However, please try and curtail the use of ah, eeh and so in your speech. Yo"
             },
             {
-              "name": "chukschuks5069",
-              "text": "If they’re any slower even snails will laugh at them! I don’t see any appreciable progress on the job many months after they started."
+              "name": "chrisglasson8998",
+              "text": "Good one 👌✅"
+            },
+            {
+              "name": "OAKDAVISGASDAVISGASLIMITED",
+              "text": "Roads can't continue to be this sandy and Dusty"
             }
           ]
         },
@@ -2050,12 +2050,12 @@
               "text": "Enugu is doing a marvelous job"
             },
             {
-              "name": "charlesugochukwu9283",
-              "text": "EERC is wrong. The generation cost for Band A customers is different from the generation cost for the other bands. You can't just average th"
-            },
-            {
               "name": "OmaTV821",
               "text": "If they are getting electricity from National Grid why not the State Government don't it directly instead of going through these agents, jus"
+            },
+            {
+              "name": "charlesugochukwu9283",
+              "text": "EERC is wrong. The generation cost for Band A customers is different from the generation cost for the other bands. You can't just average th"
             }
           ]
         }
@@ -2072,12 +2072,16 @@
           "likes": 0,
           "chat": [
             {
+              "name": "john3501-s2v",
+              "text": "Enugu need to pay tax to develop enugu states."
+            },
+            {
               "name": "dilichukwudavidson8560",
               "text": "I think you should compare the tax rate in Enugu to other SE states to give a better context"
             },
             {
-              "name": "john3501-s2v",
-              "text": "Enugu need to pay tax to develop enugu states."
+              "name": "nas3516",
+              "text": "No place in the world people like to pay Taxes but reality is if we want good road good school good hospital and security we have to pay Tax"
             },
             {
               "name": "onyedikachi5376",
@@ -2088,16 +2092,12 @@
               "text": "Testing running zoo nigeria French colonial taxation style without accountability"
             },
             {
-              "name": "Tone_MJ",
-              "text": "If you cannot pay 100 naira tax per day from the thousands you make daily to ensure good roads, hospitals and schools then you’re not qualif"
-            },
-            {
-              "name": "nas3516",
-              "text": "No place in the world people like to pay Taxes but reality is if we want good road good school good hospital and security we have to pay Tax"
-            },
-            {
               "name": "greatwall007",
               "text": "Industralization is what will solve nigeria issue of generating money for tge country. Tax wont work"
+            },
+            {
+              "name": "Tone_MJ",
+              "text": "If you cannot pay 100 naira tax per day from the thousands you make daily to ensure good roads, hospitals and schools then you’re not qualif"
             },
             {
               "name": "stann7377",
@@ -2108,7 +2108,7 @@
         {
           "id": "Shcgl4TZGOg",
           "title": "From Southeast Nigeria to Rome: Inside the International STEM Olympiad Grand Finals!",
-          "views": 600,
+          "views": 601,
           "likes": 0,
           "chat": [
             {
@@ -2144,16 +2144,16 @@
               "text": "Wow interesting. Thank you Shekina."
             },
             {
+              "name": "onyedikachi5376",
+              "text": "Who manages the buses and the terminals? I think this should be privatized for proper management but monitors and regulated closely by the g"
+            },
+            {
               "name": "BrisaLotte",
               "text": "The issue Is keke they should over look those keke and work"
             },
             {
               "name": "Tone_MJ",
               "text": "I don’t know why they gave this buses to the firm running Lagos brt buses. We now have more buses on hire than the ones actually functional."
-            },
-            {
-              "name": "onyedikachi5376",
-              "text": "Who manages the buses and the terminals? I think this should be privatized for proper management but monitors and regulated closely by the g"
             },
             {
               "name": "owentkicks9505",
@@ -2184,7 +2184,7 @@
         {
           "id": "Z10D6XMbbaE",
           "title": "“NEPA STRIKES AGAIN?” ENUGU TRADERS SPEAK OUT ON POWER CRISIS AT NEW HAVEN MARKET",
-          "views": 123,
+          "views": 125,
           "likes": 0,
           "chat": []
         },
@@ -2222,12 +2222,12 @@
               "text": "Who was the previous governor in Enugu...the thief needs to be arrested for christ sake"
             },
             {
-              "name": "adj5767",
-              "text": "Why won't you allow people to speak Igbo? Some of the English people are using is not saying what they think it means. Allow them to express"
-            },
-            {
               "name": "DanielZeal-k7r",
               "text": "You're too sharp in your broadcaster job... You're an aspiration to many kids.. ❤"
+            },
+            {
+              "name": "adj5767",
+              "text": "Why won't you allow people to speak Igbo? Some of the English people are using is not saying what they think it means. Allow them to express"
             },
             {
               "name": "dicksonhaul4895",
@@ -2262,10 +2262,6 @@
               "text": "Gradually Enugu shall get to it's destination😊"
             },
             {
-              "name": "unlimitedAccess-md",
-              "text": "Enugu state is turning into modern city 🏙️ weldone our active Governor 💯"
-            },
-            {
               "name": "fimbaikenna",
               "text": "This girl is one of the best broadcasters in Africa. Sooo top notch"
             },
@@ -2274,16 +2270,20 @@
               "text": "Enugu can make a card that read Electronically for transport but Nigeria can not make an Electronic Voting system ."
             },
             {
+              "name": "unlimitedAccess-md",
+              "text": "Enugu state is turning into modern city 🏙️ weldone our active Governor 💯"
+            },
+            {
               "name": "keeneudeh8339",
               "text": "I'm so happy South East are waking up! Instead of waiting for Abuja for everything. Kudos to Ndi-Enugu, Kudos to Ndi-Igbo"
             },
             {
-              "name": "EUMoses",
-              "text": "The governor is doing well God bless him and Enugu state"
+              "name": "okechukwusaint3948",
+              "text": "The government should provide the bus hangers for the vehicles in strategic locations. After the closing hours, they should be moved to the "
             },
             {
-              "name": "okechukwusaint3948",
-              "text": "Commendable and this is the buses we use here. Properly managed by the government."
+              "name": "chigozieenyoghasi4523",
+              "text": "I’m glad that Enugu has learnt from Lagos State. If it could work in Lagos, it would work in the entire South East and other parts of the co"
             }
           ]
         },
@@ -2294,12 +2294,12 @@
           "likes": 0,
           "chat": [
             {
-              "name": "SkinJoe-cp9of",
-              "text": "Good development"
-            },
-            {
               "name": "promiseigbozuruike2995",
               "text": "NICE ONE PLEASE KEEP IT UP"
+            },
+            {
+              "name": "SkinJoe-cp9of",
+              "text": "Good development"
             },
             {
               "name": "OkechukwuEsther-c2u",
@@ -2326,12 +2326,12 @@
               "text": "Yea we want state police , and the head of state police shouldve 85 % integrity not as corrupt as IGP of tinubu government"
             },
             {
-              "name": "JohnOkayo",
-              "text": "This first guy talking here , his mind set is blocked he is not reason properly because of hardship. He needs to be rest"
-            },
-            {
               "name": "tmstms2769",
               "text": "I support state police, its the only way to ensure security and unity."
+            },
+            {
+              "name": "JohnOkayo",
+              "text": "This first guy talking here , his mind set is blocked he is not reason properly because of hardship. He needs to be rest"
             },
             {
               "name": "joem551",
@@ -2352,16 +2352,16 @@
           "likes": 0,
           "chat": [
             {
+              "name": "KhunPascas",
+              "text": "Nice one,all thanks goes to mr Alex onyia and also to afia television for promoting the the whole stories 🎉❤"
+            },
+            {
               "name": "UcheGodfrey-y1p",
               "text": "Wholesome documentary I must say, Thanks to all who made this a success. Big shout-out to Mr Alex Onyia, the Teachers, the Schools and the e"
             },
             {
               "name": "TochukwuInnocent-u5o",
               "text": "God bless The Nation"
-            },
-            {
-              "name": "KhunPascas",
-              "text": "Nice one,all thanks goes to mr Alex onyia and also to afia television for promoting the the whole stories 🎉❤"
             }
           ]
         },
@@ -2384,12 +2384,16 @@
           "likes": 0,
           "chat": [
             {
+              "name": "john3501-s2v",
+              "text": "Enugu need to pay tax to develop enugu states."
+            },
+            {
               "name": "dilichukwudavidson8560",
               "text": "I think you should compare the tax rate in Enugu to other SE states to give a better context"
             },
             {
-              "name": "john3501-s2v",
-              "text": "Enugu need to pay tax to develop enugu states."
+              "name": "nas3516",
+              "text": "No place in the world people like to pay Taxes but reality is if we want good road good school good hospital and security we have to pay Tax"
             },
             {
               "name": "onyedikachi5376",
@@ -2400,16 +2404,12 @@
               "text": "Testing running zoo nigeria French colonial taxation style without accountability"
             },
             {
-              "name": "Tone_MJ",
-              "text": "If you cannot pay 100 naira tax per day from the thousands you make daily to ensure good roads, hospitals and schools then you’re not qualif"
-            },
-            {
-              "name": "nas3516",
-              "text": "No place in the world people like to pay Taxes but reality is if we want good road good school good hospital and security we have to pay Tax"
-            },
-            {
               "name": "greatwall007",
               "text": "Industralization is what will solve nigeria issue of generating money for tge country. Tax wont work"
+            },
+            {
+              "name": "Tone_MJ",
+              "text": "If you cannot pay 100 naira tax per day from the thousands you make daily to ensure good roads, hospitals and schools then you’re not qualif"
             },
             {
               "name": "stann7377",
@@ -2435,10 +2435,6 @@
               "text": "This is to show you that if we allow each other go our separate ways . We all would make progress at our own pace . Each region will focus o"
             },
             {
-              "name": "brendanonyebuchi6769",
-              "text": "Ụmụ igbo jisie ike nụ ooh"
-            },
-            {
               "name": "Onyedikachi-gy4ll",
               "text": "Thanks to Afia TV for covering this important moment for us"
             },
@@ -2451,23 +2447,27 @@
               "text": "Thank you Alex Onyia and the team. Thanks to ISEE Thank wonderful Afia TV, you guys are wonderful. Thank you boys for making Ala Igbo proud "
             },
             {
+              "name": "johnochi5678",
+              "text": "Weldon Afia TV. This is lovely you covered this in Rome"
+            },
+            {
+              "name": "elvisnnaemeka6722",
+              "text": "Afia TV, ofu mkpuru anya ji isi ugwo. Good one"
+            },
+            {
               "name": "cyrilsixty544",
               "text": "Congratulations boys, we are proud of you"
             },
             {
               "name": "johnochi5678",
-              "text": "Weldon Afia TV. This is lovely you covered this in Rome"
-            },
-            {
-              "name": "sheriseofili3721",
-              "text": "Ji si nu ike."
+              "text": "It's seems the questions were hard for all the participants. Congratulations to our own boys for the outing. We pray for the best for them"
             }
           ]
         },
         {
           "id": "Shcgl4TZGOg",
           "title": "From Southeast Nigeria to Rome: Inside the International STEM Olympiad Grand Finals!",
-          "views": 600,
+          "views": 601,
           "likes": 0,
           "chat": [
             {
@@ -2502,32 +2502,32 @@
           "likes": 0,
           "chat": [
             {
-              "name": "adj5767",
-              "text": "The only state that was genuinely happy on the horrible election day in 2023. Curses and poxes on all her previous governors. They left this"
-            },
-            {
-              "name": "Ddonghuaverse",
-              "text": "This older women and men do not use Internet probably if Governor Alex Otti's achievement were social media will this people be happy like t"
-            },
-            {
-              "name": "ChijiokePrince-bt9wm",
-              "text": "When God wants to wipe the tears of a people, He gives them a man"
-            },
-            {
-              "name": "macanthony1982",
-              "text": "good governance personified"
+              "name": "mazwideamahle4091",
+              "text": "Out of the ashes, the Phoenix rises ! 🚀"
             },
             {
               "name": "okorochimauma6828",
               "text": "He will continue to do more, I believe those debt hindered him but since he has cleared it 2026 will be crazy"
             },
             {
-              "name": "mazwideamahle4091",
-              "text": "Out of the ashes, the Phoenix rises ! 🚀"
+              "name": "macanthony1982",
+              "text": "good governance personified"
+            },
+            {
+              "name": "Ddonghuaverse",
+              "text": "This older women and men do not use Internet probably if Governor Alex Otti's achievement were social media will this people be happy like t"
             },
             {
               "name": "kingsleyoffor6752",
               "text": "God bless Alex Otti"
+            },
+            {
+              "name": "ChijiokePrince-bt9wm",
+              "text": "When God wants to wipe the tears of a people, He gives them a man"
+            },
+            {
+              "name": "adj5767",
+              "text": "The only state that was genuinely happy on the horrible election day in 2023. Curses and poxes on all her previous governors. They left this"
             }
           ]
         },
@@ -2542,20 +2542,20 @@
               "text": "The next president needs to revert to our previous National anthem abeg"
             },
             {
-              "name": "uchennaonyekachivlog6269",
-              "text": "God bless governor mbah, God bless governor Alex otti."
-            },
-            {
               "name": "nnezevitus995",
               "text": "God bless and strengthens you Peter mbah"
             },
             {
-              "name": "donaldhwokike3948",
-              "text": "Nathalie🍔"
+              "name": "uchennaonyekachivlog6269",
+              "text": "God bless governor mbah, God bless governor Alex otti."
             },
             {
               "name": "IfoegbuikeEmmanuel",
               "text": "Well done my governor"
+            },
+            {
+              "name": "donaldhwokike3948",
+              "text": "Nathalie🍔"
             },
             {
               "name": "Curi0u50ne",
@@ -2590,6 +2590,10 @@
           "likes": 0,
           "chat": [
             {
+              "name": "chukwumaeneh7974",
+              "text": "watershed moment in the history of enugu. That a governor we elected sold us out of personal gain."
+            },
+            {
               "name": "QueenOsinachi",
               "text": "You speak so well Governor! ESUT, my Alma Mater polished your words so well!"
             },
@@ -2599,15 +2603,11 @@
             },
             {
               "name": "QueenOsinachi",
-              "text": "Congratulations Governor Peter Mbah for attaining National Relevance!"
-            },
-            {
-              "name": "QueenOsinachi",
               "text": "On Thursday, I will go and see the big Enugu Fashion and Garment Hub. You are blessed!"
             },
             {
               "name": "QueenOsinachi",
-              "text": "Our Igbo DNA does not change!😊Igbo to the World!"
+              "text": "Congratulations Governor Peter Mbah for attaining National Relevance!"
             },
             {
               "name": "QueenOsinachi",
@@ -2615,11 +2615,11 @@
             },
             {
               "name": "QueenOsinachi",
-              "text": "Excellent Community Education Welfare Scheme (ECEWS) should represent here😊"
+              "text": "Our Igbo DNA does not change!😊Igbo to the World!"
             },
             {
-              "name": "chukwumaeneh7974",
-              "text": "watershed moment in the history of enugu. That a governor we elected sold us out of personal gain."
+              "name": "QueenOsinachi",
+              "text": "Excellent Community Education Welfare Scheme (ECEWS) should represent here😊"
             }
           ]
         },
@@ -2634,32 +2634,32 @@
               "text": "\"True sovereignty will not be handed to us. It will be built by us through investing in our children\" POWERFUL WORDS!🔥"
             },
             {
-              "name": "Christabelmitchellofficial",
-              "text": "Enugu on the move,education is a key to nations building God bless you peter mbah."
-            },
-            {
-              "name": "chrisglasson8998",
-              "text": "Enugu is on the rise kudos to our able governor 👌✅"
-            },
-            {
-              "name": "charlesonyi1107",
-              "text": "Ecce homo—behold the man. Poised. Self assured. Determined. Pure human!! Take It And Go, Governor!!"
-            },
-            {
-              "name": "ekegodfrey6900",
-              "text": "What the governor didn’t mention is that most of these mushroom private schools may soon become history. Many parents, despite lacking the m"
+              "name": "Godnessakways",
+              "text": "Your speech is emotional and moving you are a real human and may God bless you mightily and your dreams / vision for enugu state"
             },
             {
               "name": "therealist2866",
               "text": "BRILLIANT! 👏👏 This speech should be widely circulated across Nigeria (even Africa)."
             },
             {
-              "name": "Victoria87",
-              "text": "Our tomorrow is at our doorstep. Thank you Peter Mbah❤"
+              "name": "ekegodfrey6900",
+              "text": "What the governor didn’t mention is that most of these mushroom private schools may soon become history. Many parents, despite lacking the m"
             },
             {
-              "name": "nonyagbo",
-              "text": "This man is a President"
+              "name": "clivewilliams6613",
+              "text": "This is how you know good people. What a man. I am so happy that we still have good people in government. I am also glad that I have a good "
+            },
+            {
+              "name": "Christabelmitchellofficial",
+              "text": "Enugu on the move,education is a key to nations building God bless you peter mbah."
+            },
+            {
+              "name": "Italianeye7",
+              "text": "God bless you my Governor. We will support you to achieve your dreams for our people. Keep moving step by step. Results is always the answer"
+            },
+            {
+              "name": "KelRicher",
+              "text": "The best thing to happen to the entirety of Africa! Thanks for this breakthrough!"
             }
           ]
         },
@@ -2670,12 +2670,12 @@
           "likes": 0,
           "chat": [
             {
-              "name": "Sirpew",
-              "text": "Good one to participate in"
-            },
-            {
               "name": "ChiemenaUwalaka-tm7eq",
               "text": "Wow, on X too? Alright 😮"
+            },
+            {
+              "name": "Sirpew",
+              "text": "Good one to participate in"
             },
             {
               "name": "ChiemenaUwalaka-tm7eq",
@@ -2694,12 +2694,12 @@
               "text": "Hotel Presidential was a part of my childhood growing up. So many events were held there. I was shocked to hear it went into dilapidation fo"
             },
             {
-              "name": "Ibiberi",
-              "text": "Congratulations Enugu! This is what you get when a successful BUSINESSMAN is in government."
-            },
-            {
               "name": "azzariomaperdijbssa",
               "text": "I wish Edo state has a governor maybe my state could have learn from Enugu state governor Dr Peter Mbah."
+            },
+            {
+              "name": "Ibiberi",
+              "text": "Congratulations Enugu! This is what you get when a successful BUSINESSMAN is in government."
             },
             {
               "name": "bernameknnabugo",
@@ -2718,8 +2718,8 @@
               "text": "It should not be managed by the government oo"
             },
             {
-              "name": "mondaysunday4035",
-              "text": "Can an individual stayin?"
+              "name": "morrisruiz2729",
+              "text": "The governor did well. So what were the previous governors doing that they failed to revamp the hotel?"
             }
           ]
         },
@@ -2794,7 +2794,7 @@
         {
           "id": "7Z3XK7vvdPM",
           "title": "ENERGY, LAW AND THE FUTURE: UNDERSTANDING NIGERIA’S EVOLVING ENERGY SECTOR | ENERGY WEEK 2026",
-          "views": 36,
+          "views": 37,
           "likes": 0,
           "chat": []
         },
@@ -2914,12 +2914,12 @@
           "likes": 0,
           "chat": [
             {
-              "name": "omobudebright",
-              "text": "Amazing one from Miss Amarachi 🎉"
-            },
-            {
               "name": "juddypraise7756",
               "text": "Amazing one Miss Amarachukwu"
+            },
+            {
+              "name": "omobudebright",
+              "text": "Amazing one from Miss Amarachi 🎉"
             }
           ]
         },
@@ -2989,7 +2989,7 @@
         {
           "id": "KXc7HisQpnQ",
           "title": "THERE IS NO AGRICULTURAL PRODUCE LEVY IN THE STATE -EMMANUEL NNAMANI",
-          "views": 635,
+          "views": 637,
           "likes": 0,
           "chat": []
         },
@@ -3004,12 +3004,12 @@
               "text": "Wow nice afiatv and ur guest"
             },
             {
-              "name": "tristandeportivo4990",
-              "text": "We need more government appointees to come to your station and throw light on issues. Mbah should partner with United Nigeria airlines who h"
-            },
-            {
               "name": "henrymmaduabuchi4720",
               "text": "Nice one Afia TV 🎉🎉"
+            },
+            {
+              "name": "tristandeportivo4990",
+              "text": "We need more government appointees to come to your station and throw light on issues. Mbah should partner with United Nigeria airlines who h"
             },
             {
               "name": "TonyBlend-s9n",
@@ -3030,6 +3030,45 @@
           ]
         },
         {
+          "id": "snxv4gloicA",
+          "title": "\"PETER MBAH'S BUDGET IS UNREALISTIC; I DOUBT THE STATE CAN GENERATE THE PROJECTED REVENUE\"-PROF. UBA",
+          "views": 641,
+          "likes": 0,
+          "chat": [
+            {
+              "name": "rokee1010",
+              "text": "Create more taxable projects or companies for increase in revenue collection,"
+            },
+            {
+              "name": "muneedeh5096",
+              "text": "Don't call this joker to talk about this Goverment again"
+            },
+            {
+              "name": "NwadinIgbodinOyibo",
+              "text": "Incompetence and ineptitude of imposed and misplaced priorities depicting an imposed leadership."
+            }
+          ]
+        },
+        {
+          "id": "Y5sJWOHGqik",
+          "title": "ENUGU TOWN HALL: ASSESSING DEVELOPMENTS IN ENUGU STATE 18 MONTHS LATER",
+          "views": 329,
+          "likes": 0,
+          "chat": [
+            {
+              "name": "chuckchukwuma7085",
+              "text": "Nathalie, I hope you have changed this table - it is too small to host two people"
+            }
+          ]
+        },
+        {
+          "id": "O2SoOU7ayqs",
+          "title": "RESERVED SEATS FOR WOMEN: SOUTHEAST TAKES A STAND AT CONSTITUTIONAL REVIEW IN ENUGU!",
+          "views": 836,
+          "likes": 0,
+          "chat": []
+        },
+        {
           "id": "Zhw8woB3_JY",
           "title": "ENUGU IN MOTION: CABINET SHAKE-UP, TARIFF SLASH & STATE CREATION BUZZ | ENUGU KWENU",
           "views": 1700,
@@ -3040,16 +3079,124 @@
               "text": "The speech of the governor is on a higher level, almost something unseen before in Nigeria. The rejig is highly laudable. Bravo to the power"
             },
             {
-              "name": "chrisglasson8998",
-              "text": "Nice one"
-            },
-            {
               "name": "OkechukwuEleke-s1v",
               "text": "Very exclusive"
             },
             {
+              "name": "chrisglasson8998",
+              "text": "Nice one"
+            },
+            {
               "name": "vincentanyjike",
               "text": "I am looking for the day a fresh .a university graduate with good background within the age bracket of 25years so that we begin to groom fre"
+            }
+          ]
+        },
+        {
+          "id": "QH0hUSGRKQw",
+          "title": "SMART SCHOOLS, SHAKY STAIRS? ENUGU’S INFRASTRUCTURE DEBATE GETS A REALITY CHECK",
+          "views": 1800,
+          "likes": 0,
+          "chat": [
+            {
+              "name": "leventisonyekachinnamani1224",
+              "text": "Nonsense, if U are a commissioner and has no power to execute Ur job then resign but in a case U fail to resign U should be hold accountable"
+            },
+            {
+              "name": "thinkerscorner1",
+              "text": "Even your personal house, if you're not careful, the Engineers will mess it up, this is a big problem in Nigeria today. Even the biggest con"
+            },
+            {
+              "name": "okechukwusaint3948",
+              "text": "There is an abandonment of the 141 streets road construction.., my street ( thinkers Corner) has been deserted by the engineers., Afia tv , "
+            },
+            {
+              "name": "ChukwunedumJoseph",
+              "text": "I think communities should be watchful and demand for quality and standard for every project going on in their communities"
+            },
+            {
+              "name": "leventisonyekachinnamani1224",
+              "text": "It's big but not too big, that's how shameless people can be. U should be in jail since."
+            },
+            {
+              "name": "sageo4389",
+              "text": "The former commissioner of work in this Peter Mbah administration was not doing his job, there were alot of complaint of poor quality work i"
+            },
+            {
+              "name": "leventisonyekachinnamani1224",
+              "text": "Exagerators, I mean a projects 260 smart schools and 260 health care centres is it not logical that there could be so lapses. U Mr ex commis"
+            },
+            {
+              "name": "sopuruegbodo",
+              "text": "This is a governor Amuneke situation. Mbah is lying to the people."
+            }
+          ]
+        },
+        {
+          "id": "MxQYDbtprGo",
+          "title": "THE TASK BEFORE PROF. SIMON ORTUANYA: RESTORING THE DIGNITY OF MAN AT UNN",
+          "views": 450,
+          "likes": 0,
+          "chat": [
+            {
+              "name": "ToolsStationNg",
+              "text": "The question is do you think he Merits the position of VC."
+            },
+            {
+              "name": "ToolsStationNg",
+              "text": "Natali pls ask yhis man tough question, i think he is not happy with this 😅😅"
+            },
+            {
+              "name": "ToolsStationNg",
+              "text": "How is his task enormous if the VC before him has done well. The infrastructures has been in a mess and you say what matters is that you hav"
+            },
+            {
+              "name": "ToolsStationNg",
+              "text": "i can sense the bias in all his answer."
+            },
+            {
+              "name": "FredDeGreat",
+              "text": "This man is a biased person. Does the VC tick the boxes is the question and he is talking only on University of Nsukka. So all the time his "
+            }
+          ]
+        },
+        {
+          "id": "PywZ_kqj-S0",
+          "title": "ENUGU’S CNG REVOLUTION: TERMINALS, BUSES & THE ROAD AHEAD",
+          "views": 4800,
+          "likes": 0,
+          "chat": [
+            {
+              "name": "casmirnoel2347",
+              "text": "I live in England and I make bold to say that anybody who opposes this development by the government doesn’t mean well for ndi Enugu"
+            },
+            {
+              "name": "desmondifeanyi5667",
+              "text": "This is the best current development from Enugu State Government. Nothing can be argued."
+            },
+            {
+              "name": "muneedeh5096",
+              "text": "Thank you Alex , many people don't known that peter mbah is fearless man, he gos to what he belive on, he is smarter than ifeanyi ugwuanyi"
+            },
+            {
+              "name": "OkechukwuEleke-s1v",
+              "text": "Poverty mindset have beclouded some of our people mba is doing his best may God bless him"
+            },
+            {
+              "name": "Chinweubaa",
+              "text": "Great discussion. Nice one Alex. It takes me 8 mins to walk from my house to the Busstop here in the UK. If you plan your movement and come "
+            },
+            {
+              "name": "emmanuelogundipe3328",
+              "text": "This is beautiful, the ticketing system looks like what we have in Lagos on the bus, train and ferries. I like that Abuja and Enugu are adop"
+            },
+            {
+              "name": "mature1",
+              "text": "Enugu most move on , with much developmental projects that will make Enugu a beautiful place to live . ALEX ON POINT"
+            },
+            {
+              "name": "arinzedaniel3646",
+              "text": "Governor Peter Mba is performing magic in Enugu. Awesome!"
             }
           ]
         },
@@ -3060,6 +3207,10 @@
           "likes": 0,
           "chat": [
             {
+              "name": "Emedo-wi2um",
+              "text": "Im delighted the lawyers conference was moved to Enugu. Everything is happening at the time when Enugu commissioned new CNG Buses 🚌, the 5 t"
+            },
+            {
               "name": "ijeslifestyle4262",
               "text": "This pretty lady interviewer is so good at her job 🎉❤"
             },
@@ -3068,24 +3219,20 @@
               "text": "When it comes to Enugu matters, joy joy joy 😂❤"
             },
             {
-              "name": "Emedo-wi2um",
-              "text": "Im delighted the lawyers conference was moved to Enugu. Everything is happening at the time when Enugu commissioned new CNG Buses 🚌, the 5 t"
-            },
-            {
               "name": "ikechukwuokoh5641",
               "text": "Good News, Congratulations to Ndi Enugu"
             },
             {
-              "name": "ItsEbuka",
-              "text": "Like always, there will be little to no accountability from the government."
+              "name": "StrongHouseChannel",
+              "text": "All this good projects Gov Peter Mba is renovating and building is commendable. But the government must maintain this infrastructures to avo"
             },
             {
               "name": "fimbaikenna",
               "text": "Wow Mbah is really working"
             },
             {
-              "name": "StrongHouseChannel",
-              "text": "All this good projects Gov Peter Mba is renovating and building is commendable. But the government must maintain this infrastructures to avo"
+              "name": "ItsEbuka",
+              "text": "Like always, there will be little to no accountability from the government."
             },
             {
               "name": "OkechukwuEleke-s1v",
@@ -3108,12 +3255,12 @@
               "text": "Enugwu state is truly moving forward ❤❤❤❤"
             },
             {
-              "name": "okechukwusaint3948",
-              "text": "On Ugwuanyi ,How do you mean a bit of where he came from? Is that Stereotyping him? During Ugwuanyi., recall there was recession & the peak "
-            },
-            {
               "name": "chukschuks5069",
               "text": "particularly interested in the greenery initiative. Enugu needs more tree lined avenues and streets and landscaping of open spaces and parks"
+            },
+            {
+              "name": "okechukwusaint3948",
+              "text": "On Ugwuanyi ,How do you mean a bit of where he came from? Is that Stereotyping him? During Ugwuanyi., recall there was recession & the peak "
             },
             {
               "name": "lissawilliams1735",
@@ -3152,12 +3299,12 @@
           "likes": 0,
           "chat": [
             {
-              "name": "anthonynwobbi5683",
-              "text": "For once, someone explaining to novices that payment to zenith is of no consequence as regards jaiz bank responsibility"
-            },
-            {
               "name": "chrisglasson8998",
               "text": "Nice one from nnamdi"
+            },
+            {
+              "name": "anthonynwobbi5683",
+              "text": "For once, someone explaining to novices that payment to zenith is of no consequence as regards jaiz bank responsibility"
             },
             {
               "name": "leonardtrevor",
@@ -3168,12 +3315,12 @@
               "text": "😂😂😂😂So even after Madam Tinubu visited Enugu, Sujimoto still has not tasted freedom? Good. Let him face the music. Refund Enugu's Money and "
             },
             {
-              "name": "Chuba-j8m",
-              "text": "It is a big deal Nnamdi. The proceed is supposed to be domiciled to jaiz bank which is why ENSG can't fall back on Jaiz."
-            },
-            {
               "name": "nnezevitus995",
               "text": "Nnamdi is learned and he has a common sense. Thank you Nnamdi"
+            },
+            {
+              "name": "Chuba-j8m",
+              "text": "It is a big deal Nnamdi. The proceed is supposed to be domiciled to jaiz bank which is why ENSG can't fall back on Jaiz."
             },
             {
               "name": "fgallant363",
@@ -3186,6 +3333,61 @@
           ]
         },
         {
+          "id": "Stg1na4qs5Q",
+          "title": "VOTER REGISTRATION APATHY IN ENUGU: IS DEMOCRACY AT RISK?",
+          "views": 131,
+          "likes": 0,
+          "chat": []
+        },
+        {
+          "id": "H1ZYV_Mhohw",
+          "title": "INSIDE ENUGU’S SMART GREEN SCHOOL TRANSITION: NNAMDI OBANYA ON EDUCATION’S DIGITAL FUTURE",
+          "views": 883,
+          "likes": 0,
+          "chat": [
+            {
+              "name": "MaduKelvin-y3h",
+              "text": "Nice"
+            },
+            {
+              "name": "EbowuJoy",
+              "text": "Nathaniel I love you so much"
+            },
+            {
+              "name": "LoveLink2",
+              "text": "How can school children be sitting on the floor? That should be a crime. So Public school children sit on the floor while criminal politicia"
+            }
+          ]
+        },
+        {
+          "id": "JvGj-SYc8qE",
+          "title": "ENUGU AND THE REST OF NIGERIA @65: SOBER REFLECTIONS ON NATIONHOOD & DEMOCRACY",
+          "views": 582,
+          "likes": 0,
+          "chat": [
+            {
+              "name": "arthurcmektv5345",
+              "text": "I love this Programme...❤❤ 042 watching from Abuja, Nigeria"
+            },
+            {
+              "name": "nnezevitus995",
+              "text": "Both of you have done well. Love you all.❤"
+            },
+            {
+              "name": "henrymmaduabuchi4720",
+              "text": "Nice one 👍 Afia"
+            },
+            {
+              "name": "leventisonyekachinnamani1224",
+              "text": "What kind of foolish and deviceiv question is that Nathalie? Is anyone questioning enugu been the capital of Igbo land or not other than U c"
+            },
+            {
+              "name": "ikpoegee",
+              "text": "This guy is a very poor analyst. I want to believe that he's not earning a living with this. It's not true that you develop better when you "
+            }
+          ]
+        },
+        {
           "id": "mDa1-RgRokU",
           "title": "CARRY YOUR CROSS! UCHE NNAJI’S RESIGNATION AND THE POLITICS OF ACCOUNTABILITY IN ENUGU",
           "views": 369,
@@ -3193,183 +3395,11 @@
           "chat": [
             {
               "name": "leventisonyekachinnamani1224",
-              "text": "Nathalie unfortunately this dubios crooked ex commissioners U are having on this programme have succeeded in diverting Ur attention from the"
-            },
-            {
-              "name": "leventisonyekachinnamani1224",
               "text": "Now the reason why this criminal U are having on this programme hate governor MBA this much is he would have preferred chijioke edeoga as en"
-            }
-          ]
-        },
-        {
-          "id": "9_r8cBjDgv0",
-          "title": "The logical thing for Alex Otti to do is decamp to APC, if he wants the work he's doing to continue",
-          "views": 884,
-          "likes": 0,
-          "chat": [
-            {
-              "name": "morrisruiz2729",
-              "text": "And he will shoot himself in the legs. Those so-called powerful men did not make him Abia Governor. APC does not exist in Abia. Abians won't"
-            },
-            {
-              "name": "ChiagoziemNworah",
-              "text": "It won't fool"
-            },
-            {
-              "name": "AmericanEagle100",
-              "text": "Powerful men what did not make him governor? That rubbish works when the people’s vote didn’t legitimately bring you to power.😂"
-            },
-            {
-              "name": "Ocean-w3k4",
-              "text": "Abia will not go to APC. You’re state can swim in APC, leave our state out of it. Your governor has NYSC hanging over his head APC I blackma"
-            },
-            {
-              "name": "Ocean-w3k4",
-              "text": "Let us watch, AFIA TV will become Tinubu propaganda tv. You hardly have viewership. De how far it will dwindle. Only Ronuku’s will be watchi"
-            },
-            {
-              "name": "ositaokoye8816",
-              "text": "Is this Alex Ogbodo brainless? Who are the powerful men? A deputy what? Shame on you, Ogbodo, for listening to an irrelevant Kanu and identi"
-            }
-          ]
-        },
-        {
-          "id": "maNWJ-ZB9tk",
-          "title": "\"PDP still has a strong hold in Enugu and nothing will change it\"",
-          "views": 233,
-          "likes": 0,
-          "chat": []
-        },
-        {
-          "id": "Q0EMfMnZenA",
-          "title": "BEYOND DEFECTION DAY: WHAT PETER MBAH’S MOVE MEANS FOR ENUGU’S POLITICAL FUTURE",
-          "views": 625,
-          "likes": 0,
-          "chat": [
-            {
-              "name": "Ocean-w3k4",
-              "text": "Good questioning. You did not let him dribble with his answer. That is the kind of journalism we need❤"
             },
             {
               "name": "leventisonyekachinnamani1224",
-              "text": "Kobino nwanne mu I salute U as always. Enugu bu nke GI peeiod"
-            },
-            {
-              "name": "Insidenija",
-              "text": "Natalia 🎉👏👏👏👏"
-            },
-            {
-              "name": "StephenBloomberg",
-              "text": "Its just very difficult to defend the apc. But lessons must be learnt. See you guys at the polls."
-            },
-            {
-              "name": "LoveLink2",
-              "text": "We will vote this Apc tool out!"
-            },
-            {
-              "name": "AkajiofoPress",
-              "text": "One hundred million naira was used to bribe Gov. Mba to join APC. The so called cleanest city indeed. Tinubu and APC is very transactional, "
-            },
-            {
-              "name": "leventisonyekachinnamani1224",
-              "text": "Nathalie isi adiro gi mma, chief cobino Ka ina eme address as enugu residence, that's madness. Enwelu onye Ka chief cobino bulu onye enugu?"
-            },
-            {
-              "name": "StephenBloomberg",
-              "text": "I doubt if this man is going to rerain his job. Lol. He said the pdp is invisible. A normal apc politician willsay the pdp is dead. Lol. The"
-            }
-          ]
-        },
-        {
-          "id": "M4TR3YQm4C4",
-          "title": "REFORMING ENUGU’S CIVIL SERVICE: DR. GODWIN ANIGBO & IFEANYI ONAH ON BUILDING A MODERN",
-          "views": 587,
-          "likes": 0,
-          "chat": [
-            {
-              "name": "leventisonyekachinnamani1224",
-              "text": "Biased she said, are U a civil servant? The salary U receive and the salary of a civil servant are they the same? But I want to partake on t"
-            },
-            {
-              "name": "paedougs",
-              "text": "My erudite Prof, always representing and never falling short of expectations. What an excellent and intelligent submission. I am very glad o"
-            },
-            {
-              "name": "leventisonyekachinnamani1224",
-              "text": "Ndi Igbo enwerozi Ike ikpo afa Igbo di Ka igbo si akpo ya. Ifele megbukwaa unu"
-            }
-          ]
-        },
-        {
-          "id": "CePhaDQ3nTg",
-          "title": "ENDING DIGITAL VIOLENCE: ENUGU FIRST LADY LEADS 16 DAYS OF ACTIVISM WITH GENDER AFFAIRS MINISTRY",
-          "views": 22,
-          "likes": 0,
-          "chat": []
-        },
-        {
-          "id": "iNyj3_IQouw",
-          "title": "ENUGU IN RETROSPECT: COMR. CHRIS AGU ON LESSONS LEARNED & THE ROAD AHEAD",
-          "views": 654,
-          "likes": 0,
-          "chat": [
-            {
-              "name": "uchennaotiaba3070",
-              "text": "@Comrade Chris Agu: you're a truthful man. I remove my cap for you. As you said the truth, may heavens opens for you Amen."
-            }
-          ]
-        },
-        {
-          "id": "jM-yjtoMPl8",
-          "title": "NEW TAX ACTS, NEW REALITIES: WHAT NIGERIA’S TAX REFORMS MEAN FOR ENUGU STATE",
-          "views": 111,
-          "likes": 0,
-          "chat": []
-        },
-        {
-          "id": "iAy0jfRp5Gk",
-          "title": "\"THE WELFARE WAS NOT GOOD\"- BEN NWOYE ADDRESSES #SEV2050 JAMBOREE CLAIMS ON ENUGU KWENU",
-          "views": 410,
-          "likes": 0,
-          "chat": []
-        },
-        {
-          "id": "5MdOjONE654",
-          "title": "ENUGU KWENU EXCLUSIVE: GOVERNOR PETER MBAH ON THE JOURNEY TO A $30 BILLION ECONOMY",
-          "views": 10000,
-          "likes": 0,
-          "chat": [
-            {
-              "name": "OmoLee-k4l",
-              "text": "Peter mbah the best Governor in Nigeria ❤❤🎉"
-            },
-            {
-              "name": "nizensude3472",
-              "text": "Governor Peter Mba is very Sound, #make Enugu great again"
-            },
-            {
-              "name": "africanbeauty4736",
-              "text": "Peter Mbah the greatest leader of our time."
-            },
-            {
-              "name": "lotannaokafor229",
-              "text": "Thank you mr governor, pls you see that 247 light in enugu by end of the year pls dont go back ooo"
-            },
-            {
-              "name": "chibuzoroduche4058",
-              "text": "First time watching a politician talk for an 1hr. Kudos to the Governor. These are the kind of politicians we need."
-            },
-            {
-              "name": "BringPodcast",
-              "text": "The interviewer asked very important questions and excellent follow-up questions. Very intelligent view from the Governor as well. Enugu is "
-            },
-            {
-              "name": "nizensude3472",
-              "text": "God bless you Afia TV, for this interview. God bless Enugu State, God bless his excellence Peter Mba, God bless Igbo land. Igbo amaka ❤❤"
-            },
-            {
-              "name": "africanbeauty4736",
-              "text": "Afia TV your trying alot, but keep advancing"
+              "text": "Nathalie unfortunately this dubios crooked ex commissioners U are having on this programme have succeeded in diverting Ur attention from the"
             }
           ]
         }
@@ -3397,12 +3427,12 @@
               "text": "Good program but I want to advise you to change your logo because it represent illuminati logo, pls go and verify, thanks and keep up the go"
             },
             {
-              "name": "remigiusanichebe6591",
-              "text": "Nonsense"
-            },
-            {
               "name": "mbaetekaosita1221",
               "text": "You people are always hypocritical about be loud of truth. MNK is up right and no two ways about it, don't defend a person when are afraid,"
+            },
+            {
+              "name": "remigiusanichebe6591",
+              "text": "Nonsense"
             }
           ]
         },
@@ -3485,7 +3515,7 @@
         {
           "id": "IoqNyf3T6ls",
           "title": "LIFE AND LEGACIES OF DR. MICHAEL OKPARA: A GRAND DAUGHTER'S PERSPECTIVE",
-          "views": 182,
+          "views": 183,
           "likes": 0,
           "chat": []
         },
@@ -3508,16 +3538,16 @@
           "likes": 0,
           "chat": [
             {
-              "name": "MarcelOgemdi-jd7zt",
-              "text": "Prof. Okey Ikechukwu ❤❤❤❤❤"
-            },
-            {
               "name": "emmanuelobinna8832",
               "text": "Nice one sir but we need fully international airport, train rail and seaport in south east so that our people can come back home and develop"
             },
             {
               "name": "mralex9146",
               "text": "Prof is always on point"
+            },
+            {
+              "name": "MarcelOgemdi-jd7zt",
+              "text": "Prof. Okey Ikechukwu ❤❤❤❤❤"
             }
           ]
         },
@@ -3547,12 +3577,12 @@
           "likes": 0,
           "chat": [
             {
-              "name": "tristandeportivo4990",
-              "text": "It's always nourishing to listen to Eastern Eye. I can never miss any episode. Kudos Alex Ogbodo. Try to get people lyk Roban, Ibeto, Onyish"
-            },
-            {
               "name": "Jowin05",
               "text": "Mark will deliver successful."
+            },
+            {
+              "name": "tristandeportivo4990",
+              "text": "It's always nourishing to listen to Eastern Eye. I can never miss any episode. Kudos Alex Ogbodo. Try to get people lyk Roban, Ibeto, Onyish"
             }
           ]
         },
@@ -3567,20 +3597,20 @@
               "text": "Thanks for the explanations, especially on the new President General from Imo State, whose tenure would last for days. We are eagerly waitin"
             },
             {
-              "name": "ZeeMee-hm3cg",
-              "text": "When will Youths become part of the leadership of Ohaneze ?"
+              "name": "maziugochukwu6167",
+              "text": "What an informative interaction 👏"
             },
             {
               "name": "Frenzeee-l7o",
               "text": "Nice discussion"
             },
             {
-              "name": "maziugochukwu6167",
-              "text": "What an informative interaction 👏"
+              "name": "ZeeMee-hm3cg",
+              "text": "If ohaneze is a well organised group the entire country would respect who ever is at the gelm of affairs. It must not be about age"
             },
             {
               "name": "ZeeMee-hm3cg",
-              "text": "If ohaneze is a well organised group the entire country would respect who ever is at the gelm of affairs. It must not be about age"
+              "text": "When will Youths become part of the leadership of Ohaneze ?"
             },
             {
               "name": "leventisonyekachinnamani1224",
@@ -3595,32 +3625,32 @@
           "likes": 0,
           "chat": [
             {
-              "name": "Okeyumolu",
-              "text": "This is a totally unfair characterization of Gov. Soludo's accomplishments. He has surpassed expectations in all aspects of the kind of gove"
+              "name": "mralex9146",
+              "text": "Dr Ene I really appreciate listening to you... thank you so much for speaking truth"
             },
             {
-              "name": "larrykingsley3731",
-              "text": "Uli,Orsumoghu, Azia ,Iseeke and Ihiala area is no go area in Anambra state. Imo state don't have Governor. Best Governor in Southeast now is"
+              "name": "Okeyumolu",
+              "text": "This is a totally unfair characterization of Gov. Soludo's accomplishments. He has surpassed expectations in all aspects of the kind of gove"
             },
             {
               "name": "okechukwusaint3948",
               "text": "Railway infrastructure connecting the whole Southeastern states should be built. Governor Mbah has to fix the street roads in Enugu metropol"
             },
             {
+              "name": "larrykingsley3731",
+              "text": "Uli,Orsumoghu, Azia ,Iseeke and Ihiala area is no go area in Anambra state. Imo state don't have Governor. Best Governor in Southeast now is"
+            },
+            {
               "name": "Ejiki-ln1tj",
               "text": "Soludo every day continued lamenting how he will fight insecurity from January to December yet nothing happens he only speaks big grammar an"
             },
             {
-              "name": "mralex9146",
-              "text": "Dr Ene I really appreciate listening to you... thank you so much for speaking truth"
+              "name": "AK-ql1ww",
+              "text": "Sound guy."
             },
             {
               "name": "rokee1010",
               "text": "One area they are doing bad is internal generated revenue is still poor and they should stop building two lane roads and comeback to the dua"
-            },
-            {
-              "name": "AK-ql1ww",
-              "text": "Sound guy."
             },
             {
               "name": "jonexglobal4862",
@@ -3644,7 +3674,7 @@
         {
           "id": "1JWgK1oxGk4",
           "title": "ALUMONA AWARDS SCHOLARSHIPS TO ST. PATRICK’S STUDENTS IN OBOLLO-AFOR",
-          "views": 15,
+          "views": 19,
           "likes": 0,
           "chat": []
         },
@@ -3727,12 +3757,12 @@
               "text": "Alright, good news, but what is the condition of the University of nigeria Nsuka ?"
             },
             {
-              "name": "chrisglasson8998",
-              "text": "Nice one 👌"
-            },
-            {
               "name": "faithup7152",
               "text": "Beautiful and kudos to honourable Paul Nnamchi.🙏🏻👏🏾😘"
+            },
+            {
+              "name": "chrisglasson8998",
+              "text": "Nice one 👌"
             }
           ]
         },
@@ -3830,36 +3860,36 @@
           "likes": 0,
           "chat": [
             {
+              "name": "EkwuemeOluebubeelvis-nh4ns",
+              "text": "Our governor is the best! He is doing wonderfully well, especially in the area of education. The free boot camp is a great initiative, helpi"
+            },
+            {
               "name": "georginaozor",
               "text": "I wish to appreciate our Digital Governor Dr Peter Ndubusi Mba for this wonderful initiative. Our Tomorrow is Here indeed."
             },
             {
-              "name": "EkwuemeOluebubeelvis-nh4ns",
-              "text": "Our governor is the best! He is doing wonderfully well, especially in the area of education. The free boot camp is a great initiative, helpi"
+              "name": "florencechinedueze",
+              "text": "This is amazing. All thanks to our visionary and education friendly governor Bar. Dr. Peter Mba for this initiative. The Parents and childre"
             },
             {
               "name": "nutraceuticalgems",
               "text": "Our tomorrow is here! Thank you Gov. Peter Mba for advancing educational innovation and placing Enugu on the path of digital and technologic"
             },
             {
-              "name": "ositaeze3572",
-              "text": "This is highly commendable. The governor is taking Enugu state to the moon. We are standing at the forefront of modern basic education."
+              "name": "chioma_28r",
+              "text": "Highly commendable, thank you Gov. Peter mba for this great innovation"
             },
             {
-              "name": "RitaChinenye-rr6uw",
-              "text": "This is so amazing, our Governor Barr. Peter Mba is really taking education in Enugu State to the next level where our children will not be "
+              "name": "ChidimmaElla-w8u",
+              "text": "Thank you his excellency. Your works are appreciated"
             },
             {
               "name": "chidiiloanusi4316",
               "text": "I am so excited about the impact the Governor and his team are making in the lives of Enugu children. I pray for more strength, wisdom, and "
             },
             {
-              "name": "dintaentertains5377",
-              "text": "What a groundbreaking initiative by the governor of Enugu state, Governor Peter Mbah. The children are the future."
-            },
-            {
-              "name": "florencechinedueze",
-              "text": "This is amazing. All thanks to our visionary and education friendly governor Bar. Dr. Peter Mba for this initiative. The Parents and childre"
+              "name": "RitaChinenye-rr6uw",
+              "text": "This is so amazing, our Governor Barr. Peter Mba is really taking education in Enugu State to the next level where our children will not be "
             }
           ]
         }
@@ -3872,7 +3902,7 @@
         {
           "id": "cV1ni7sctlA",
           "title": "NAFEST 2026 RETURNS TO ENUGU: OBI ASIKA ON CULTURE, TOURISM AND ECONOMIC OPPORTUNITIES",
-          "views": 133,
+          "views": 142,
           "likes": 0,
           "chat": [
             {
@@ -3884,7 +3914,7 @@
         {
           "id": "B-CXFvM8v7s",
           "title": "“NORTH LONDON FOREVER!” ARSENAL SUPPORTERS BRING EMIRATES-STYLE ENERGY TO ABUJA",
-          "views": 53,
+          "views": 54,
           "likes": 0,
           "chat": []
         },
@@ -3984,7 +4014,7 @@
         {
           "id": "LQp9IdLRg2Y",
           "title": "“ENUGU DOESN'T HAVE OPPOSITION” - DARLINGTON NNAMANI ARINZE ON ENUGU LGA ELECTION AFTERMATH",
-          "views": 98,
+          "views": 99,
           "likes": 0,
           "chat": []
         },
@@ -4002,12 +4032,12 @@
           "likes": 0,
           "chat": [
             {
-              "name": "brendanonyebuchi6769",
-              "text": "There's a problem of lack of access roads in the rural areas in Igbo eze South, using my village as an example, I'm from Ovoko Agu under Igb"
-            },
-            {
               "name": "YeisonPana-z3h",
               "text": "Build road 🛣️ in Igbo eze south we need good water 🌊🌊 light put our children into sports"
+            },
+            {
+              "name": "brendanonyebuchi6769",
+              "text": "There's a problem of lack of access roads in the rural areas in Igbo eze South, using my village as an example, I'm from Ovoko Agu under Igb"
             }
           ]
         },
