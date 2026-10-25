@@ -1,6 +1,37 @@
 {
-  "updatedAt": "2026-10-25T01:18:26.941351+01:00",
-  "onAir": null,
+  "updatedAt": "2026-10-25T14:54:14.053617+01:00",
+  "onAir": {
+    "id": "66d78d6d5d81f931ec015f10",
+    "day": "SUNDAY",
+    "startTime": "12:00",
+    "endTime": "18:00",
+    "duration": 360,
+    "showId": "66d78d695d81f931ec015f09",
+    "show": {
+      "id": "66d78d695d81f931ec015f09",
+      "title": "Weekend Special",
+      "description": "Kick off your weekend with a mix of music, entertainment, and lifestyle content.",
+      "coverArt": "https://8kvl2urisy.ufs.sh/f/BxfEHnSVCZL4iGV9AFqNRrcIoYjUSlfe7WmO10wFA4Nvn9QB",
+      "category": "Weekend",
+      "tags": [
+        "weekend-special",
+        "saturday"
+      ],
+      "hostId": "66e0086199b3ff089a298c50",
+      "createdAt": "2024-09-03T22:27:53.862Z",
+      "updatedAt": "2024-09-10T09:04:44.980Z",
+      "host": {
+        "id": "66e0086199b3ff089a298c50",
+        "name": "CutyLight",
+        "bio": "",
+        "instagram_handle": "https://www.instagram.com/realcutylight/",
+        "x_handle": "https://x.com/realcutylight/",
+        "facebook": null,
+        "instagram": null,
+        "twitter": null
+      }
+    }
+  },
   "today": [
     {
       "id": "66d78d6d5d81f931ec015f10",
