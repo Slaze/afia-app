@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-10-24T15:41:29.893850+01:00",
+  "updatedAt": "2026-10-25T01:18:26.941351+01:00",
   "onAir": null,
   "today": [
     {
-      "id": "66d78d6a5d81f931ec015f0a",
-      "day": "SATURDAY",
-      "startTime": "07:00",
-      "endTime": "12:00",
-      "duration": 299,
+      "id": "66d78d6d5d81f931ec015f10",
+      "day": "SUNDAY",
+      "startTime": "12:00",
+      "endTime": "18:00",
+      "duration": 360,
       "showId": "66d78d695d81f931ec015f09",
       "show": {
         "id": "66d78d695d81f931ec015f09",
@@ -35,40 +35,8 @@
       }
     },
     {
-      "id": "66d78d6c5d81f931ec015f0e",
-      "day": "SATURDAY",
-      "startTime": "16:00",
-      "endTime": "17:00",
-      "duration": 60,
-      "showId": "66d78d6c5d81f931ec015f0d",
-      "show": {
-        "id": "66d78d6c5d81f931ec015f0d",
-        "title": "Afia Oma",
-        "description": "Explore local culture and traditions with engaging discussions and music.",
-        "coverArt": "https://utfs.io/f/38d6a4d7-5e51-412a-aa4a-5d517f0ca3b1-bayyv5.jpg",
-        "category": "Weekend",
-        "tags": [
-          "afia-oma",
-          "saturday"
-        ],
-        "hostId": "66e0061299b3ff089a298c4b",
-        "createdAt": "2024-09-03T22:27:56.309Z",
-        "updatedAt": "2024-09-10T09:04:44.980Z",
-        "host": {
-          "id": "66e0061299b3ff089a298c4b",
-          "name": "Kosi",
-          "bio": "Anukwu Kosi Chinyere is a Nigerian from Ọzara in Nkanụ West Local Government Area of Enugu State. She studied Banking and Finance after a diploma in Business Administration from Enugu State University of Technology, ESUT.   Kosi is an extraordinary and amazing presenter, who achieved so much knowledge from her previous jobs experiences.           Awards: \"Face of Nice Moment Tea\" (Transglobe Pharmaceutical Company Limited), Best B.A(Union Bank), Brand Ambassador, Crystal Garden Estate (Real Estate Company, Headquartered in Onitsha, Anambra State)   Hobbies:  Cooking, Reading, Listening to music, Dancing",
-          "instagram_handle": "https://www.instagram.com/anukwukosi",
-          "x_handle": "https://x.com/AnukwuK",
-          "facebook": null,
-          "instagram": null,
-          "twitter": null
-        }
-      }
-    },
-    {
-      "id": "66d78d6b5d81f931ec015f0c",
-      "day": "SATURDAY",
+      "id": "66d78d6f5d81f931ec015f12",
+      "day": "SUNDAY",
       "startTime": "18:00",
       "endTime": "19:00",
       "duration": 60,
@@ -100,107 +68,6 @@
     }
   ],
   "week": [
-    {
-      "label": "Saturday 24 Oct",
-      "rows": [
-        {
-          "id": "66d78d6a5d81f931ec015f0a",
-          "day": "SATURDAY",
-          "startTime": "07:00",
-          "endTime": "12:00",
-          "duration": 299,
-          "showId": "66d78d695d81f931ec015f09",
-          "show": {
-            "id": "66d78d695d81f931ec015f09",
-            "title": "Weekend Special",
-            "description": "Kick off your weekend with a mix of music, entertainment, and lifestyle content.",
-            "coverArt": "https://8kvl2urisy.ufs.sh/f/BxfEHnSVCZL4iGV9AFqNRrcIoYjUSlfe7WmO10wFA4Nvn9QB",
-            "category": "Weekend",
-            "tags": [
-              "weekend-special",
-              "saturday"
-            ],
-            "hostId": "66e0086199b3ff089a298c50",
-            "createdAt": "2024-09-03T22:27:53.862Z",
-            "updatedAt": "2024-09-10T09:04:44.980Z",
-            "host": {
-              "id": "66e0086199b3ff089a298c50",
-              "name": "CutyLight",
-              "bio": "",
-              "instagram_handle": "https://www.instagram.com/realcutylight/",
-              "x_handle": "https://x.com/realcutylight/",
-              "facebook": null,
-              "instagram": null,
-              "twitter": null
-            }
-          }
-        },
-        {
-          "id": "66d78d6c5d81f931ec015f0e",
-          "day": "SATURDAY",
-          "startTime": "16:00",
-          "endTime": "17:00",
-          "duration": 60,
-          "showId": "66d78d6c5d81f931ec015f0d",
-          "show": {
-            "id": "66d78d6c5d81f931ec015f0d",
-            "title": "Afia Oma",
-            "description": "Explore local culture and traditions with engaging discussions and music.",
-            "coverArt": "https://utfs.io/f/38d6a4d7-5e51-412a-aa4a-5d517f0ca3b1-bayyv5.jpg",
-            "category": "Weekend",
-            "tags": [
-              "afia-oma",
-              "saturday"
-            ],
-            "hostId": "66e0061299b3ff089a298c4b",
-            "createdAt": "2024-09-03T22:27:56.309Z",
-            "updatedAt": "2024-09-10T09:04:44.980Z",
-            "host": {
-              "id": "66e0061299b3ff089a298c4b",
-              "name": "Kosi",
-              "bio": "Anukwu Kosi Chinyere is a Nigerian from Ọzara in Nkanụ West Local Government Area of Enugu State. She studied Banking and Finance after a diploma in Business Administration from Enugu State University of Technology, ESUT.   Kosi is an extraordinary and amazing presenter, who achieved so much knowledge from her previous jobs experiences.           Awards: \"Face of Nice Moment Tea\" (Transglobe Pharmaceutical Company Limited), Best B.A(Union Bank), Brand Ambassador, Crystal Garden Estate (Real Estate Company, Headquartered in Onitsha, Anambra State)   Hobbies:  Cooking, Reading, Listening to music, Dancing",
-              "instagram_handle": "https://www.instagram.com/anukwukosi",
-              "x_handle": "https://x.com/AnukwuK",
-              "facebook": null,
-              "instagram": null,
-              "twitter": null
-            }
-          }
-        },
-        {
-          "id": "66d78d6b5d81f931ec015f0c",
-          "day": "SATURDAY",
-          "startTime": "18:00",
-          "endTime": "19:00",
-          "duration": 60,
-          "showId": "66d78d6b5d81f931ec015f0b",
-          "show": {
-            "id": "66d78d6b5d81f931ec015f0b",
-            "title": "Top 10 Countdown Show",
-            "description": "Count down of the top 10 hits of the week.",
-            "coverArt": "https://utfs.io/f/287b4e13-d8cd-46e4-ad55-82c4550b380a-14k2jg.jpg",
-            "category": "Weekend",
-            "tags": [
-              "top-10-countdown-show",
-              "saturday"
-            ],
-            "hostId": "66e000e899b3ff089a298c3c",
-            "createdAt": "2024-09-03T22:27:55.130Z",
-            "updatedAt": "2024-09-10T09:04:44.980Z",
-            "host": {
-              "id": "66e000e899b3ff089a298c3c",
-              "name": "G'son Emaefa",
-              "bio": "Orji Nwachukwu (G’son Emaefa).\nManager, Afia Radio.\n\nIs an ace producer, a profound Radio/Video jockey. \nA voice actor, model, actor, artiste and an engineer.\nHe’s an all round entertainment and music connoisseur, with decades experience in multimedia productions.\n \nAs an A&R, Publicist, Talent manager, and a music executive, with his meticulous slant in sourcing, packaging and distribution of raw contents and talents.\nHe has been an instrument in promoting and projecting so many talents, who are now established.\n\nHe has successfully worked and also built brands in the entertainment industry, it's business and media sphere.\nAlso the flamboyant host of the much talked about WEEKLY TOP 10 COUNTDOWN SHOW WITH G’SON EMAEFA which airs every weekend by 6pm, on Afia 99.3fm Enugu.",
-              "instagram_handle": "https://www.instagram.com/gsonemaefa",
-              "x_handle": "https://x.com/gsonemaefa",
-              "facebook": null,
-              "instagram": null,
-              "twitter": null
-            }
-          }
-        }
-      ]
-    },
     {
       "label": "Sunday 25 Oct",
       "rows": [
@@ -442,6 +309,107 @@
               "bio": "Also known as \"THE DARKCHILD ON THE RADIO\"...ANI WILSON CHOKO,preferably loves to be called  \"CHOKO\" kick started his media career professionally as a co-host on Radio active saturday and church on Radio on wish fm in portharcourt, Rivers state, he later moved on to become the host of \"Da afro drippin clan\" on lovedabeat radio, london u.k, before becoming a part of the distinguished and high profiled Afia team.  \n\nAn incessant media dopehead, voiceover king, OAP extraordinaire, hypeman unplugged, mad singer(with the voice of an angel by the way) amazing rapper, songwriter, a great actor and a fine voice actor, tv host with the flows, entertainer 360 and ironically, on the flipside, a licensed practicing civil engineer......in the words of lil wayne, I should prolly say \"GOD DID HIS THING WHEN HE MADE ME\"  \n\nSONGS THAT BEST TELL MY STORY AT THE MOMENT-\"WILD DREAMS BY BURNA BOY & GOD DID BY DJ KHALED, cos honestly, it's just been GOD ALL THE WAY\"  THINGS YOU PROLLY DUNNO ABOUT ME-am a very fun, easy going, free spirited, humble, lovable guy(I no dey look down on anybody, but then I hate what I don't like) and just so you know, my presence is contagious & addictive and its prolly the reason why \"EVERYBODY LOVES CHOKO\"  \n\nMY SIGNATURE LINE -\"they call me choko, who don't do nothing loko, cos i always stay flyyyyyyy, like i'm supposed to",
               "instagram_handle": "https://www.instagram.com/official_chokoani/",
               "x_handle": "https://twitter.com/Dheycallmechoko/",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "Saturday 31 Oct",
+      "rows": [
+        {
+          "id": "66d78d6a5d81f931ec015f0a",
+          "day": "SATURDAY",
+          "startTime": "07:00",
+          "endTime": "12:00",
+          "duration": 299,
+          "showId": "66d78d695d81f931ec015f09",
+          "show": {
+            "id": "66d78d695d81f931ec015f09",
+            "title": "Weekend Special",
+            "description": "Kick off your weekend with a mix of music, entertainment, and lifestyle content.",
+            "coverArt": "https://8kvl2urisy.ufs.sh/f/BxfEHnSVCZL4iGV9AFqNRrcIoYjUSlfe7WmO10wFA4Nvn9QB",
+            "category": "Weekend",
+            "tags": [
+              "weekend-special",
+              "saturday"
+            ],
+            "hostId": "66e0086199b3ff089a298c50",
+            "createdAt": "2024-09-03T22:27:53.862Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66e0086199b3ff089a298c50",
+              "name": "CutyLight",
+              "bio": "",
+              "instagram_handle": "https://www.instagram.com/realcutylight/",
+              "x_handle": "https://x.com/realcutylight/",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        },
+        {
+          "id": "66d78d6c5d81f931ec015f0e",
+          "day": "SATURDAY",
+          "startTime": "16:00",
+          "endTime": "17:00",
+          "duration": 60,
+          "showId": "66d78d6c5d81f931ec015f0d",
+          "show": {
+            "id": "66d78d6c5d81f931ec015f0d",
+            "title": "Afia Oma",
+            "description": "Explore local culture and traditions with engaging discussions and music.",
+            "coverArt": "https://utfs.io/f/38d6a4d7-5e51-412a-aa4a-5d517f0ca3b1-bayyv5.jpg",
+            "category": "Weekend",
+            "tags": [
+              "afia-oma",
+              "saturday"
+            ],
+            "hostId": "66e0061299b3ff089a298c4b",
+            "createdAt": "2024-09-03T22:27:56.309Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66e0061299b3ff089a298c4b",
+              "name": "Kosi",
+              "bio": "Anukwu Kosi Chinyere is a Nigerian from Ọzara in Nkanụ West Local Government Area of Enugu State. She studied Banking and Finance after a diploma in Business Administration from Enugu State University of Technology, ESUT.   Kosi is an extraordinary and amazing presenter, who achieved so much knowledge from her previous jobs experiences.           Awards: \"Face of Nice Moment Tea\" (Transglobe Pharmaceutical Company Limited), Best B.A(Union Bank), Brand Ambassador, Crystal Garden Estate (Real Estate Company, Headquartered in Onitsha, Anambra State)   Hobbies:  Cooking, Reading, Listening to music, Dancing",
+              "instagram_handle": "https://www.instagram.com/anukwukosi",
+              "x_handle": "https://x.com/AnukwuK",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        },
+        {
+          "id": "66d78d6b5d81f931ec015f0c",
+          "day": "SATURDAY",
+          "startTime": "18:00",
+          "endTime": "19:00",
+          "duration": 60,
+          "showId": "66d78d6b5d81f931ec015f0b",
+          "show": {
+            "id": "66d78d6b5d81f931ec015f0b",
+            "title": "Top 10 Countdown Show",
+            "description": "Count down of the top 10 hits of the week.",
+            "coverArt": "https://utfs.io/f/287b4e13-d8cd-46e4-ad55-82c4550b380a-14k2jg.jpg",
+            "category": "Weekend",
+            "tags": [
+              "top-10-countdown-show",
+              "saturday"
+            ],
+            "hostId": "66e000e899b3ff089a298c3c",
+            "createdAt": "2024-09-03T22:27:55.130Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66e000e899b3ff089a298c3c",
+              "name": "G'son Emaefa",
+              "bio": "Orji Nwachukwu (G’son Emaefa).\nManager, Afia Radio.\n\nIs an ace producer, a profound Radio/Video jockey. \nA voice actor, model, actor, artiste and an engineer.\nHe’s an all round entertainment and music connoisseur, with decades experience in multimedia productions.\n \nAs an A&R, Publicist, Talent manager, and a music executive, with his meticulous slant in sourcing, packaging and distribution of raw contents and talents.\nHe has been an instrument in promoting and projecting so many talents, who are now established.\n\nHe has successfully worked and also built brands in the entertainment industry, it's business and media sphere.\nAlso the flamboyant host of the much talked about WEEKLY TOP 10 COUNTDOWN SHOW WITH G’SON EMAEFA which airs every weekend by 6pm, on Afia 99.3fm Enugu.",
+              "instagram_handle": "https://www.instagram.com/gsonemaefa",
+              "x_handle": "https://x.com/gsonemaefa",
               "facebook": null,
               "instagram": null,
               "twitter": null
