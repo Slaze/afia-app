@@ -1,40 +1,10 @@
 {
-  "updatedAt": "2026-10-28T22:46:15.164787+01:00",
-  "onAir": {
-    "id": "66d78d685d81f931ec015f06",
-    "day": "WEDNESDAY",
-    "startTime": "19:00",
-    "endTime": "22:00",
-    "duration": 180,
-    "showId": "66d78d685d81f931ec015f03",
-    "show": {
-      "id": "66d78d685d81f931ec015f03",
-      "title": "Night Market",
-      "description": "Tune into the hottest tracks, catch the latest social media trends, and dive into engaging conversations! Join us for a high-energy evening where music, games, and trends come together to keep you in the know and on the pulse of what's now. Let's vibe, thrive, and stay connected!",
-      "coverArt": "https://utfs.io/f/a63c722f-1d84-4f24-8788-5596cd25b334-ok1b2b.jpg",
-      "category": "Regular",
-      "tags": [
-        "night-market"
-      ],
-      "hostId": "66dffff899b3ff089a298c37",
-      "createdAt": "2024-09-03T22:27:52.604Z",
-      "updatedAt": "2024-09-10T09:04:44.980Z",
-      "host": {
-        "id": "66dffff899b3ff089a298c37",
-        "name": "Choko",
-        "bio": "Also known as \"THE DARKCHILD ON THE RADIO\"...ANI WILSON CHOKO,preferably loves to be called  \"CHOKO\" kick started his media career professionally as a co-host on Radio active saturday and church on Radio on wish fm in portharcourt, Rivers state, he later moved on to become the host of \"Da afro drippin clan\" on lovedabeat radio, london u.k, before becoming a part of the distinguished and high profiled Afia team.  \n\nAn incessant media dopehead, voiceover king, OAP extraordinaire, hypeman unplugged, mad singer(with the voice of an angel by the way) amazing rapper, songwriter, a great actor and a fine voice actor, tv host with the flows, entertainer 360 and ironically, on the flipside, a licensed practicing civil engineer......in the words of lil wayne, I should prolly say \"GOD DID HIS THING WHEN HE MADE ME\"  \n\nSONGS THAT BEST TELL MY STORY AT THE MOMENT-\"WILD DREAMS BY BURNA BOY & GOD DID BY DJ KHALED, cos honestly, it's just been GOD ALL THE WAY\"  THINGS YOU PROLLY DUNNO ABOUT ME-am a very fun, easy going, free spirited, humble, lovable guy(I no dey look down on anybody, but then I hate what I don't like) and just so you know, my presence is contagious & addictive and its prolly the reason why \"EVERYBODY LOVES CHOKO\"  \n\nMY SIGNATURE LINE -\"they call me choko, who don't do nothing loko, cos i always stay flyyyyyyy, like i'm supposed to",
-        "instagram_handle": "https://www.instagram.com/official_chokoani/",
-        "x_handle": "https://twitter.com/Dheycallmechoko/",
-        "facebook": null,
-        "instagram": null,
-        "twitter": null
-      }
-    }
-  },
+  "updatedAt": "2026-10-29T02:19:41.779809+01:00",
+  "onAir": null,
   "today": [
     {
-      "id": "66d78d685d81f931ec015f06",
-      "day": "WEDNESDAY",
+      "id": "66d78d685d81f931ec015f07",
+      "day": "THURSDAY",
       "startTime": "19:00",
       "endTime": "22:00",
       "duration": 180,
@@ -65,42 +35,6 @@
     }
   ],
   "week": [
-    {
-      "label": "Wednesday 28 Oct",
-      "rows": [
-        {
-          "id": "66d78d685d81f931ec015f06",
-          "day": "WEDNESDAY",
-          "startTime": "19:00",
-          "endTime": "22:00",
-          "duration": 180,
-          "showId": "66d78d685d81f931ec015f03",
-          "show": {
-            "id": "66d78d685d81f931ec015f03",
-            "title": "Night Market",
-            "description": "Tune into the hottest tracks, catch the latest social media trends, and dive into engaging conversations! Join us for a high-energy evening where music, games, and trends come together to keep you in the know and on the pulse of what's now. Let's vibe, thrive, and stay connected!",
-            "coverArt": "https://utfs.io/f/a63c722f-1d84-4f24-8788-5596cd25b334-ok1b2b.jpg",
-            "category": "Regular",
-            "tags": [
-              "night-market"
-            ],
-            "hostId": "66dffff899b3ff089a298c37",
-            "createdAt": "2024-09-03T22:27:52.604Z",
-            "updatedAt": "2024-09-10T09:04:44.980Z",
-            "host": {
-              "id": "66dffff899b3ff089a298c37",
-              "name": "Choko",
-              "bio": "Also known as \"THE DARKCHILD ON THE RADIO\"...ANI WILSON CHOKO,preferably loves to be called  \"CHOKO\" kick started his media career professionally as a co-host on Radio active saturday and church on Radio on wish fm in portharcourt, Rivers state, he later moved on to become the host of \"Da afro drippin clan\" on lovedabeat radio, london u.k, before becoming a part of the distinguished and high profiled Afia team.  \n\nAn incessant media dopehead, voiceover king, OAP extraordinaire, hypeman unplugged, mad singer(with the voice of an angel by the way) amazing rapper, songwriter, a great actor and a fine voice actor, tv host with the flows, entertainer 360 and ironically, on the flipside, a licensed practicing civil engineer......in the words of lil wayne, I should prolly say \"GOD DID HIS THING WHEN HE MADE ME\"  \n\nSONGS THAT BEST TELL MY STORY AT THE MOMENT-\"WILD DREAMS BY BURNA BOY & GOD DID BY DJ KHALED, cos honestly, it's just been GOD ALL THE WAY\"  THINGS YOU PROLLY DUNNO ABOUT ME-am a very fun, easy going, free spirited, humble, lovable guy(I no dey look down on anybody, but then I hate what I don't like) and just so you know, my presence is contagious & addictive and its prolly the reason why \"EVERYBODY LOVES CHOKO\"  \n\nMY SIGNATURE LINE -\"they call me choko, who don't do nothing loko, cos i always stay flyyyyyyy, like i'm supposed to",
-              "instagram_handle": "https://www.instagram.com/official_chokoani/",
-              "x_handle": "https://twitter.com/Dheycallmechoko/",
-              "facebook": null,
-              "instagram": null,
-              "twitter": null
-            }
-          }
-        }
-      ]
-    },
     {
       "label": "Thursday 29 Oct",
       "rows": [
@@ -385,6 +319,42 @@
         {
           "id": "66d78d685d81f931ec015f05",
           "day": "TUESDAY",
+          "startTime": "19:00",
+          "endTime": "22:00",
+          "duration": 180,
+          "showId": "66d78d685d81f931ec015f03",
+          "show": {
+            "id": "66d78d685d81f931ec015f03",
+            "title": "Night Market",
+            "description": "Tune into the hottest tracks, catch the latest social media trends, and dive into engaging conversations! Join us for a high-energy evening where music, games, and trends come together to keep you in the know and on the pulse of what's now. Let's vibe, thrive, and stay connected!",
+            "coverArt": "https://utfs.io/f/a63c722f-1d84-4f24-8788-5596cd25b334-ok1b2b.jpg",
+            "category": "Regular",
+            "tags": [
+              "night-market"
+            ],
+            "hostId": "66dffff899b3ff089a298c37",
+            "createdAt": "2024-09-03T22:27:52.604Z",
+            "updatedAt": "2024-09-10T09:04:44.980Z",
+            "host": {
+              "id": "66dffff899b3ff089a298c37",
+              "name": "Choko",
+              "bio": "Also known as \"THE DARKCHILD ON THE RADIO\"...ANI WILSON CHOKO,preferably loves to be called  \"CHOKO\" kick started his media career professionally as a co-host on Radio active saturday and church on Radio on wish fm in portharcourt, Rivers state, he later moved on to become the host of \"Da afro drippin clan\" on lovedabeat radio, london u.k, before becoming a part of the distinguished and high profiled Afia team.  \n\nAn incessant media dopehead, voiceover king, OAP extraordinaire, hypeman unplugged, mad singer(with the voice of an angel by the way) amazing rapper, songwriter, a great actor and a fine voice actor, tv host with the flows, entertainer 360 and ironically, on the flipside, a licensed practicing civil engineer......in the words of lil wayne, I should prolly say \"GOD DID HIS THING WHEN HE MADE ME\"  \n\nSONGS THAT BEST TELL MY STORY AT THE MOMENT-\"WILD DREAMS BY BURNA BOY & GOD DID BY DJ KHALED, cos honestly, it's just been GOD ALL THE WAY\"  THINGS YOU PROLLY DUNNO ABOUT ME-am a very fun, easy going, free spirited, humble, lovable guy(I no dey look down on anybody, but then I hate what I don't like) and just so you know, my presence is contagious & addictive and its prolly the reason why \"EVERYBODY LOVES CHOKO\"  \n\nMY SIGNATURE LINE -\"they call me choko, who don't do nothing loko, cos i always stay flyyyyyyy, like i'm supposed to",
+              "instagram_handle": "https://www.instagram.com/official_chokoani/",
+              "x_handle": "https://twitter.com/Dheycallmechoko/",
+              "facebook": null,
+              "instagram": null,
+              "twitter": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "Wednesday 4 Nov",
+      "rows": [
+        {
+          "id": "66d78d685d81f931ec015f06",
+          "day": "WEDNESDAY",
           "startTime": "19:00",
           "endTime": "22:00",
           "duration": 180,
