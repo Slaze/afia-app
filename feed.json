@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-29T02:19:41.779809+01:00",
+  "updatedAt": "2026-10-29T15:31:09.138069+01:00",
   "onAir": null,
   "today": [
     {
@@ -522,8 +522,8 @@
   "streamChecks": [
     {
       "url": "https://stream.afia993.com/stream",
-      "status": 502,
-      "error": "HTTPError"
+      "status": 200,
+      "type": "audio/mpeg"
     }
   ]
 }
