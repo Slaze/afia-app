@@ -4,16 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111111">
+  <!-- Note: apple-mobile-web-app-capable is deprecated but still used for iOS standalone mode compatibility -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Afia">
   <title>Afia TV</title>
-  <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
-  <link rel="apple-touch-icon" href="/afia-touch-180.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/afia-touch-180.png">
-  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+  <link rel="apple-touch-icon" href="./afia-touch-180.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./afia-touch-180.png">
+  <link rel="apple-touch-icon-precomposed" href="./apple-touch-icon-precomposed.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700&family=Figtree:wght@400;560;600;700&display=swap" rel="stylesheet">
@@ -3123,12 +3124,24 @@
     document.getElementById("introDone").addEventListener("click", () => {
       try { localStorage.setItem("afia-intro", "1"); } catch (error) { /* the guide can show again next time */ }
       document.getElementById("intro").classList.remove("show");
+      checkAutoLaunchLive();
     });
     document.getElementById("intro").addEventListener("click", (event) => {
       if (event.target.id === "intro") document.getElementById("introDone").click();
     });
+    
+    function checkAutoLaunchLive() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("open") === "live") {
+          setTimeout(() => showLive(), 100);
+        }
+      } catch (error) { /* URL parsing not supported */ }
+    }
+    
     try {
       if (!localStorage.getItem("afia-intro")) openIntro();
+      else checkAutoLaunchLive();
     } catch (error) { /* skip the guide if storage is blocked */ }
     window.addEventListener("beforeinstallprompt", (event) => {
       event.preventDefault();
