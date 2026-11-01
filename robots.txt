@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+# PWA shell is noindex via meta; primary site: https://www.afiatv.net/
