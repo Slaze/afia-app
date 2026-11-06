@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-06T03:36:55.301978+01:00",
+  "updatedAt": "2026-11-06T17:59:16.979776+01:00",
   "onAir": null,
   "today": [
     {
@@ -389,6 +389,13 @@
   "news": [
     {
       "category": "culture",
+      "description": "The 10th Coronation of the Oba of Benin therefore stands as more than a royal milestone. It is a reminder of the enduring power of culture, the people who preserve it and the responsibility of each generation to keep it alive. For Seaman’s Schnapps, supporting such moments reflects its commitment to celebrating Nigeria’s rich heritage and the traditions that continue to unite its people.",
+      "publishedAt": "2026-11-05T11:54:00.000Z",
+      "slug": "culture/seamans-schnapps-celebrates-a-decade-of-royal-legacy-with-the-oba-of-benin",
+      "title": "Seaman’s Schnapps Celebrates a Decade of Royal Legacy with the Oba of Benin"
+    },
+    {
+      "category": "culture",
       "description": "If you step into the Centre for Memories (Ncheta Ndigbo) in Independence Layout, Enugu, you won't find a dusty repository of silent artifacts. Instead, you enter a vibrant ecosystem humming with kinetic energy—where university students debate historical narratives, children gather for traditional storytelling, visitors engage with immersive art exhibitions, and cutting-edge 3D scanning technology works to preserve centuries-old monuments.",
       "publishedAt": "2026-10-07T15:33:36.675Z",
       "slug": "culture/living-infrastructure-how-iheanyi-igboko-is-safeguarding-the-soul-of-igbo-heritage",
@@ -435,13 +442,6 @@
       "publishedAt": "2026-08-27T12:47:16.678Z",
       "slug": "human-interest/the-general-of-coal-city-how-godwin-achebe-turned-resilience-into-a-blueprint-for-greatness",
       "title": "The General of Coal City: How Godwin Achebe Turned Resilience into a Blueprint for Greatness"
-    },
-    {
-      "category": "lifestyle",
-      "description": "From orchestrating complex public sector internal audits to pioneering groundbreaking lifestyle transformation movements across the Eastern region, Ikwumelu’s journey stands as a masterclass in civic responsibility, strategic vision, and an unyielding dedication to social impact.",
-      "publishedAt": "2026-08-26T10:18:12.974Z",
-      "slug": "lifestyle/the-architect-of-renewal-how-ikwumelu-ikenna-is-restoring-community-and-inspiring-a-generation",
-      "title": "The Architect of Renewal: How Ikwumelu Ikenna Is Restoring Community and Inspiring a Generation "
     }
   ],
   "episodes": [
