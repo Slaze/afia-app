@@ -1,37 +1,6 @@
 {
-  "updatedAt": "2026-11-07T19:46:12.547185+01:00",
-  "onAir": {
-    "id": "66d78d6b5d81f931ec015f0c",
-    "day": "SATURDAY",
-    "startTime": "18:00",
-    "endTime": "19:00",
-    "duration": 60,
-    "showId": "66d78d6b5d81f931ec015f0b",
-    "show": {
-      "id": "66d78d6b5d81f931ec015f0b",
-      "title": "Top 10 Countdown Show",
-      "description": "Count down of the top 10 hits of the week.",
-      "coverArt": "https://utfs.io/f/287b4e13-d8cd-46e4-ad55-82c4550b380a-14k2jg.jpg",
-      "category": "Weekend",
-      "tags": [
-        "top-10-countdown-show",
-        "saturday"
-      ],
-      "hostId": "66e000e899b3ff089a298c3c",
-      "createdAt": "2024-09-03T22:27:55.130Z",
-      "updatedAt": "2024-09-10T09:04:44.980Z",
-      "host": {
-        "id": "66e000e899b3ff089a298c3c",
-        "name": "G'son Emaefa",
-        "bio": "Orji Nwachukwu (G’son Emaefa).\nManager, Afia Radio.\n\nIs an ace producer, a profound Radio/Video jockey. \nA voice actor, model, actor, artiste and an engineer.\nHe’s an all round entertainment and music connoisseur, with decades experience in multimedia productions.\n \nAs an A&R, Publicist, Talent manager, and a music executive, with his meticulous slant in sourcing, packaging and distribution of raw contents and talents.\nHe has been an instrument in promoting and projecting so many talents, who are now established.\n\nHe has successfully worked and also built brands in the entertainment industry, it's business and media sphere.\nAlso the flamboyant host of the much talked about WEEKLY TOP 10 COUNTDOWN SHOW WITH G’SON EMAEFA which airs every weekend by 6pm, on Afia 99.3fm Enugu.",
-        "instagram_handle": "https://www.instagram.com/gsonemaefa",
-        "x_handle": "https://x.com/gsonemaefa",
-        "facebook": null,
-        "instagram": null,
-        "twitter": null
-      }
-    }
-  },
+  "updatedAt": "2026-11-07T23:23:30.513393+01:00",
+  "onAir": null,
   "today": [
     {
       "id": "66d78d6a5d81f931ec015f0a",
